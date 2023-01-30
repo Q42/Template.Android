@@ -1,0 +1,26 @@
+[versions]
+androidxCore = "1.9.0"
+androidxLifecycle = "2.5.1"
+kotlinCompilerExtensionVersion = "1.4.0"
+jvmTarget = "17"
+kotlin = "1.8.0"
+gradlePlugin = "8.0.0-beta01"
+manesVersions = "0.44.0"
+littleRobotsCatalogUpdates = "0.7.0"
+hilt = "2.44"
+javaInjectVersion = "1"
+
+[libraries]
+androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidxLifecycleKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+javaInject = { module = "javax.inject:javax.inject", version.ref = "javaInjectVersion" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "gradlePlugin" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVersions" }
+littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
