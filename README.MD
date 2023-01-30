@@ -1,14 +1,12 @@
 # Template.Android
 
 ## Setup decisions
-- Kotlin script build files, why?
+### Kotlin script build files
 ...
-- Non-android modules, why?
+### Non-android modules
 ...
-- Version catalog, why?
+### Version catalog
 - Dependency injection using Hilt, with non-android modules
+### Clean architecture
 ...
-- Clean architecture, why?
-...
-- Some details
 ![Screenshot 2023-01-30 at 16 48 09](https://user-images.githubusercontent.com/2270625/215524950-d65bf0ce-1f7a-4c81-a2fa-d6dd4b757420.png)
