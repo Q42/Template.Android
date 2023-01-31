@@ -47,7 +47,7 @@ a year?
 - Because we use Hilt, and do not want the domain layer to know the data layer, app must know all modules.
 
 ### Image loading
-- Use Coil or Landscapist-coil TODO describe
+- Use Coil or Landscapist-Coil. Currently, Glide had memory issues with compose at HEMA. TODO what exactly?
 
 ### DTO Models
 - Data transfer modules are preferably generated from server source/json/schemas and do not contain do not contain any changes compared to the contract.
