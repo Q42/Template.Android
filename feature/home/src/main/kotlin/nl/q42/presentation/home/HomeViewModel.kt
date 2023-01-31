@@ -8,6 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase
-): ViewModel() {
-    
+) : ViewModel() {
+    fun test() = getUserUseCase()
 }

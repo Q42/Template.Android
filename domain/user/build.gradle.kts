@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 // TODO: Would be nice to make this kotlin once again
 android {
@@ -14,9 +16,12 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get()
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
-    implementation(project(":data:user"))
-    implementation(libs.javaInject)
+    implementation(libs.hilt)
+    kapt(libs.hiltKapt)
 }

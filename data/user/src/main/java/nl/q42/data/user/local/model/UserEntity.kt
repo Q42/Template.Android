@@ -1,6 +1,6 @@
 package nl.q42.data.user.local.model
 
-import nl.q42.data.user.models.User
+import nl.q42.domain.user.usecase.User
 
 internal data class UserEntity(val email: String)
 

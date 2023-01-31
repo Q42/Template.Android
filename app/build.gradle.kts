@@ -61,12 +61,14 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:home"))
+    implementation(project(":domain:user"))
+    implementation(project(":data:user"))
+
     implementation(libs.androidxCoreKtx)
     implementation(libs.androidxLifecycleKtx)
     implementation(libs.hilt)
     kapt(libs.hiltKapt)
-
-    implementation(project(":feature:home"))
 
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation(platform("androidx.compose:compose-bom:2022.10.00"))

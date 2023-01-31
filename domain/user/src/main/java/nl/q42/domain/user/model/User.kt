@@ -1,3 +1,3 @@
-package nl.q42.data.user.models
+package nl.q42.domain.user.model
 
 data class User(val email: String)

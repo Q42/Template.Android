@@ -27,8 +27,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain:user"))
     implementation(libs.hilt)
     kapt(libs.hiltKapt)
-
-    implementation(libs.javaInject)
 }

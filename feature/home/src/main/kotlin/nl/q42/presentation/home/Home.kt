@@ -8,5 +8,5 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun HomeScreen(
     viewModel: HomeViewModel = viewModel()
 ) {
-    Text(text = "testing")
+    Text(text = "testing ${viewModel.test()}")
 }
