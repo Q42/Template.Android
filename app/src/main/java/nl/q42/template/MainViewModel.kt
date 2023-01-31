@@ -4,5 +4,8 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class MainViewModel @Inject constructor() {
+class MainViewModel @Inject constructor(
+
+) {
+
 }
