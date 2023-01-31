@@ -1,0 +1,8 @@
+plugins {
+    id "com.android.library"
+}
+apply from: "$rootDir/build.module.library.gradle"
+
+android {
+    namespace = "nl.q42.template.domain.home"
+}
