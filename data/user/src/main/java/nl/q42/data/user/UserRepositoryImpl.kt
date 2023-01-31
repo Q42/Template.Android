@@ -1,13 +1,13 @@
 package nl.q42.data.user
 
+import nl.q42.data.UserRepository
 import nl.q42.data.user.local.UserLocalDataSource
 import nl.q42.data.user.local.model.mapToUser
+import nl.q42.data.user.models.User
 import nl.q42.data.user.remote.UserRemoteDataSource
-import nl.q42.domain.user.UserRepository
-import nl.q42.domain.user.model.User
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(
+internal class UserRepositoryImpl @Inject constructor(
     private val userRemoteDataSource: UserRemoteDataSource,
     private val userLocalDataSource: UserLocalDataSource,
 ) : UserRepository {
