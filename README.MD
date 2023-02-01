@@ -106,6 +106,12 @@ for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-b
 
 ### Navigation
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking. Reasoning:
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking because it's low risk, high gain:
+- It reduces the amount of custom logic and effort needed to use compose-navigation. 
 - It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
-- Ir reduces the amount of custom logic and effort needed to use compose-navigation. 
+
+### Theming
+Tell your designers that there is a [Figma material theme builder plugin](https://www.figma.com/community/plugin/1034969338659738588)
+And a [Figma design kit](https://www.figma.com/community/file/1035203688168086460)
+Or you might want to generate a [Compose theme on the web](https://m3.material.io/theme-builder#/dynamic).
+Nice article to read is [Introducing Material Theme Builder](https://m2.material.io/material-theme-builder/)
