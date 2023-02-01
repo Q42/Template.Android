@@ -1,36 +1,48 @@
 # Template.Android
 
+A template for creating Android projects at Q42.
+
+## Features
+
+Only basic features that almost all projects use, were added in this template:
+- compose
+- theming
+- screen navigation
+- dependency injection
+- networking
+- json parsing
+- action results
+- clean architecture
+
+## Contributing
+
+To contribute, simply create a PR and let developers from other projects approve and merge it.
+A note on changes: these should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
+
 ## Setup decisions
 
 ### Clean architecture
 
-We use Clean Architecture, to a certain (large) extend.
+We use Clean Architecture, to a very large extend. The setup:
 
 ![Screenshot 2023-01-30 at 16 48 09](https://user-images.githubusercontent.com/2270625/215524950-d65bf0ce-1f7a-4c81-a2fa-d6dd4b757420.png)
 
-#### Source Material
+#### Clean Architecture layers
 
-- [Clean Architecture book](https://www.amazon.nl/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?__mk_nl_NL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PL4CNRB0N4UI&keywords=Robert+C.+Martin+Series+-+Clean+Architecture&qid=1675245338&sprefix=robert+c.+martin+series+-+clean+architecture%2Caps%2C54&sr=8-1)
-  - Quite a nice book that is easy to read. If you've read many articles on the subject, then this
-  book might still teach you a few things.
-- [Google Architecture Guidelines](https://developer.android.com/topic/architecture) - We largely
-  follow these, with some adjustments.
+- UI with Jetpack Compose
+- Presentation with the ViewModel
+- Domain for domain models, UseCases and other domain logic.
+- Data for data storage and retrieval.
 
-#### App
-
-- App is not in this schema. It's basically the main() method and should only be used to start the
-  app. In the future, more app-types might be added (tv, automotive, instant); no code in app.
-
-#### layers
-
-- All arrows point towards Domain. Domain is the most stable in this architecture. In this
-  hierarchy, domain is not affected by changes in other layers that are less stable. Domain has no
-  dependencies on other modules.
-- UI and Data are outer layers and unstable; The many changes we do here will have less effect on
+##### Clean Architecture Module Dependencies
+- All dependency arrows point towards Domain. Domain has no dependencies on other modules. This is a Clean Architecture rule. Domain is the most stable module in this architecture. In this
+  hierarchy, domain is not affected by changes in other layers that are less stable. 
+- UI and Data are _outer layers_ and _unstable_. In this setup, the many changes we do here will have less effect on other,
   more stable modules.
-- We chose to not have a Presentation module in this setup. The ViewModel, lives in the feature
-  module, in a Presentation package. So our feature modules include both the UI and Presentation
-  layer.
+- We chose to not have a Presentation module in this setup, to not have an overload of modules. The ViewModel lives in the feature
+  module, in a _feature/presentation_ package. The view classes are in a _feature/ui_ package.
+- The _app_ module is not drawn in this schema because it should only be used to start the
+  app and specify the theme. Do not put code in the app module, because in the future, more app-types might be added (like tv, automotive, instant). 
 
 #### mapping
 
@@ -115,3 +127,12 @@ Tell your designers that there is a [Figma material theme builder plugin](https:
 And a [Figma design kit](https://www.figma.com/community/file/1035203688168086460)
 Or you might want to generate a [Compose theme on the web](https://m3.material.io/theme-builder#/dynamic).
 Nice article to read is [Introducing Material Theme Builder](https://m2.material.io/material-theme-builder/)
+
+
+#### Inspiration Material
+
+- [Clean Architecture book](https://www.amazon.nl/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?__mk_nl_NL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PL4CNRB0N4UI&keywords=Robert+C.+Martin+Series+-+Clean+Architecture&qid=1675245338&sprefix=robert+c.+martin+series+-+clean+architecture%2Caps%2C54&sr=8-1)
+  - Quite a nice book that is easy to read. If you've read many articles on the subject, then this
+  book might still teach you a few things.
+- [Google Architecture Guidelines](https://developer.android.com/topic/architecture) - We largely
+  follow these, with some adjustments.
