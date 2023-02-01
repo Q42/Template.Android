@@ -12,10 +12,27 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
+    buildFeatures { // only app may have buildConfigFields
+        buildConfig = true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'config_api_main_url', "\"https://httpbin.org/\""
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            buildConfigField 'String', 'config_api_main_url', "\"https://httpbin.org/\""
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
 }
 
 dependencies {
     implementation(project(":feature:home"))
-    implementation(project(":domain:user"))
-    implementation(project(":data:user"))
+    implementation(project(":domain:user"))  // needed for di
+    implementation(project(":data:user"))  // needed for di
+    implementation(project(":core:network")) // needed for di
 }

@@ -10,12 +10,16 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Template.Android"
-include(":app")
-include(":data:user")
-include(":data:article")
-include(":domain:user")
-include(":domain:article")
-include(":feature:home")
+include ":app"
+include ":data:user"
+include ":data:article"
+include ":domain:user"
+include ":domain:article"
+include ":feature:home"
+include ":core:network"
+include ':core:actionresult'
+include ':core:ui'

@@ -7,15 +7,24 @@ kotlin = "1.8.0"
 gradlePlugin = "8.0.0-beta01"
 manesVersions = "0.44.0"
 littleRobotsCatalogUpdates = "0.7.0"
-hilt = "2.44"
-javaInjectVersion = "1"
+hilt = "2.44.2"
+ksp = "1.8.0-1.0.9"
+retrofit = "2.9.0"
+moshi = "1.14.0"
+networkResponseAdapter = "5.0.0"
+tolbaaken = "1.0"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidxLifecycleKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-javaInject = { module = "javax.inject:javax.inject", version.ref = "javaInjectVersion" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+moshiRetrofitConverter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
+moshiKotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+moshiCodeGen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+networkResponseAdapter = { module = "com.github.haroldadmin:NetworkResponseAdapter", version.ref = "networkResponseAdapter" }
+tolbaaken = { module = "com.github.Q42:Tolbaaken", version.ref = "tolbaaken" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
@@ -24,3 +33,4 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVersions" }
 littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

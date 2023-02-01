@@ -1,0 +1,8 @@
+apply {
+    plugin(libs.plugins.ksp.get().getPluginId())
+}
+
+dependencies {
+    implementation libs.moshiKotlin
+    ksp libs.moshiCodeGen
+}

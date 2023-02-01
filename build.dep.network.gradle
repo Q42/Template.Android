@@ -1,0 +1,5 @@
+dependencies {
+    implementation libs.retrofit
+    implementation libs.moshiRetrofitConverter
+    implementation libs.networkResponseAdapter
+}

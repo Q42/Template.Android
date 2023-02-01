@@ -3,6 +3,8 @@ plugins {
 }
 
 apply from: "$rootDir/build.module.library.gradle"
+apply from: "$rootDir/build.dep.network.gradle"
+apply from: "$rootDir/build.dep.json.gradle"
 
 android {
     namespace = "nl.q42.template.data.user"
@@ -10,4 +12,6 @@ android {
 
 dependencies {
     implementation project(':domain:user')
+    implementation project(':core:network')
+    implementation project(':core:actionresult')
 }

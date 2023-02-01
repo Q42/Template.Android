@@ -6,3 +6,7 @@ apply from: "$rootDir/build.module.library.gradle"
 android {
     namespace = "nl.q42.template.domain.home"
 }
+
+dependencies {
+    implementation project(':core:actionresult')
+}

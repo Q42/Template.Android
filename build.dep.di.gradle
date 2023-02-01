@@ -1,5 +1,7 @@
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
+apply {
+    plugin(libs.plugins.hilt.get().getPluginId())
+}
 
 android {
     // Hilt. Allow references to generated code
