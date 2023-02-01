@@ -103,3 +103,9 @@ not included yet.
 BuildConfig (or gralde build type configuration) is only allowed in the app module,
 for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
 ). If you need the config in a different module, use dependency injection and our `ConfigModule`.
+
+### Navigation
+
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking. Reasoning:
+- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
+- Ir reduces the amount of custom logic and effort needed to use compose-navigation. 

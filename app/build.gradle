@@ -3,6 +3,7 @@ plugins {
 }
 
 apply from: "$rootDir/build.module.feature-and-app.gradle"
+apply from: "$rootDir/build.dep.navigation.gradle"
 
 android {
 

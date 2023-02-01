@@ -13,6 +13,7 @@ retrofit = "2.9.0"
 moshi = "1.14.0"
 networkResponseAdapter = "5.0.0"
 tolbaaken = "1.0"
+composeDestinations = "1.8.33-beta"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -25,6 +26,8 @@ moshiKotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi
 moshiCodeGen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 networkResponseAdapter = { module = "com.github.haroldadmin:NetworkResponseAdapter", version.ref = "networkResponseAdapter" }
 tolbaaken = { module = "com.github.Q42:Tolbaaken", version.ref = "tolbaaken" }
+composeDestinations = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "composeDestinations" }
+composeDestinationsKps = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }

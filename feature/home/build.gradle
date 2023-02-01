@@ -2,6 +2,7 @@ plugins {
     id "com.android.library"
 }
 apply from: "$rootDir/build.module.feature-and-app.gradle"
+apply from: "$rootDir/build.dep.navigation.gradle"
 
 android {
     namespace = "nl.q42.template.feature.home"
