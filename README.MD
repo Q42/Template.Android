@@ -25,7 +25,7 @@ A note on changes: these should be practical and pragmatic. Do not add complexit
 
 We use [Clean Architecture](#inspiration-material), to a very large extend. Our setup:
 
-![Screenshot 2023-01-30 at 16 48 09](https://user-images.githubusercontent.com/2270625/215524950-d65bf0ce-1f7a-4c81-a2fa-d6dd4b757420.png)
+![Q42-CA](https://user-images.githubusercontent.com/2270625/216325003-8629f40a-c46c-43e6-ba1e-342dfb524ff9.png)
 
 #### Clean Architecture layers
 
