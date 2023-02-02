@@ -5,9 +5,7 @@ import sys
 import re
 from pathlib import Path
 
-folder = Path(os.getcwd()).parent.as_posix()
-
-print('folder:' + folder)
+folder = Path(os.path.abspath(os.path.dirname(__file__))).parent.as_posix()
 
 oldPackageName = "template"
 oldProjectTitle = "TemplateAndroid"
@@ -19,26 +17,26 @@ newPackageName = newProjectName.lower()
 
 # ========= Rename package files: =========
 
+print('\nRenaming all package folders named "' + oldPackageName + '" to "' + newProjectName + '".\n')
+
 for root, dirs, files in os.walk(folder, topdown=False):
     for subDir in dirs:
         if subDir.endswith(oldPackageName):
-            print("subDir" + subDir)
+            print("Renaming folder: " + os.path.join(root, subDir))
             os.rename(os.path.join(root, subDir), os.path.join(root, subDir.replace(oldPackageName, newPackageName)))
 
-print('Renamed all package folders named "' + oldPackageName + '" to "' + newProjectName + '"')
-
-
 # ========= Rename usages in kotlin, resource and gradle files: =========
+
+print("\nReplacing all package references in kotlin, xml and gradle files to: '" + newProjectName + "'.\n")
 
 def replace_package_name_occurences_in_file(filename):
     with open(filename, 'r') as file:
         filedata = file.read()
-        print(filedata)
 
         filedata = re.sub(re.escape("." + oldPackageName + "."), "." + newPackageName + ".", filedata)
         filedata = re.sub(re.escape(oldProjectTitle), newProjectName.capitalize(), filedata)
 
-        print(filedata)
+        print("Updating file: " + filename)
 
         with open(filename, 'w') as file:
             file.write(filedata)
@@ -51,4 +49,4 @@ for root, dirs, files in os.walk(folder, topdown=False):
             file_name = os.path.join(root, name)
             replace_package_name_occurences_in_file(file_name)
 
-print('Replaced all package references in files to: " + newProjectName + "."')
+print("\nDone renaming project to: '" + newProjectName + "'.\n")
