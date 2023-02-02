@@ -16,8 +16,7 @@ Only basic features that almost all projects use, were added in this template:
 
 ## Contributing
 
-To contribute, simply create a PR and let developers from other projects approve and merge it.
-A note on changes: these should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
+To contribute, simply create a PR and let developers from other projects approve and merge it. A note on changes: these should be practical and pragmatic. Do not add complexity for the sake of aesthetics. In your PR description, include a section: "Why is this important".
 
 ## Setup decisions
 
