@@ -34,10 +34,10 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
 
 #### Clean Architecture layers
 
-- UI with Jetpack Compose
-- Presentation with the ViewModel
-- Domain for domain models, UseCases and other domain logic.
-- Data for data storage and retrieval.
+- _UI_ with Jetpack Compose
+- _Presentation_ with the ViewModel
+- _Domain_ for domain models, UseCases and other domain logic.
+- _Data_ for data storage and retrieval.
 
 ##### Clean Architecture Module Dependencies
 - All dependency arrows point towards Domain. Domain has no dependencies on other modules. This is a Clean Architecture rule. Domain is the most stable module in this architecture. In this
