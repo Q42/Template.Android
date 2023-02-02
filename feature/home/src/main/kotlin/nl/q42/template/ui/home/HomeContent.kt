@@ -1,4 +1,4 @@
-package nl.q42.presentation.home
+package nl.q42.template.ui.home
 
 import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import nl.q42.presentation.home.presentation.HomeViewState
+import nl.q42.template.presentation.home.HomeViewState
 
 @Composable
 internal fun HomeContent(

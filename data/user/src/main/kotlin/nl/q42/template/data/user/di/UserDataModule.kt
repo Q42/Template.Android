@@ -1,13 +1,13 @@
-package nl.q42.data.user.di
+package nl.q42.template.data.user.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import nl.q42.data.user.UserRepositoryImpl
+import nl.q42.template.data.user.UserRepositoryImpl
 import nl.q42.data.user.remote.model.UserApi
-import nl.q42.domain.user.repo.UserRepository
+import nl.q42.template.domain.user.repo.UserRepository
 import retrofit2.Retrofit
 import javax.inject.Singleton
 

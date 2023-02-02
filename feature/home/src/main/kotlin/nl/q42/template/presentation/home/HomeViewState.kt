@@ -1,4 +1,4 @@
-package nl.q42.presentation.home.presentation
+package nl.q42.template.presentation.home
 
 sealed class HomeViewState {
     data class Data(val userEmail: String? = null) : HomeViewState()

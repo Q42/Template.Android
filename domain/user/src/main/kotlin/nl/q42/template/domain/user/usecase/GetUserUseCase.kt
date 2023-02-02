@@ -1,9 +1,9 @@
-package nl.q42.domain.user.usecase
+package nl.q42.template.domain.user.usecase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import nl.q42.domain.user.model.User
-import nl.q42.domain.user.repo.UserRepository
+import nl.q42.template.domain.user.model.User
+import nl.q42.template.domain.user.repo.UserRepository
 import nl.q42.template.actionresult.domain.ActionResult
 import javax.inject.Inject
 

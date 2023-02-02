@@ -1,6 +1,6 @@
-package nl.q42.data.user.local
+package nl.q42.template.data.user.local
 
-import nl.q42.data.user.local.model.UserEntity
+import nl.q42.template.data.user.local.model.UserEntity
 import javax.inject.Inject
 
 internal class UserLocalDataSource @Inject constructor() {

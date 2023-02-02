@@ -1,11 +1,11 @@
-package nl.q42.data.user
+package nl.q42.template.data.user
 
-import nl.q42.data.user.local.UserLocalDataSource
-import nl.q42.data.user.local.model.UserEntity
-import nl.q42.data.user.local.model.mapToUser
-import nl.q42.data.user.remote.UserRemoteDataSource
-import nl.q42.domain.user.model.User
-import nl.q42.domain.user.repo.UserRepository
+import nl.q42.template.data.user.local.UserLocalDataSource
+import nl.q42.template.data.user.local.model.UserEntity
+import nl.q42.template.data.user.local.model.mapToUser
+import nl.q42.template.data.user.remote.UserRemoteDataSource
+import nl.q42.template.domain.user.model.User
+import nl.q42.template.domain.user.repo.UserRepository
 import nl.q42.template.actionresult.domain.ActionResult
 import nl.q42.template.actionresult.domain.getDataOrNull
 import nl.q42.template.actionresult.domain.map
