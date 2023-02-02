@@ -14,6 +14,12 @@ Only basic features that almost all projects use, were added in this template:
 - action results
 - clean architecture
 
+## Using this template
+
+1. Click the green "Use this template" button in the Github repo to create your own repository with this code template.
+1. Clone the new repo locally on your machine.
+1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the project root, to change the project name and the package names. The script will ask for your new project name and update all references.
+
 ## Contributing
 
 To contribute, simply create a PR and let developers from other projects approve and merge it. A note on changes: these should be practical and pragmatic. Do not add complexity for the sake of aesthetics. In your PR description, include a section: "Why is this important".
@@ -95,8 +101,8 @@ Other options we considered and denied:
 1. Domain and data could have been kotlin modules if we used a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843). 
    - Pro: cleanliness, faster compile time. 
    - Con: no HiltModules possible in domain and data; The app module will have to contain DataModule and DomainModule to wire interfaces to their implementations.
-2. We could have mixed dagger (non-android modules) with hilt (android modules). Having two types of injection, depending on where you are, is confusing.
-3. We could have used dagger only. Dagger is more complex and harder to grasp for new developers.
+1. We could have mixed dagger (non-android modules) with hilt (android modules). Having two types of injection, depending on where you are, is confusing.
+1. We could have used dagger only. Dagger is more complex and harder to grasp for new developers.
 
 If you use this template to create a _white label_ app, then you might be better off with option 1. Then you actually might want the wiring to be outside the domain and data modules.
 
