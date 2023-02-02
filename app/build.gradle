@@ -21,12 +21,14 @@ android {
     buildTypes {
         debug {
             buildConfigField 'String', 'config_api_main_url', "\"https://httpbin.org/\""
+            buildConfigField 'boolean', 'config_log_http_calls', "true"
             minifyEnabled false
         }
         release {
             minifyEnabled true
             buildConfigField 'String', 'config_api_main_url', "\"https://httpbin.org/\""
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField 'boolean', 'config_log_http_calls', "false"
         }
     }
 }

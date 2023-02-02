@@ -32,18 +32,3 @@ sealed class ActionResult<out T : Any?> {
 
     data class Success<T : Any?>(val result: T) : ActionResult<T>()
 }
-
-fun <T> ActionResult<T>.getDataOrNull(): T? = when (this) {
-    is ActionResult.Error -> null
-    is ActionResult.Success -> result
-}
-
-/**
- * Maps an ActionResult with result type S into an ActionResult with result type T.
- *
- * Example usage: `userEntityActionResult.map(UserEntity::mapToUser)`
- */
-fun <S, T> ActionResult<S>.map(mapper: (S) -> T): ActionResult<T> = when (this) {
-    is ActionResult.Error -> this
-    is ActionResult.Success -> ActionResult.Success(mapper(this.result))
-}

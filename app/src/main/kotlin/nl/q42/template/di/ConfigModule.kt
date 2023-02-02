@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import nl.q42.template.BuildConfig
 import nl.q42.template.core.network.di.ConfigApiMainPath
+import nl.q42.template.core.network.di.ConfigLogHttpCalls
 import javax.inject.Singleton
 
 /**
@@ -19,5 +20,10 @@ class ConfigModule {
     @Provides
     @Singleton
     @ConfigApiMainPath
-    fun providesApiMainPath() = BuildConfig.config_api_main_url
+    fun providesApiMainPath(): String = BuildConfig.config_api_main_url
+
+    @Provides
+    @Singleton
+    @ConfigLogHttpCalls
+    fun configIsLoggingHttpCalls(): Boolean = BuildConfig.config_log_http_calls
 }

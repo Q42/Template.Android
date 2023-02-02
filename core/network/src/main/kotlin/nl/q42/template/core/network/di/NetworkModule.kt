@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -26,13 +27,19 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providesOkhttpClient(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        @ConfigLogHttpCalls logHttpCalls: Boolean,
     ) =
         OkHttpClient.Builder()
             .apply {
                 connectTimeout(1, TimeUnit.MINUTES)
                     .readTimeout(1, TimeUnit.MINUTES)
                     .writeTimeout(1, TimeUnit.MINUTES)
+
+                if (logHttpCalls) addInterceptor(HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                })
+
             }.build()
 
     @Singleton
