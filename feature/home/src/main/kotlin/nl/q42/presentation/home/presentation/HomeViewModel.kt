@@ -23,6 +23,10 @@ class HomeViewModel @Inject constructor(
         loadUser()
     }
 
+    fun onLoadClicked() {
+        loadUser()
+    }
+
     private fun loadUser() {
         viewModelScope.launch {
 

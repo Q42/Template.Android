@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core/actionresult" />
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/core/utils" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/article" />
             <option value="$PROJECT_DIR$/data/user" />

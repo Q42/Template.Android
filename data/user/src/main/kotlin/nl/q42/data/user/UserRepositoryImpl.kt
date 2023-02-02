@@ -1,6 +1,5 @@
 package nl.q42.data.user
 
-import android.util.Log
 import nl.q42.data.user.local.UserLocalDataSource
 import nl.q42.data.user.local.model.UserEntity
 import nl.q42.data.user.local.model.mapToUser
@@ -26,7 +25,7 @@ internal class UserRepositoryImpl @Inject constructor(
             userLocalDataSource.setUser(userEntity)
         }
 
-        // send response back to caller
+        // send response back to caller (note that it's often better to expose a Flow instead).
         return userEntityActionResult.map(UserEntity::mapToUser)
     }
 }

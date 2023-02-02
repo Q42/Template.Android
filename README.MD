@@ -23,7 +23,7 @@ A note on changes: these should be practical and pragmatic. Do not add complexit
 
 ### Clean architecture
 
-We use Clean Architecture, to a very large extend. The setup:
+We use [Clean Architecture](#inspiration-material), to a very large extend. Our setup:
 
 ![Screenshot 2023-01-30 at 16 48 09](https://user-images.githubusercontent.com/2270625/215524950-d65bf0ce-1f7a-4c81-a2fa-d6dd4b757420.png)
 
@@ -55,51 +55,80 @@ We use Clean Architecture, to a very large extend. The setup:
 - Use cases can call other use-cases.
 - Use cases do not have state, state preferably lives in the data layer.
 
+#### DTO Models
+
+Data Transfer Models (DTO) are preferably generated from server source code/json/schemas and do not contain
+any changes compared to the server contract.
+
+#### Model Entities
+
+Model Entities live in the data layer and are the local storage objects.
+
+#### Model mapping
+
+Models map from XDTO to XEntity to X and then probably into a viewstate. Mapping is always done in the _outside layer_, before being transported to the inner layer. See [the diagram](@clean-architecture) for more info.
+
+#### Core modules
+
+Core modules are used for _common_ logic that is shared between features and is not related to any feature or model. If your core-feature is 1-2 classes only and most modules will use it, putting it in Core:utils is simpler then creating a separate module. It is the most general module in the diagram, please keep it small. 
+
+Examples of logic that can live in _core:utils_:
+- extension methods on general kotlin classes
+- classes related to logging
+
 ### Key architecture patterns and principles
 
-- Unidirectional Data Flow: State up, events down
+- [Unidirectional Data Flow](https://developer.android.com/jetpack/compose/architecture#udf): State up, events down
 - Single responsibility principle
 - Separation of concerns
 
 ### Groovy instead of kotlin script build files
 
 In January 2023: We wrote gradle files in KTS. But many things are cumbersome using KTS, like
-sharing gradle files between modules in a includeBuild: adds more steps to take, per shared file.
-Rolled it back to Groovy, let's try again in
-a year?
+sharing gradle files between modules in a includeBuild: adds more steps to take per shared file.
+We rolled it back to Groovy, let's try again in a year?
 
 ### No non-android modules
 
-We do not use non-android modules because we want to use Hilt across all modules. There are
-workarounds to do this in non-android modules, but then the developer would need to implement a
-class differently based on the module type. We prefer to clarity over faster compile time, for
-now.
+We do not use non-android modules because we want to use Hilt across all modules. We prefer to clarity over faster compile time, for now.
+
+Other options we considered and denied:
+1. Domain and data could have been kotlin modules if we used a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843). 
+   - Pro: cleanliness, faster compile time. 
+   - Con: no HiltModules possible in domain and data; The app module will have to contain DataModule and DomainModule to wire interfaces to their implementations.
+2. We could have mixed dagger (non-android modules) with hilt (android modules). Having two types of injection, depending on where you are, is confusing.
+3. We could have used dagger only. Dagger is more complex and harder to grasp for new developers.
+
+If you use this template to create a _white label_ app, then you might be better off with option 1. Then you actually might want the wiring to be outside the domain and data modules.
+
+### Dependency injection
+
+We use Hilt, because compared to Dagger, it's simpler to get into for new developers. It also reduces the amount of code you need to write for DI. Because we use Hilt, and do not want the domain layer to know the data layer, app must know all
+modules.
 
 ### Version catalog
 
 We use a version catalog (toml) file for versioning. This is the latest feature from Gradle
-currently. It can be shared over projects.
+currently. It can be shared over (included) projects.
 
-### Dependency injection using Hilt
+### BuildConfig
 
-Because we use Hilt, and do not want the domain layer to know the data layer, app must know all
-modules.
+BuildConfig (or gradle build type configuration) is only allowed in the app module,
+for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
+). If you need the config in a different module, use dependency injection and our `ConfigModule`.
 
-### Image loading
+## Libraries
 
-Use Coil or Landscapist-Coil. Currently, Glide had memory issues with compose at HEMA. TODO what
-exactly?
+### Navigation
 
-### DTO Models
-
-Data transfer modules are preferably generated from server source/json/schemas and do not contain
-do not contain any changes compared to the contract.
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking because it's low risk, high gain:
+- It reduces the amount of custom logic and effort needed to use compose-navigation. 
+- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
 
 ### Networking
 
 We choose Retrofit over Ktor because we already use it in all of our projects and have a positive
-experience with it. Retrofit does not (and probably will not) support multiplatform, so we might
-switch to Ktor in the future.
+experience with it. Retrofit has many more features, but does not support Kotlin Multi Platform (yet).
 
 ### JSON parsing
 
@@ -110,29 +139,20 @@ speed.
 For date parsing you can use `com.squareup.moshi:moshi-adapters`. To keep the template small, it is
 not included yet.
 
-### BuildConfig
+### Image loading
 
-BuildConfig (or gralde build type configuration) is only allowed in the app module,
-for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
-). If you need the config in a different module, use dependency injection and our `ConfigModule`.
+We did not include an image loading library is this template, because not every app might need it, but we do have a suggestion. Use Coil or Landscapist-Coil. Currently, Glide had memory issues with compose at HEMA.
 
-### Navigation
+## Theming
+- You can tell designers that there is a [Figma material3 theme builder plugin](https://www.figma.com/community/plugin/1034969338659738588).
+- There also is a [Figma design kit for material3](https://www.figma.com/community/file/1035203688168086460).
+- You could also generate a [material3 compose theme on the web](https://m3.material.io/theme-builder#/dynamic).
+- A starting point to get reading is: [Introducing Material Theme Builder](https://m2.material.io/material-theme-builder/)
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking because it's low risk, high gain:
-- It reduces the amount of custom logic and effort needed to use compose-navigation. 
-- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
-
-### Theming
-Tell your designers that there is a [Figma material theme builder plugin](https://www.figma.com/community/plugin/1034969338659738588)
-And a [Figma design kit](https://www.figma.com/community/file/1035203688168086460)
-Or you might want to generate a [Compose theme on the web](https://m3.material.io/theme-builder#/dynamic).
-Nice article to read is [Introducing Material Theme Builder](https://m2.material.io/material-theme-builder/)
-
-
-#### Inspiration Material
+## Inspiration Material
 
 - [Clean Architecture book](https://www.amazon.nl/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?__mk_nl_NL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PL4CNRB0N4UI&keywords=Robert+C.+Martin+Series+-+Clean+Architecture&qid=1675245338&sprefix=robert+c.+martin+series+-+clean+architecture%2Caps%2C54&sr=8-1)
-  - Quite a nice book that is easy to read. If you've read many articles on the subject, then this
-  book might still teach you a few things.
+  - A clear book that is easy to read. If you have read many articles on the subject, then still this
+  book might teach you a few things.
 - [Google Architecture Guidelines](https://developer.android.com/topic/architecture) - We largely
-  follow these, with some adjustments.
+  follow these, with some adjustments. Also lists valuable [do's and don't's](https://developer.android.com/topic/architecture/recommendations).
