@@ -44,12 +44,12 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
 - The _app_ module is not drawn in this schema because it should only be used to start the
   app and specify the theme. Do not put code in the app module, because in the future, more app-types might be added (like tv, automotive, instant). 
 
-#### mapping
+#### Mapping
 
 - Mapping of models is done before handing over the model to an inner layer, as you can see at the
   right of the diagram.
 
-#### use cases
+#### Use cases
 
 - Use cases are single-purpose: GetUserUseCase, but also: GetUserWithArticlesUseCase.
 - Use cases can call other use-cases.
