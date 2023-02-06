@@ -121,13 +121,13 @@ currently. It can be shared over (included) projects.
 ### BuildConfig
 
 BuildConfig (or gradle build type configuration) is only allowed in the app module,
-for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1). If you need the config in a different module, use dependency injection and our `ConfigModule`.
+for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1). If you need the config in a different module, use dependency injection and our `app/ConfigModule`.
 
 ## Libraries
 
 ### Navigation
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking because it's low risk, high gain:
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for navigation because it's low risk, high gain:
 - It reduces the amount of custom logic and effort needed to use compose-navigation. 
 - It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
 
