@@ -103,8 +103,8 @@ Other options we considered and denied:
 1. Domain and data could have been kotlin modules if we used a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843). 
    - Pro: cleanliness, faster compile time. 
    - Con: no HiltModules possible in domain and data; The app module will have to contain DataModule and DomainModule to wire interfaces to their implementations.
-1. We could have mixed dagger (non-android modules) with hilt (android modules). Having two types of injection, depending on where you are, is confusing.
-1. We could have used dagger only. Dagger is more complex and harder to grasp for new developers.
+1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two types of injection, depending on where you are, is confusing.
+1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new developers.
 
 If you use this template to create a _white label_ app, then you might be better off with option 1. Then you actually might want the wiring to be outside the domain and data modules.
 
