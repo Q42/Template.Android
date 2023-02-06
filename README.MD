@@ -121,8 +121,7 @@ currently. It can be shared over (included) projects.
 ### BuildConfig
 
 BuildConfig (or gradle build type configuration) is only allowed in the app module,
-for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
-). If you need the config in a different module, use dependency injection and our `ConfigModule`.
+for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1). If you need the config in a different module, use dependency injection and our `ConfigModule`.
 
 ## Libraries
 
