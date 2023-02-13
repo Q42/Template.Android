@@ -135,15 +135,11 @@ We do not use non-android modules because we want to use Hilt across all modules
 clarity over faster compile time, for now.
 
 Other options we considered and denied:
-
-1. Domain and data could have been kotlin modules if we used
-   a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843).
-    - Pro: cleanliness, faster compile time.
-    - Con: no HiltModules possible in domain and data; The app module will have to contain
-      DataModule and DomainModule to wire interfaces to their implementations.
-1. We could have mixed dagger (non-android modules) with hilt (android modules). Having two types of
-   injection, depending on where you are, is confusing.
-1. We could have used dagger only. Dagger is more complex and harder to grasp for new developers.
+1. Domain and data could have been kotlin modules if we used a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843). 
+   - Pro: cleanliness, faster compile time. 
+   - Con: no HiltModules possible in domain and data; The app module will have to contain DataModule and DomainModule to wire interfaces to their implementations.
+1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two types of injection, depending on where you are, is confusing.
+1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new developers.
 
 If you use this template to create a _white label_ app, then you might be better off with option 1.
 Then you actually might want the wiring to be outside the domain and data modules.
@@ -163,19 +159,15 @@ currently. It can be shared over (included) projects.
 ### BuildConfig
 
 BuildConfig (or gradle build type configuration) is only allowed in the app module,
-for [clarity and to avoid bugs]( * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
-). If you need the config in a different module, use dependency injection and our `ConfigModule`.
+for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1). If you need the config in a different module, use dependency injection and our `app/ConfigModule`.
 
 ## Libraries
 
 ### Navigation
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for networking
-because it's low risk, high gain:
-
-- It reduces the amount of custom logic and effort needed to use compose-navigation.
-- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we
-  want to.
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for navigation because it's low risk, high gain:
+- It reduces the amount of custom logic and effort needed to use compose-navigation. 
+- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
 
 ### Networking
 
