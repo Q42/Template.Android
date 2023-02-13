@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
-import nl.q42.presentation.home.NavGraphs
+import nl.q42.template.ui.home.NavGraphs
 import nl.q42.template.ui.theme.AppTheme
 
 @AndroidEntryPoint
