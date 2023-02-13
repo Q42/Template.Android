@@ -17,3 +17,7 @@ android {
         jvmTarget = libs.versions.jvmTarget.get()
     }
 }
+
+dependencies {
+    implementation(libs.napier)
+}

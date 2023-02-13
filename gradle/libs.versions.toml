@@ -12,7 +12,7 @@ ksp = "1.8.0-1.0.9"
 retrofit = "2.9.0"
 moshi = "1.14.0"
 networkResponseAdapter = "5.0.0"
-tolbaaken = "1.0"
+napier = "2.6.1"
 composeDestinations = "1.8.33-beta"
 okhttp = "4.10.0"
 
@@ -28,7 +28,7 @@ moshiCodeGen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref
 networkResponseAdapter = { module = "com.github.haroldadmin:NetworkResponseAdapter", version.ref = "networkResponseAdapter" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttpLogging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
-tolbaaken = { module = "com.github.Q42:Tolbaaken", version.ref = "tolbaaken" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 composeDestinations = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "composeDestinations" }
 composeDestinationsKps = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
 

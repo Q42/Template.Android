@@ -42,4 +42,5 @@ dependencies {
     // TODO to version catalogue:
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(libs.napier)
 }

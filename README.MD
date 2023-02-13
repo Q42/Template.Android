@@ -184,6 +184,10 @@ speed.
 For date parsing you can use `com.squareup.moshi:moshi-adapters`. To keep the template small, it is
 not included yet.
 
+### Logging
+
+We use Napier because it's usage is close to Timber/Tolbaaken, but Napier supports KMM.
+
 ### Image loading
 
 We did not include an image loading library is this template, because not every app might need it,
