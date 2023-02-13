@@ -2,11 +2,6 @@
 
 A template for creating Android projects at Q42.
 
-## Todo
-
-- Use compose destinations in multiple modules, with child graphs.
-- Add DTO model generation from server schema.
-
 ## Features
 
 Only basic features that almost all projects use, were added in this template:
@@ -36,6 +31,11 @@ note on changes:
 
 - Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
 - In your PR description, please include a section: "Why is this important".
+
+## Features that still need to be added
+
+- Compose Destinations usage over modules, with child graphs per module.
+- DTO model generation from server schema.
 
 ## Setup decisions
 
