@@ -18,6 +18,7 @@ okhttp = "4.10.0"
 composePlatform = "2022.10.00"
 activityCompose = "1.6.1"
 hiltNavigationCompose = "1.0.0"
+composeLifecycle = "2.6.0-beta01"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -42,6 +43,8 @@ composeMaterial3 = { module = "androidx.compose.material3:material3" }
 composePlatform = { module = "androidx.compose:compose-bom", version.ref = "composePlatform" }
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }

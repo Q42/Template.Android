@@ -1,11 +1,11 @@
 package nl.q42.template.presentation.home
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.GetUserUseCase
@@ -16,11 +16,14 @@ class HomeViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase
 ) : ViewModel() {
 
-    var uiState by mutableStateOf<HomeViewState>(HomeViewState.Empty)
-        private set
+    private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
+    val uiState: Flow<HomeViewState> = _uiState
+
+    init {
+        loadUser()
+    }
 
     fun onScreenResumed() {
-        loadUser()
     }
 
     fun onLoadClicked() {
@@ -30,12 +33,12 @@ class HomeViewModel @Inject constructor(
     private fun loadUser() {
         viewModelScope.launch {
 
-            uiState = HomeViewState.Loading
+            _uiState.update { HomeViewState.Loading }
 
             handleAction(
                 getUserUseCase(),
-                onError = { uiState = HomeViewState.Error },
-                onSuccess = { uiState = HomeViewState.Data(it.email) },
+                onError = { _uiState.update { HomeViewState.Error } },
+                onSuccess = { result -> _uiState.update { HomeViewState.Data(result.email) } },
             )
         }
     }
