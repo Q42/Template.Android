@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import nl.q42.template.core.network.logger.JsonFormattedHttpLogger
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,9 +34,8 @@ internal class NetworkModule {
                     .readTimeout(1, TimeUnit.MINUTES)
                     .writeTimeout(1, TimeUnit.MINUTES)
 
-                if (logHttpCalls) addInterceptor(HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                })
+                if (logHttpCalls) addInterceptor(HttpLoggingInterceptor(JsonFormattedHttpLogger())
+                    .apply { level = HttpLoggingInterceptor.Level.BODY })
 
             }.build()
 

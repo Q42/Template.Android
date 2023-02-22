@@ -2,6 +2,7 @@ package nl.q42.template.actionresult.data
 
 import com.haroldadmin.cnradapter.NetworkResponse
 import com.squareup.moshi.JsonEncodingException
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CancellationException
 import nl.q42.template.actionresult.domain.ActionResult
 import java.io.EOFException
@@ -62,6 +63,7 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
             val statusCode = this.code
             val errorMessage = "Received NetworkResponse.UnknownError with response code $statusCode and header ${this.headers}"
             val exception = IOException(errorMessage, this.error)
+            Napier.w(this.error) { "NetworkResponse.UnknownError" }
             when {
                 statusCode == null -> {
                     ActionResult.Error.InvalidErrorResponse(exception)
