@@ -1,12 +1,10 @@
 package nl.q42.template.core.network.di
 
-import android.content.Context
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+internal class NetworkModule {
 
     @Provides
     @Singleton
@@ -27,7 +25,6 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providesOkhttpClient(
-        @ApplicationContext context: Context,
         @ConfigLogHttpCalls logHttpCalls: Boolean,
     ) =
         OkHttpClient.Builder()
