@@ -34,7 +34,9 @@ note on changes:
 
 ## Features that still need to be added
 
+- Theme needs to be moved to core-ui, so that all modules can access it directly.
 - Compose Destinations usage over modules, with child graphs per module.
+- Navigation from ViewModel.
 - DTO model generation from server schema.
 
 ## Setup decisions
