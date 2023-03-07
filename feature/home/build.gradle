@@ -6,6 +6,12 @@ apply from: "$rootDir/build.dep.navigation.gradle"
 
 android {
     namespace = "nl.q42.template.feature.home"
+
+    ksp {
+        // to be able to navigate multi-module
+        arg("compose-destinations.mode", "destinations")
+        arg("compose-destinations.moduleName", "home")
+    }
 }
 dependencies {
     implementation project(':domain:user')

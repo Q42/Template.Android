@@ -33,7 +33,7 @@ networkResponseAdapter = { module = "com.github.haroldadmin:NetworkResponseAdapt
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttpLogging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
-composeDestinations = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "composeDestinations" }
+composeDestinations = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "composeDestinations" }
 composeDestinationsKps = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
 composeUI = { module = "androidx.compose.ui:ui" }
 composeUIGraphics = { module = "androidx.compose.ui:ui-graphics" }

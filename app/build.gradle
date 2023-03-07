@@ -31,6 +31,12 @@ android {
             buildConfigField 'boolean', 'config_log_http_calls', "false"
         }
     }
+
+    ksp {
+        // to be able to navigate multi-module
+        arg("compose-destinations.mode", "destinations")
+        arg("compose-destinations.moduleName", "home")
+    }
 }
 
 dependencies {
@@ -40,4 +46,5 @@ dependencies {
     implementation(project(":domain:user"))  // needed for di
     implementation(project(":data:user"))  // needed for di
     implementation(project(":core:network")) // needed for di
+    implementation(libs.composeDestinations)
 }

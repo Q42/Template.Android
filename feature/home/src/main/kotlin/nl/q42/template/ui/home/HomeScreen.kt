@@ -5,14 +5,12 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.navigation.InitNavigator
 import nl.q42.template.presentation.home.HomeViewModel
 import nl.q42.template.presentation.home.HomeViewState
 import nl.q42.template.ui.compose.OnLifecycleResume
 
-@RootNavGraph(start = true)
 @Destination
 @Composable
 fun HomeScreen(
