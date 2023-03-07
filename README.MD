@@ -36,7 +36,9 @@ note on changes:
 
 - Compose Destinations usage over modules, with child graphs per module.
 - DTO model generation from server schema.
-- Automated dependency updates.
+- Automated dependency updates, something that works with Gradle Version Catalogs
+   - Dependabot has [an open issue](https://github.com/dependabot/dependabot-core/issues/3121) for supporting Gradle Version Catalogs
+   - Can we use [this plugin](https://github.com/littlerobots/version-catalog-update-plugin) instead?
 
 ## Setup decisions
 
