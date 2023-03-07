@@ -8,8 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import nl.q42.template.presentation.home.HomeViewState
+import nl.q42.template.ui.theme.PreviewAppTheme
+import nl.q42.template.ui.theme.PreviewLightDark
 
 @Composable
 internal fun HomeContent(
@@ -40,26 +41,34 @@ internal fun HomeContent(
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun HomeContentErrorPreview() {
-    HomeContent(HomeViewState.Error, {})
+    PreviewAppTheme {
+        HomeContent(HomeViewState.Error, {})
+    }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun HomeContentLoadingPreview() {
-    HomeContent(HomeViewState.Loading, {})
+    PreviewAppTheme {
+        HomeContent(HomeViewState.Loading, {})
+    }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun HomeContentEmptyPreview() {
-    HomeContent(HomeViewState.Empty, {})
+    PreviewAppTheme {
+        HomeContent(HomeViewState.Empty, {})
+    }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun HomeContentDataPreview() {
-    HomeContent(HomeViewState.Data("preview@preview.com"), {})
+    PreviewAppTheme {
+        HomeContent(HomeViewState.Data("preview@preview.com"), {})
+    }
 }

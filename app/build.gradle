@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
     implementation(project(":feature:home"))
     implementation(project(":domain:user"))  // needed for di
     implementation(project(":data:user"))  // needed for di

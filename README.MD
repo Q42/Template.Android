@@ -34,7 +34,6 @@ note on changes:
 
 ## Features that still need to be added
 
-- Theme needs to be moved to core-ui, so that all modules can access it directly.
 - Compose Destinations usage over modules, with child graphs per module.
 - Navigation from ViewModel. (WIP Frank)
 - Improve rename script, to better update packages etc. (WIP Frank)
@@ -125,13 +124,15 @@ We rolled it back to Groovy, let's try again in a year?
 
 ### Feature gradle files
 
-To share gradle config over modules and make adding more modules as simple as possible, we have 2 base files:
+To share gradle config over modules and make adding more modules as simple as possible, we have 2
+base files:
 
 - `build.module.feature-and-app.gradle` for all feature modules and the app module
 - `build.module.library.gradle` for all other modules (library modules)
 
 Also, feature-specific gradle files are set up, like `build.dep.compose.gradle`.
-When a feature encompasses adding multiple dependencies and/or config and you might re-use it, please add a separate gradle file for it.
+When a feature encompasses adding multiple dependencies and/or config and you might re-use it,
+please add a separate gradle file for it.
 
 ### No non-android modules
 
@@ -139,11 +140,16 @@ We do not use non-android modules because we want to use Hilt across all modules
 clarity over faster compile time, for now.
 
 Other options we considered and denied:
-1. Domain and data could have been kotlin modules if we used a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843). 
-   - Pro: cleanliness, faster compile time. 
-   - Con: no HiltModules possible in domain and data; The app module will have to contain DataModule and DomainModule to wire interfaces to their implementations.
-1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two types of injection, depending on where you are, is confusing.
-1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new developers.
+
+1. Domain and data could have been kotlin modules if we used
+   a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843).
+    - Pro: cleanliness, faster compile time.
+    - Con: no HiltModules possible in domain and data; The app module will have to contain
+      DataModule and DomainModule to wire interfaces to their implementations.
+1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two
+   types of injection, depending on where you are, is confusing.
+1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new
+   developers.
 
 If you use this template to create a _white label_ app, then you might be better off with option 1.
 Then you actually might want the wiring to be outside the domain and data modules.
@@ -160,18 +166,28 @@ modules.
 We use a version catalog (toml) file for versioning. This is the latest feature from Gradle
 currently. It can be shared over (included) projects.
 
+### Compose Previews
+
+Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You probably also want to
+wrap your preview content with a `PreviewAppTheme{..}` so that your previews have the correct theme
+background.
+
 ### BuildConfig
 
 BuildConfig (or gradle build type configuration) is only allowed in the app module,
-for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1). If you need the config in a different module, use dependency injection and our `app/ConfigModule`.
+for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1)
+. If you need the config in a different module, use dependency injection and our `app/ConfigModule`.
 
 ## Libraries
 
 ### Navigation
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for navigation because it's low risk, high gain:
-- It reduces the amount of custom logic and effort needed to use compose-navigation. 
-- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we want to.
+We use [compose destinations](https://github.com/raamcosta/compose-destinations) for navigation
+because it's low risk, high gain:
+
+- It reduces the amount of custom logic and effort needed to use compose-navigation.
+- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we
+  want to.
 
 ### Networking
 
