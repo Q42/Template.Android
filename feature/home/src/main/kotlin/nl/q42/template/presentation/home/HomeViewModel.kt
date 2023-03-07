@@ -16,8 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
-    private val routeNavigator: RouteNavigator,
-) : ViewModel(), RouteNavigator by routeNavigator {
+    private val navigator: RouteNavigator,
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
     val uiState: Flow<HomeViewState> = _uiState
@@ -47,6 +47,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenSecondScreenClicked() {
-        routeNavigator.navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
+        navigator.navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 }

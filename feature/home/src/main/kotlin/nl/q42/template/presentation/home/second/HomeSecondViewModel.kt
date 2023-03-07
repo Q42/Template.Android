@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeSecondViewModel @Inject constructor(
-    private val routeNavigator: RouteNavigator,
+    private val navigator: RouteNavigator,
     savedStateHandle: SavedStateHandle,
-) : ViewModel(), RouteNavigator by routeNavigator {
+) : ViewModel() {
 
     private val titleParam = savedStateHandle.get<String>("title") ?: throw IllegalArgumentException("title required")
 
@@ -20,6 +20,6 @@ class HomeSecondViewModel @Inject constructor(
     val uiState: Flow<HomeSecondViewState> = _uiState
 
     fun onBackClicked() {
-        routeNavigator.navigateUp()
+        navigator.navigateUp()
     }
 }
