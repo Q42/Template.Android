@@ -35,7 +35,6 @@ note on changes:
 ## Features that still need to be added
 
 - Compose Destinations usage over modules, with child graphs per module.
-- Navigation from ViewModel. (WIP Frank)
 - DTO model generation from server schema.
 - Automated dependency updates.
 
@@ -167,7 +166,8 @@ currently. It can be shared over (included) projects.
 
 ### Compose Previews
 
-Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You probably also want to
+Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
+probably also want to
 wrap your preview content with a `PreviewAppTheme{..}` so that your previews have the correct theme
 background.
 
@@ -187,6 +187,16 @@ because it's low risk, high gain:
 - It reduces the amount of custom logic and effort needed to use compose-navigation.
 - It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we
   want to.
+
+We
+added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde)
+. To enable this for your ViewModel:
+
+- Add a navigator `private val navigator: RouteNavigator` to the constructor of your ViewModel.
+- Let your ViewModel delegate RouteNavigator: `RouteNavigator by navigator`
+- Call `InitNavigator(navigator, viewModel)` from your screen.
+- Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
+  methods, etc.
 
 ### Networking
 

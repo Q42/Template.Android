@@ -9,12 +9,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.GetUserUseCase
+import nl.q42.template.navigation.RouteNavigator
+import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase
-) : ViewModel() {
+    private val getUserUseCase: GetUserUseCase,
+    private val navigator: RouteNavigator,
+) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
     val uiState: Flow<HomeViewState> = _uiState
@@ -41,5 +44,9 @@ class HomeViewModel @Inject constructor(
                 onSuccess = { result -> _uiState.update { HomeViewState.Data(result.email) } },
             )
         }
+    }
+
+    fun onOpenSecondScreenClicked() {
+        navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 }
