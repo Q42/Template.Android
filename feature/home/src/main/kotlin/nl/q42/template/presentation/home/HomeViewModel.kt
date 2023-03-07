@@ -49,4 +49,8 @@ class HomeViewModel @Inject constructor(
     fun onOpenSecondScreenClicked() {
         navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
+
+    fun onOpenOnboardingClicked() {
+        // navigateTo()
+    }
 }

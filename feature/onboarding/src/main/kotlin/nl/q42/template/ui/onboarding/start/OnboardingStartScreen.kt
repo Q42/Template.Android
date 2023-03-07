@@ -1,4 +1,4 @@
-package nl.q42.template.ui.home.second
+package nl.q42.template.ui.onboarding.start
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,14 +15,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.navigation.viewmodel.InitNavigator
-import nl.q42.template.presentation.home.second.HomeSecondViewModel
-import nl.q42.template.presentation.home.second.HomeSecondViewState
+import nl.q42.template.presentation.onboarding.start.OnboardingStartViewModel
+import nl.q42.template.presentation.onboarding.start.OnboardingStartViewState
 
 @Destination
 @Composable
-fun HomeSecondScreen(
+fun OnboardingStartScreen(
     navigator: DestinationsNavigator,
-    viewModel: HomeSecondViewModel = hiltViewModel(),
+    viewModel: OnboardingStartViewModel = hiltViewModel(),
     /**
      * Anything you add here becomes a navigation param that is provided
      * when navigating to this screen. These params are also available in ViewModel,
@@ -33,7 +33,7 @@ fun HomeSecondScreen(
 
     InitNavigator(navigator, viewModel) // enables viewModel to navigate to other screens
 
-    val viewState by viewModel.uiState.collectAsStateWithLifecycle(initialValue = HomeSecondViewState(""))
+    val viewState by viewModel.uiState.collectAsStateWithLifecycle(initialValue = OnboardingStartViewState(""))
 
     Column(
         modifier = Modifier.fillMaxSize(),

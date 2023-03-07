@@ -4,6 +4,7 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import nl.q42.template.ui.home.destinations.HomeScreenDestination
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
+import nl.q42.template.ui.onboarding.start.destinations.OnboardingStartScreenDestination
 
 /**
  *
@@ -21,6 +22,17 @@ object NavGraphs {
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
             HomeScreenDestination,
             HomeSecondScreenDestination,
+        )
+            .associateBy { it.route }
+    }
+
+    val onboarding = object : NavGraphSpec {
+        override val route = "onboarding"
+
+        override val startRoute = OnboardingStartScreenDestination
+
+        override val destinationsByRoute = listOf<DestinationSpec<*>>(
+            OnboardingStartScreenDestination,
         )
             .associateBy { it.route }
     }
