@@ -2,21 +2,20 @@ package nl.q42.template.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import io.github.aakira.napier.Napier
 
 /**
  * Ensures that [routeNavigator] can navigate on this composition. [routeNavigator] will usually be a ViewModel.
+ *
+ * More info: https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde
  */
 @Composable
 fun InitNavigator(destinationsNavigator: DestinationsNavigator, routeNavigator: RouteNavigator) {
 
-    val viewState by routeNavigator.navigationState.collectAsState()
-
+    val viewState by routeNavigator.navigationState.collectAsStateWithLifecycle(initialValue = NavigationState.Idle)
     LaunchedEffect(viewState) {
-        Napier.d("Navigating to $viewState")
         updateNavigationState(destinationsNavigator, viewState, routeNavigator::onNavigated)
     }
 }

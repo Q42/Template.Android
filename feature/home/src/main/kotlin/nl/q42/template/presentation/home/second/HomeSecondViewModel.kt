@@ -12,7 +12,7 @@ import javax.inject.Inject
 class HomeSecondViewModel @Inject constructor(
     private val navigator: RouteNavigator,
     savedStateHandle: SavedStateHandle,
-) : ViewModel() {
+) : ViewModel(), RouteNavigator by navigator {
 
     private val titleParam = savedStateHandle.get<String>("title") ?: throw IllegalArgumentException("title required")
 
@@ -20,6 +20,6 @@ class HomeSecondViewModel @Inject constructor(
     val uiState: Flow<HomeSecondViewState> = _uiState
 
     fun onBackClicked() {
-        navigator.navigateUp()
+        navigateUp()
     }
 }

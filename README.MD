@@ -188,12 +188,15 @@ because it's low risk, high gain:
 - It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we
   want to.
 
-We added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde)
+We
+added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde)
 . To enable this for your ViewModel:
 
 - Add a navigator `private val navigator: RouteNavigator` to the constructor of your ViewModel.
+- Let your ViewModel delegate RouteNavigator: `RouteNavigator by navigator`
 - Call `InitNavigator(navigator, viewModel)` from your screen.
-- Call `navigator.navigate(destination)` from your ViewModel to navigate somewhere. There are also popUpTo methods, etc.
+- Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
+  methods, etc.
 
 ### Networking
 

@@ -17,7 +17,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val navigator: RouteNavigator,
-) : ViewModel() {
+) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
     val uiState: Flow<HomeViewState> = _uiState
@@ -47,6 +47,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenSecondScreenClicked() {
-        navigator.navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
+        navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 }
