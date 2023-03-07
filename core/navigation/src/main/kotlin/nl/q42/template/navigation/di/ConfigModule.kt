@@ -5,8 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import nl.q42.template.navigation.MyRouteNavigator
-import nl.q42.template.navigation.RouteNavigator
+import nl.q42.template.navigation.viewmodel.MyRouteNavigator
+import nl.q42.template.navigation.viewmodel.RouteNavigator
 
 @Module
 @InstallIn(ViewModelComponent::class)

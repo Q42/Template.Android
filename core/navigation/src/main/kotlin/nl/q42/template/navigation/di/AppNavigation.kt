@@ -1,4 +1,4 @@
-package nl.q42.template.navigation
+package nl.q42.template.navigation.di
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
@@ -8,6 +8,7 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
+import com.ramcosta.composedestinations.spec.NavGraphSpec
 import nl.q42.template.navigation.transitions.defaultEnterTransition
 import nl.q42.template.navigation.transitions.defaultExitTransition
 import nl.q42.template.navigation.transitions.defaultPopEnterTransition
@@ -16,8 +17,9 @@ import nl.q42.template.navigation.transitions.defaultPopExitTransition
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @ExperimentalAnimationApi
 @Composable
-internal fun AppNavigation(
+fun AppNavigation(
     navController: NavHostController,
+    navGraph: NavGraphSpec,
     modifier: Modifier = Modifier,
 ) {
     DestinationsNavHost(
@@ -30,7 +32,7 @@ internal fun AppNavigation(
             )
         ),
         navController = navController,
-        navGraph = NavGraphs.root,
+        navGraph = navGraph,
         modifier = modifier,
     )
 }

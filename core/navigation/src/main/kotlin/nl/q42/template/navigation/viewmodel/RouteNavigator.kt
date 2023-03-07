@@ -1,8 +1,7 @@
-package nl.q42.template.navigation
+package nl.q42.template.navigation.viewmodel
 
 import androidx.annotation.VisibleForTesting
 import com.ramcosta.composedestinations.spec.Direction
-import com.ramcosta.composedestinations.spec.Route
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

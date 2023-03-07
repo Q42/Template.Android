@@ -1,4 +1,4 @@
-package nl.q42.template.navigation
+package nl.q42.template.navigation.viewmodel
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

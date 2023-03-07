@@ -10,7 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
-import nl.q42.template.navigation.AppNavigation
+import nl.q42.template.navigation.NavGraphs
+import nl.q42.template.navigation.di.AppNavigation
 import nl.q42.template.ui.theme.AppTheme
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberAnimatedNavController()
 
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    AppNavigation(navController = navController)
+                    AppNavigation(navController = navController, navGraph = NavGraphs.root)
                 }
             }
         }

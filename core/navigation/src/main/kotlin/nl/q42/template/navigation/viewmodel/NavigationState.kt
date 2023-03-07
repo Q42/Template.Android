@@ -1,4 +1,4 @@
-package nl.q42.template.navigation
+package nl.q42.template.navigation.viewmodel
 
 import com.ramcosta.composedestinations.spec.Direction
 import java.util.UUID

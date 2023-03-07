@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.GetUserUseCase
-import nl.q42.template.navigation.RouteNavigator
+import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import javax.inject.Inject
 

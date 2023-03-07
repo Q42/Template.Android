@@ -7,7 +7,7 @@ import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 
 /**
  *
- * Define your graphs here.
+ * Define your graphs here, since app knows all feature modules.
  *
  * More info: https://composedestinations.rafaelcosta.xyz/codegenconfigs/#multi-module-configs
  */
