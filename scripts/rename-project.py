@@ -8,12 +8,13 @@ from pathlib import Path
 folder = Path(os.path.abspath(os.path.dirname(__file__))).parent.as_posix()
 
 oldPackageName = "template"
-oldProjectTitle = "TemplateAndroid"
+oldProjectName = "TemplateAndroid"
 
-print('Enter new project package name:')
+print('Enter new project name:')
 newProjectName = input()
 
-newPackageName = newProjectName.lower()
+print('Enter main package name without a prefix, nl.q42.<your-package-name>:')
+newPackageName = input()
 
 # ========= Rename package files: =========
 
@@ -33,8 +34,9 @@ def replace_package_name_occurences_in_file(filename):
     with open(filename, 'r') as file:
         filedata = file.read()
 
-        filedata = re.sub(re.escape("." + oldPackageName + "."), "." + newPackageName + ".", filedata)
-        filedata = re.sub(re.escape(oldProjectTitle), newProjectName.capitalize(), filedata)
+        filedata = re.sub(re.escape("." + oldPackageName), "." + newPackageName, filedata)
+        filedata = re.sub(re.escape(oldProjectName), newProjectName.capitalize(), filedata)
+        filedata = re.sub(re.escape(oldProjectName).capitalize(), newProjectName.capitalize(), filedata)
 
         print("Updating file: " + filename)
 
