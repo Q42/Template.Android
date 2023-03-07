@@ -36,7 +36,6 @@ def replace_package_name_occurences_in_file(filename):
 
         filedata = re.sub(re.escape("." + oldPackageName), "." + newPackageName, filedata)
         filedata = re.sub(re.escape(oldProjectName), newProjectName.capitalize(), filedata)
-        filedata = re.sub(re.escape(oldProjectName).capitalize(), newProjectName.capitalize(), filedata)
 
         print("Updating file: " + filename)
 
@@ -51,4 +50,4 @@ for root, dirs, files in os.walk(folder, topdown=False):
             file_name = os.path.join(root, name)
             replace_package_name_occurences_in_file(file_name)
 
-print("\nDone renaming project to: '" + newProjectName + "'.\n")
+print("\nDone renaming project to: '" + newProjectName + "' and package to 'nl.q42."+ newPackageName +"'.\n")
