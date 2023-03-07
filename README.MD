@@ -36,7 +36,6 @@ note on changes:
 
 - Compose Destinations usage over modules, with child graphs per module.
 - Navigation from ViewModel. (WIP Frank)
-- Improve rename script, to better update packages etc. (WIP Frank)
 - DTO model generation from server schema.
 - Automated dependency updates.
 
