@@ -36,6 +36,7 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
             val errorMessage: String? = this.body?.message
             val exception = Exception("$errorMessage $this.code")
             when {
+                isNotFound(this.code) -> ActionResult.Error.NotFoundError
                 isTooManyRequests(this.code) -> ActionResult.Error.TooManyRequests(exception)
                 isUnAuthorized(this.code) -> ActionResult.Error.UnAuthorized(exception, errorMessage)
                 // a 404 is not a ServerError, but an UnknownError (mapping to Error.NotFoundError)
