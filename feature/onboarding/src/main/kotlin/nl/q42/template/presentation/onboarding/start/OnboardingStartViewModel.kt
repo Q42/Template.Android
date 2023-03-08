@@ -14,9 +14,7 @@ class OnboardingStartViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel(), RouteNavigator by navigator {
 
-    private val titleParam = savedStateHandle.get<String>("title") ?: throw IllegalArgumentException("title required")
-
-    private val _uiState = MutableStateFlow<OnboardingStartViewState>(OnboardingStartViewState(titleParam))
+    private val _uiState = MutableStateFlow(OnboardingStartViewState("start"))
     val uiState: Flow<OnboardingStartViewState> = _uiState
 
     fun onBackClicked() {

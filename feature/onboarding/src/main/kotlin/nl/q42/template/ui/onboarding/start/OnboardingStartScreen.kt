@@ -23,12 +23,6 @@ import nl.q42.template.presentation.onboarding.start.OnboardingStartViewState
 fun OnboardingStartScreen(
     navigator: DestinationsNavigator,
     viewModel: OnboardingStartViewModel = hiltViewModel(),
-    /**
-     * Anything you add here becomes a navigation param that is provided
-     * when navigating to this screen. These params are also available in ViewModel,
-     * for example this title via savedStateHandle.get("title")
-     */
-    title: String,
 ) {
 
     InitNavigator(navigator, viewModel) // enables viewModel to navigate to other screens

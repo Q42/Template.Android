@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.GetUserUseCase
+import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import javax.inject.Inject
@@ -51,6 +52,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenOnboardingClicked() {
-        // navigateTo()
+        navigateTo(AppGraphRoutes.onboarding)
     }
 }

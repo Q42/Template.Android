@@ -15,7 +15,7 @@ import nl.q42.template.ui.onboarding.start.destinations.OnboardingStartScreenDes
 object NavGraphs {
 
     val home = object : NavGraphSpec {
-        override val route = "home"
+        override val route = AppGraphRoutes.home
 
         override val startRoute = HomeScreenDestination
 
@@ -27,7 +27,7 @@ object NavGraphs {
     }
 
     val onboarding = object : NavGraphSpec {
-        override val route = "onboarding"
+        override val route = AppGraphRoutes.onboarding
 
         override val startRoute = OnboardingStartScreenDestination
 
@@ -38,11 +38,11 @@ object NavGraphs {
     }
 
     val root = object : NavGraphSpec {
-        override val route = "root"
+        override val route = AppGraphRoutes.root
         override val startRoute = home
         override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
         override val nestedNavGraphs = listOf(
-            home,
+            home, onboarding
         )
     }
 }
