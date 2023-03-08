@@ -35,6 +35,8 @@ note on changes:
 ## Features that still need to be added
 
 - Compose Destinations usage over modules, with child graphs per module. (WIP Frank)
+- After over-module navigation is merged: research android screen transition standards + update our animations
+- Add navigation (routeIn) to other-then-root feature graphs (by adding the destination in multiple graphs) -> Frank
 - DTO model generation from server schema.
 - Automated dependency updates, something that works with Gradle Version Catalogs
    - Dependabot has [an open issue](https://github.com/dependabot/dependabot-core/issues/3121) for supporting Gradle Version Catalogs
