@@ -17,6 +17,8 @@ object NavGraphs {
     val home = object : NavGraphSpec {
         override val route = AppGraphRoutes.home
 
+        // TODO add route-ins to enable usage of single destinations in multiple graphs
+
         override val startRoute = HomeScreenDestination
 
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
