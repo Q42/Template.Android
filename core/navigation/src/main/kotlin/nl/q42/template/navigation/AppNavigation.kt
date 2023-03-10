@@ -1,4 +1,4 @@
-package nl.q42.template.navigation.di
+package nl.q42.template.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable

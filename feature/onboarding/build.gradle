@@ -5,7 +5,7 @@ apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"
 
 android {
-    def moduleName = "home"
+    def moduleName = "onboarding"
 
     namespace = "nl.q42.template.feature.$moduleName"
 

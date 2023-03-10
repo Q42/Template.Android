@@ -20,6 +20,7 @@ include ":data:article"
 include ":domain:user"
 include ":domain:article"
 include ":feature:home"
+include ":feature:onboarding"
 include ":core:network"
 include ':core:actionresult'
 include ':core:ui'

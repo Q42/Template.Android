@@ -30,7 +30,7 @@ private fun updateNavigationState(
 ) {
     when (navigationState) {
         is NavigationState.NavigateToRoute -> {
-            navigator.navigate(navigationState.routeDestination)
+            navigator.navigate(navigationState.route)
             onNavigated(navigationState)
         }
 

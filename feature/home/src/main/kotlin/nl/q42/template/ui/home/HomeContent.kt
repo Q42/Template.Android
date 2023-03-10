@@ -17,6 +17,7 @@ internal fun HomeContent(
     viewState: HomeViewState,
     onLoadClicked: () -> Unit,
     onOpenSecondScreenClicked: () -> Unit,
+    onOpenOnboardingClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -43,6 +44,9 @@ internal fun HomeContent(
         Button(onClick = onOpenSecondScreenClicked) {
             Text("Open second screen")
         }
+        Button(onClick = onOpenOnboardingClicked) {
+            Text("Open onboarding")
+        }
     }
 }
 
@@ -50,7 +54,7 @@ internal fun HomeContent(
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState.Error, {}, {})
+        HomeContent(HomeViewState.Error, {}, {}, {})
     }
 }
 
@@ -58,7 +62,7 @@ private fun HomeContentErrorPreview() {
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState.Loading, {}, {})
+        HomeContent(HomeViewState.Loading, {}, {}, {})
     }
 }
 
@@ -66,7 +70,7 @@ private fun HomeContentLoadingPreview() {
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState.Empty, {}, {})
+        HomeContent(HomeViewState.Empty, {}, {}, {})
     }
 }
 
@@ -74,6 +78,6 @@ private fun HomeContentEmptyPreview() {
 @Composable
 private fun HomeContentDataPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState.Data("preview@preview.com"), {}, {})
+        HomeContent(HomeViewState.Data("preview@preview.com"), {}, {}, {})
     }
 }
