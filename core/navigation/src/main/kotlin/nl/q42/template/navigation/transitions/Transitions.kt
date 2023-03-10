@@ -46,10 +46,10 @@ private val NavDestination.hostNavGraph: NavGraph
 
 @ExperimentalAnimationApi
 fun AnimatedContentScope<*>.defaultPopEnterTransition(): EnterTransition {
-    return fadeIn() + slideIntoContainer(AnimatedContentScope.SlideDirection.End)
+    return fadeIn()
 }
 
 @ExperimentalAnimationApi
 fun AnimatedContentScope<*>.defaultPopExitTransition(): ExitTransition {
-    return fadeOut() + slideOutOfContainer(AnimatedContentScope.SlideDirection.End)
+    return fadeOut()
 }
