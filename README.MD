@@ -36,8 +36,10 @@ note on changes:
 
 - Research android screen transition standards + update our animations
 - Automated dependency updates, something that works with Gradle Version Catalogs
-   - Dependabot has [an open issue](https://github.com/dependabot/dependabot-core/issues/3121) for supporting Gradle Version Catalogs
-   - Can we use [this plugin](https://github.com/littlerobots/version-catalog-update-plugin) instead?
+    - Dependabot has [an open issue](https://github.com/dependabot/dependabot-core/issues/3121) for
+      supporting Gradle Version Catalogs
+    - Can we use [this plugin](https://github.com/littlerobots/version-catalog-update-plugin)
+      instead?
 - DTO model generation from server schema.
 
 ## Setup decisions
@@ -199,6 +201,10 @@ added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/
 - Call `InitNavigator(navigator, viewModel)` from your screen.
 - Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
   methods, etc.
+  
+  You can call navigateTo with a `AppGraphRoutes` (in core.navigation) to navigate to the root of a
+  different
+  graph route.
 
 ### Networking
 
