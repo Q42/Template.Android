@@ -30,6 +30,7 @@ To contribute, simply create a PR and let developers from other projects approve
 note on changes:
 
 - Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
+- Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
 
 ## Features that still need to be added
