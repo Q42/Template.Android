@@ -14,6 +14,7 @@ Only basic features that almost all projects use, were added in this template:
 - json parsing
 - action results
 - clean architecture
+- automated dependency updates
 
 ## Using this template
 
