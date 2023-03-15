@@ -73,6 +73,7 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
 
 - Mapping of models is done before handing over the model to an inner layer, as you can see at the
   right of the diagram.
+- Writing mapping functions between models, entities and DTO ojects is boring: let GitHub Copilot or some other AI tool in Android Studio generate your mapping functions.
 
 #### Use cases
 
