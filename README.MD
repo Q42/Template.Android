@@ -69,12 +69,6 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
   app and specify the theme. Do not put code in the app module, because in the future, more
   app-types might be added (like tv, automotive, instant).
 
-#### Mapping
-
-- Mapping of models is done before handing over the model to an inner layer, as you can see at the
-  right of the diagram.
-- Writing mapping functions between models, entities and DTO ojects is boring: let GitHub Copilot or some other AI tool in Android Studio generate your mapping functions.
-
 #### Use cases
 
 - Use cases are single-purpose: GetUserUseCase, but also: GetUserWithArticlesUseCase.
@@ -96,6 +90,7 @@ Model Entities live in the data layer and are the local storage objects.
 Models map from XDTO to XEntity to X and then probably into a viewstate. Mapping is always done in
 the _outside layer_, before being transported to the inner layer.
 See [the diagram](@clean-architecture) for more info.
+- Writing mapping functions between models, entities and DTO ojects is boring and cumbersome: let GitHub Copilot or some other AI tool in Android Studio generate your mapping functions.
 
 #### Core modules
 
