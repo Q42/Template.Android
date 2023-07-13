@@ -17,4 +17,5 @@ dependencies {
     implementation(libs.composeUIToolingPreview)
     implementation(libs.composeMaterial3)
     implementation(libs.composeLifecycle)
+    implementation(libs.materialIconsExtended)
 }

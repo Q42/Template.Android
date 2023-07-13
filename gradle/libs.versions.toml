@@ -40,6 +40,7 @@ composeUIGraphics = { module = "androidx.compose.ui:ui-graphics" }
 composeUITooling = { module = "androidx.compose.ui:ui-tooling" }
 composeUIToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 composeMaterial3 = { module = "androidx.compose.material3:material3" }
+materialIconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 composePlatform = { module = "androidx.compose:compose-bom", version.ref = "composePlatform" }
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
