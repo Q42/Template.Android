@@ -31,11 +31,18 @@ jobs:
         run: bundle exec fastlane android clean
       - name: Run tests
         run: bundle exec fastlane android test
-      - name: Build Debug APK
-        run: bundle exec fastlane android assembleDevDebug
+      - name: Build Debug and Release APK
+        run: bundle exec fastlane android assembleDevDebug assembleDevRelease
       - name: Upload Debug Apk
         uses: actions/upload-artifact@v3
         with:
           name: widm_android_${{ github.run_number }}_apk_debug
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-dev-debug.apk
+            - name: Upload Release Apk
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: widm_android_${{ github.run_number }}_apk_release
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/dev/release/app-dev-release.apk
