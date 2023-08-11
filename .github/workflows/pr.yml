@@ -18,7 +18,7 @@ jobs:
           java-version: "17"
           cache: "gradle"
       - name: Update version code
-        uses: chkfung/android-version-actions@v1.1
+        uses: chkfung/android-version-actions@v1.2.1
         with:
           gradlePath: app/build.gradle
           versionCode: ${{ github.run_number }}
@@ -31,18 +31,20 @@ jobs:
         run: bundle exec fastlane android clean
       - name: Run tests
         run: bundle exec fastlane android test
-      - name: Build Debug and Release APK
-        run: bundle exec fastlane android assembleDevDebug assembleDevRelease
-      - name: Upload Debug Apk
+      - name: Build Debug APK
+        run: bundle exec fastlane android assembleDevDebug
+      - name: Upload Debug Apk To Github
         uses: actions/upload-artifact@v3
         with:
-          name: widm_android_${{ github.run_number }}_apk_debug
+          name: template_android_${{ github.run_number }}_apk_debug
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-dev-debug.apk
             - name: Upload Release Apk
-      - name: Upload Release APK
+      - name: Build Release APK
+        run: bundle exec fastlane android assembleDevRelease
+      - name: Upload Release APK To Github
         uses: actions/upload-artifact@v3
         with:
-          name: widm_android_${{ github.run_number }}_apk_release
+          name: template_android_${{ github.run_number }}_apk_release
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/dev/release/app-dev-release.apk
