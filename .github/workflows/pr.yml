@@ -33,18 +33,11 @@ jobs:
         run: bundle exec fastlane android test
       - name: Build Debug APK
         run: bundle exec fastlane android assembleDevDebug
-      - name: Upload Debug Apk To Github
-        uses: actions/upload-artifact@v3
-        with:
-          name: template_android_${{ github.run_number }}_apk_debug
-          path: |
-            ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-dev-debug.apk
-            - name: Upload Release Apk
       - name: Build Release APK
         run: bundle exec fastlane android assembleDevRelease
-      - name: Upload Release APK To Github
+      - name: Upload APKs To Github
         uses: actions/upload-artifact@v3
         with:
-          name: template_android_${{ github.run_number }}_apk_release
+          name: template_android_${{ github.run_number }}_apks
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/dev/release/app-dev-release.apk
+            ${{ github.workspace }}/app/build/outputs/apk/
