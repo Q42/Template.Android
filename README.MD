@@ -24,6 +24,8 @@ Only basic features that almost all projects use, were added in this template:
 1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
+1. Some stubs have been added, which require eg. a Firebase project to be configured before they 
+   can be used. Crashlytics, for example. Search the project for TODO comments to find them. 
 
 ## Contributing
 
