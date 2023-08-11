@@ -8,7 +8,7 @@ Only basic features that almost all projects use, were added in this template:
 
 - compose
 - theming
-- screen navigation (inc. multi-module navigation and navigation initiated from ViewmModel)
+- screen navigation (inc. multi-module navigation and navigation initiated from ViewModel)
 - dependency injection
 - networking
 - json parsing
@@ -96,7 +96,7 @@ See [the diagram](@clean-architecture) for more info.
 
 Core modules are used for _common_ logic that is shared between features and is not related to any
 feature or model. If your core-feature is 1-2 classes only and most modules will use it, putting it
-in Core:utils is simpler then creating a separate module. It is the most general module in the
+in Core:utils is simpler than creating a separate module. It is the most general module in the
 diagram, please keep it small.
 
 Examples of logic that can live in _core:utils_:
