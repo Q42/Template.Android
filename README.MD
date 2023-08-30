@@ -90,7 +90,9 @@ Model Entities live in the data layer and are the local storage objects.
 Models map from XDTO to XEntity to X and then probably into a viewstate. Mapping is always done in
 the _outside layer_, before being transported to the inner layer.
 See [the diagram](@clean-architecture) for more info.
-- Writing mapping functions between models, entities and DTO ojects is boring and cumbersome: let GitHub Copilot or some other AI tool in Android Studio generate your mapping functions.
+
+- Writing mapping functions between models, entities and DTO ojects is boring and cumbersome: let
+  GitHub Copilot or some other AI tool in Android Studio generate your mapping functions.
 
 #### Core modules
 
@@ -161,6 +163,11 @@ modules.
 We use a version catalog (toml) file for versioning. This is the latest feature from Gradle
 currently. It can be shared over (included) projects.
 
+#### ViewStateString
+
+ViewStateStrings enabled you to move String logic from the View to the ViewModel, especially plurals
+or replacement parameter logic.
+
 ### Compose Previews
 
 Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
@@ -194,7 +201,7 @@ added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/
 - Call `InitNavigator(navigator, viewModel)` from your screen.
 - Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
   methods, etc.
-  
+
   You can call navigateTo with a `AppGraphRoutes` (in core.navigation) to navigate to the root of a
   different
   graph route.
