@@ -165,7 +165,7 @@ currently. It can be shared over (included) projects.
 
 #### ViewStateString
 
-ViewStateStrings enabled you to move String logic from the View to the ViewModel, especially plurals
+ViewStateStrings enables you to move String logic from the View to the ViewModel, especially plurals
 or replacement parameter logic.
 
 ### Compose Previews

@@ -4,7 +4,7 @@ import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 
 /**
- * This class enabled you to use string logic in the ViewModel, especially plurals or replacement parameter logic.
+ * This class enables you to use string logic in the ViewModel, especially plurals or replacement parameter logic.
  *
  * All strings will be refreshed on view recreation (i.e. after locale or other config changes).
  *
@@ -18,7 +18,7 @@ sealed class ViewStateString {
     ) : ViewStateString() {
         // Allow constructing ViewStateString.Res with varargs instead of passing a list
         @Suppress("unused")
-        constructor(stringRes: Int, vararg formatArgs: Any) : this(stringRes, formatArgs.toList())
+        constructor(@StringRes stringRes: Int, vararg formatArgs: Any) : this(stringRes, formatArgs.toList())
     }
 
     data class PluralRes(
@@ -28,7 +28,7 @@ sealed class ViewStateString {
     ) : ViewStateString() {
         // Allow constructing ViewStateString.PluralRes with varargs instead of passing a list
         @Suppress("unused")
-        constructor(pluralRes: Int, count: Int, vararg formatArgs: Any) : this(
+        constructor(@PluralsRes pluralRes: Int, count: Int, vararg formatArgs: Any) : this(
             pluralRes,
             count,
             formatArgs.toList()
