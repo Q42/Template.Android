@@ -1,6 +1,9 @@
 [versions]
 androidxCore = "1.9.0"
 androidxLifecycle = "2.5.1"
+kotlinxCoroutinesTest = "1.7.3"
+junit = "4.13.2"
+mockkAndroid = "1.13.5"
 kotlinCompilerExtensionVersion = "1.4.4"
 jvmTarget = "17"
 kotlin = "1.8.22"
@@ -19,12 +22,18 @@ composePlatform = "2022.10.00"
 activityCompose = "1.6.1"
 hiltNavigationCompose = "1.0.0"
 composeLifecycle = "2.6.0-beta01"
+turbine = "1.0.0"
+appcompat = "1.6.1"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidxLifecycleKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 moshiRetrofitConverter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 moshiKotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
@@ -44,6 +53,7 @@ composePlatform = { module = "androidx.compose:compose-bom", version.ref = "comp
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 
 [plugins]
