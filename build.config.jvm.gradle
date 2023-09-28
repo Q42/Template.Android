@@ -1,0 +1,11 @@
+android {
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(libs.versions.jvmTarget.get()))
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

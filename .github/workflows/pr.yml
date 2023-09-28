@@ -1,0 +1,43 @@
+name: Unit-Test Pull Request
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build-dev-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "corretto" # See 'Supported distributions' for available options
+          java-version: "17"
+          cache: "gradle"
+      - name: Update version code
+        uses: chkfung/android-version-actions@v1.2.1
+        with:
+          gradlePath: app/build.gradle
+          versionCode: ${{ github.run_number }}
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true
+      - name: Clean
+        run: bundle exec fastlane android clean
+      - name: Run tests
+        run: bundle exec fastlane android test
+      - name: Build Debug APK
+        run: bundle exec fastlane android assembleDevDebug
+      - name: Build Release APK
+        run: bundle exec fastlane android assembleDevRelease
+      - name: Upload APKs To Github
+        uses: actions/upload-artifact@v3
+        with:
+          name: template_android_${{ github.run_number }}_apks
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/

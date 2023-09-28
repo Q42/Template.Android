@@ -1,5 +1,6 @@
 apply plugin: 'kotlin-android'
 
+apply from: "$rootDir/build.config.jvm.gradle"
 apply from: "$rootDir/build.dep.di.gradle"
 apply from: "$rootDir/build.dep.compose.gradle"
 
@@ -18,13 +19,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_17)
-        targetCompatibility(JavaVersion.VERSION_17)
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
     buildFeatures {
         compose = true
     }
@@ -42,4 +36,10 @@ dependencies {
     implementation(libs.napier)
     implementation(libs.activityCompose)
     implementation(libs.hiltNavigationCompose)
+
+    testImplementation libs.junit
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.turbine
+    testImplementation libs.mockk.android
+    testImplementation libs.mockk.agent
 }
