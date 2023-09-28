@@ -1,6 +1,6 @@
 package nl.q42.template.navigation.transitions
 
-import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -12,7 +12,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph
 
 @ExperimentalAnimationApi
-fun AnimatedContentScope<*>.defaultEnterTransition(
+fun AnimatedContentTransitionScope<NavBackStackEntry>.defaultEnterTransition(
     initial: NavBackStackEntry,
     target: NavBackStackEntry,
 ): EnterTransition {
@@ -23,11 +23,11 @@ fun AnimatedContentScope<*>.defaultEnterTransition(
         return fadeIn()
     }
     // Otherwise we're in the same nav graph, we can imply a direction
-    return fadeIn() + slideIntoContainer(AnimatedContentScope.SlideDirection.Start)
+    return fadeIn() + slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Start)
 }
 
 @ExperimentalAnimationApi
-fun AnimatedContentScope<*>.defaultExitTransition(
+fun AnimatedContentTransitionScope<NavBackStackEntry>.defaultExitTransition(
     initial: NavBackStackEntry,
     target: NavBackStackEntry,
 ): ExitTransition {
@@ -38,18 +38,18 @@ fun AnimatedContentScope<*>.defaultExitTransition(
         return fadeOut()
     }
     // Otherwise we're in the same nav graph, we can imply a direction
-    return fadeOut() + slideOutOfContainer(AnimatedContentScope.SlideDirection.Start)
+    return fadeOut() + slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Start)
 }
 
 private val NavDestination.hostNavGraph: NavGraph
     get() = hierarchy.first { it is NavGraph } as NavGraph
 
 @ExperimentalAnimationApi
-fun AnimatedContentScope<*>.defaultPopEnterTransition(): EnterTransition {
+fun defaultPopEnterTransition(): EnterTransition {
     return fadeIn()
 }
 
 @ExperimentalAnimationApi
-fun AnimatedContentScope<*>.defaultPopExitTransition(): ExitTransition {
+fun defaultPopExitTransition(): ExitTransition {
     return fadeOut()
 }
