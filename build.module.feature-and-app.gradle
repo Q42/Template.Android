@@ -42,4 +42,10 @@ dependencies {
     implementation(libs.napier)
     implementation(libs.activityCompose)
     implementation(libs.hiltNavigationCompose)
+
+    testImplementation libs.junit
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.turbine
+    testImplementation libs.mockk.android
+    testImplementation libs.mockk.agent
 }
