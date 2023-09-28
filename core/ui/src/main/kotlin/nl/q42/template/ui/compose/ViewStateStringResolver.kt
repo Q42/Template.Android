@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalComposeUiApi::class)
-
 package nl.q42.template.ui.compose
 
 import androidx.compose.runtime.Composable
