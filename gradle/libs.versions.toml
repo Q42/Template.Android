@@ -1,34 +1,34 @@
 [versions]
-androidxCore = "1.9.0"
-androidxLifecycle = "2.6.1"
+androidxCore = "1.12.0"
+androidxLifecycle = "2.6.2"
 kotlinxCoroutinesTest = "1.7.3"
 junit = "4.13.2"
-mockkAndroid = "1.13.5"
-kotlinCompilerExtensionVersion = "1.4.4"
+mockkAndroid = "1.13.8"
+kotlinCompilerExtensionVersion = "1.5.3"
 jvmTarget = "17"
-kotlin = "1.8.22"
-gradlePlugin = "8.0.0-rc01"
+kotlin = "1.9.10"
+gradlePlugin = "8.1.0"
 manesVersions = "0.44.0"
 littleRobotsCatalogUpdates = "0.8.1"
-hilt = "2.47"
-ksp = "1.8.10-1.0.9"
+hilt = "2.48"
+ksp = "1.9.10-1.0.13"
 retrofit = "2.9.0"
-moshi = "1.14.0"
+moshi = "1.15.0"
 networkResponseAdapter = "5.0.0"
 napier = "2.6.1"
-composeDestinations = "1.8.36-beta"
+composeDestinations = "1.9.53"
 okhttp = "4.11.0"
-composePlatform = "2023.06.01"
+composePlatform = "2023.09.01"
 activityCompose = "1.7.2"
-hiltNavigationCompose = "1.0.0"
-composeLifecycle = "2.6.1"
+hiltNavigationCompose = "1.1.0-alpha01"
+composeLifecycle = "2.6.2"
 turbine = "1.0.0"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidxLifecycleKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-ksp = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
