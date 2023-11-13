@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import nl.q42.template.presentation.home.HomeViewState
-import nl.q42.template.ui.compose.resolve
+import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
@@ -34,7 +34,7 @@ internal fun HomeContent(
          */
         when (viewState) {
             is HomeViewState.Data -> viewState.userEmailTitle?.let { userEmailTitle ->
-                Text(text = userEmailTitle.resolve())
+                Text(text = userEmailTitle.get())
             }
 
             HomeViewState.Empty -> {}

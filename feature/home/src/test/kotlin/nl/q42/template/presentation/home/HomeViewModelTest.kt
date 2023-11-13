@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
@@ -30,10 +31,11 @@ class HomeViewModelTest() {
         val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
 
         viewModel.uiState.test {
-            val expectedData: HomeViewState = HomeViewState.Data(ViewStateString.Basic("test@test.com"))
 
             assertEquals(HomeViewState.Loading, awaitItem())
-            assertEquals(expectedData, awaitItem())
+            val viewState = awaitItem()
+            assertTrue(viewState is HomeViewState.Data)
+            assertTrue((viewState as HomeViewState.Data).userEmailTitle is ViewStateString.Res)
         }
     }
 
@@ -49,8 +51,9 @@ class HomeViewModelTest() {
         val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
 
         viewModel.uiState.test {
-            val expectedData: HomeViewState = HomeViewState.Data(ViewStateString.Basic("test@test.com"))
-            assertEquals(expectedData, awaitItem())
+            val viewState = awaitItem()
+            assertTrue(viewState is HomeViewState.Data)
+            assertTrue((viewState as HomeViewState.Data).userEmailTitle is ViewStateString.Res)
         }
     }
 }
