@@ -2,12 +2,15 @@ package nl.q42.template.ui.home
 
 import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import nl.q42.template.presentation.home.HomeViewState
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
@@ -47,6 +50,10 @@ internal fun HomeContent(
         Button(onClick = onOpenOnboardingClicked) {
             Text("Open onboarding")
         }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Text(text = "NOTE: when cloning this template, set up your own Firebase project and replace google-services.json")
     }
 }
 
