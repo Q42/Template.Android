@@ -1,6 +1,7 @@
 package nl.q42.template
 
 import android.app.Application
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -13,13 +14,10 @@ class MainApplication : Application() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
             Napier.base(DebugAntilog())
-            Napier.d { "TODO Disabling crashlytics for a debug build" }
-            // TODO FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
-
         } else {
-            Napier.d { "TODO Enabling crashlytics for non-debug build" }
-            // TODO FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
             Napier.base(CrashlyticsAntilog())
         }
     }

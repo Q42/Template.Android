@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1076113435843",
+    "project_id": "template-android-799ab",
+    "storage_bucket": "template-android-799ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076113435843:android:e2916720b9c98936dc8676",
+        "android_client_info": {
+          "package_name": "nl.q42.template"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzfsJ_ycKoyci--w_M2hHwvsjk8-zKmzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

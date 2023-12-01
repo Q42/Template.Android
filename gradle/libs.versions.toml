@@ -5,6 +5,9 @@ kotlinCompilerExtensionVersion = "1.4.4"
 jvmTarget = "17"
 kotlin = "1.8.10"
 gradlePlugin = "8.0.0-rc01"
+googleServices = "4.4.0"
+crashlyticsPlugin = "2.9.9"
+firebaseBOM = "32.6.0"
 manesVersions = "0.44.0"
 littleRobotsCatalogUpdates = "0.7.0"
 hilt = "2.45"
@@ -41,6 +44,9 @@ composeUITooling = { module = "androidx.compose.ui:ui-tooling" }
 composeUIToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 composeMaterial3 = { module = "androidx.compose.material3:material3" }
 composePlatform = { module = "androidx.compose:compose-bom", version.ref = "composePlatform" }
+firebaseBoM = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBOM" }
+firebaseCrashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+firebaseAnalytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
@@ -54,3 +60,5 @@ manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVers
 littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebaseCrashlyticsPlugin = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
