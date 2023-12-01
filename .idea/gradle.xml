@@ -6,7 +6,7 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="/usr/local/Cellar/gradle/7.6/libexec" />
-        <option name="gradleJvm" value="corretto-17" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />

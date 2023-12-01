@@ -1,6 +1,7 @@
 package nl.q42.template
 
 import android.app.Application
+import android.os.StrictMode
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
 import io.github.aakira.napier.DebugAntilog
@@ -16,6 +17,15 @@ class MainApplication : Application() {
         if (BuildConfig.DEBUG) {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
             Napier.base(DebugAntilog())
+
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .build()
+            )
         } else {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
             Napier.base(CrashlyticsAntilog())

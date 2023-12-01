@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import nl.q42.template.presentation.home.HomeViewState
+import nl.q42.template.ui.compose.get
+import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
 
@@ -34,7 +36,10 @@ internal fun HomeContent(
          * This is dummy. Use the strings file IRL.
          */
         when (viewState) {
-            is HomeViewState.Data -> Text(text = "Email: ${viewState.userEmail}")
+            is HomeViewState.Data -> viewState.userEmailTitle?.let { userEmailTitle ->
+                Text(text = userEmailTitle.get())
+            }
+
             HomeViewState.Empty -> {}
             HomeViewState.Error -> Text(text = "Error")
             HomeViewState.Loading -> Text(text = "Loading")
@@ -85,6 +90,6 @@ private fun HomeContentEmptyPreview() {
 @Composable
 private fun HomeContentDataPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState.Data("preview@preview.com"), {}, {}, {})
+        HomeContent(HomeViewState.Data("preview@preview.com".toViewStateString()), {}, {}, {})
     }
 }

@@ -1,16 +1,9 @@
-apply plugin: 'kotlin-kapt'
 apply {
     plugin(libs.plugins.hilt.get().getPluginId())
-}
-
-android {
-    // Hilt. Allow references to generated code
-    kapt {
-        correctErrorTypes = true
-    }
+    plugin(libs.plugins.ksp.get().getPluginId())
 }
 
 dependencies {
     implementation(libs.hilt)
-    kapt(libs.hiltKapt)
+    ksp(libs.hilt.ksp)
 }
