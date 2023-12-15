@@ -3,6 +3,7 @@ package nl.q42.template.actionresult.data
 import com.haroldadmin.cnradapter.NetworkResponse
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CancellationException
+import kotlinx.serialization.SerializationException
 import nl.q42.template.actionresult.domain.ActionResult
 import java.io.EOFException
 import java.io.IOException
@@ -51,17 +52,23 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
                     ActionResult.Error.NetworkError(this.error)
                 }
 
-                // todo catch json decoding
+                is EOFException -> {
+                    // let's log this error, includes an incomplete json response
+                    ActionResult.Error.Other(this.error)
+                }
 
                 else -> ActionResult.Error.Other(this.error)
             }
-
         is NetworkResponse.UnknownError -> {
             val statusCode = this.code
             val errorMessage = "Received NetworkResponse.UnknownError with response code $statusCode and header ${this.headers}"
             val exception = IOException(errorMessage, this.error)
             Napier.w(this.error) { "NetworkResponse.UnknownError" }
             when {
+                this.error is SerializationException -> { // (usually json) parsing error
+                    ActionResult.Error.InvalidErrorResponse(this.error as SerializationException)
+                }
+
                 statusCode == null -> {
                     ActionResult.Error.InvalidErrorResponse(exception)
                 }
