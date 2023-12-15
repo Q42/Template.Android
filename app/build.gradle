@@ -68,5 +68,4 @@ dependencies {
 
     api platform(libs.firebaseBoM)
     implementation(libs.firebaseCrashlytics)
-    implementation(libs.firebaseAnalytics) // additional metrics for craslytics https://firebase.google.com/docs/crashlytics/get-started?platform=android#before-you-begin
 }

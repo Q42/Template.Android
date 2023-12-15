@@ -247,8 +247,10 @@ not included yet.
 
 We use Napier because it's usage is close to Timber/Tolbaaken, but Napier supports KMM.
 
-We use Craslytics for crash reporting. Note that Google Analytics is added to enable more insight such as breadcrumbs and 
-crash-free percentage. If you don't want to use Google Analytics, you can remove it by simply removing the dependency.
+We use Crashlytics for crash reporting. Note that Google Analytics is not added. Google [recommends]
+(https://firebase.google.com/docs/crashlytics/get-started?platform=android#before-you-begin)
+to enable it for more insight such as breadcrumbs and crash-free percentage. 
+If you don't want to use Google Analytics, you can remove it by simply removing the dependency.
 
 
 ### Image loading

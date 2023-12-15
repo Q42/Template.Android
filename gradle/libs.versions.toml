@@ -54,7 +54,6 @@ composeMaterial3 = { module = "androidx.compose.material3:material3" }
 composePlatform = { module = "androidx.compose:compose-bom", version.ref = "composePlatform" }
 firebaseBoM = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBOM" }
 firebaseCrashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
-firebaseAnalytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
