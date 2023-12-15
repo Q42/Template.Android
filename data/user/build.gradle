@@ -1,6 +1,6 @@
 plugins {
     id "com.android.library"
-    alias libs.plugins.kotlin.serialization // todo can we centralize this?
+    alias libs.plugins.kotlinSerialization // todo can we centralize this?
 }
 
 apply from: "$rootDir/build.module.library.gradle"

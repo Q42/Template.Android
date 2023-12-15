@@ -58,7 +58,7 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "gradlePlugin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVersions" }
 littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
