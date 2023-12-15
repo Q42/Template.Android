@@ -1,7 +1,6 @@
 package nl.q42.template.actionresult.data
 
 import com.haroldadmin.cnradapter.NetworkResponse
-import com.squareup.moshi.JsonEncodingException
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CancellationException
 import nl.q42.template.actionresult.domain.ActionResult
@@ -52,10 +51,7 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
                     ActionResult.Error.NetworkError(this.error)
                 }
 
-                is JsonEncodingException, is EOFException -> {
-                    // let's log this error, includes a corrupt/broken json response:
-                    ActionResult.Error.Other(this.error)
-                }
+                // todo catch json decoding
 
                 else -> ActionResult.Error.Other(this.error)
             }
