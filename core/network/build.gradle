@@ -1,6 +1,5 @@
 plugins {
     id "com.android.library"
-    alias libs.plugins.kotlinSerialization
 }
 apply from: "$rootDir/build.module.library.gradle"
 apply from: "$rootDir/build.dep.network.gradle"

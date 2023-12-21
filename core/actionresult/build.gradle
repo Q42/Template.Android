@@ -1,6 +1,5 @@
 plugins {
     id "com.android.library"
-    alias libs.plugins.kotlinSerialization // todo can we centralize this?
 }
 apply from: "$rootDir/build.module.library.gradle"
 apply from: "$rootDir/build.dep.json.gradle"
@@ -12,5 +11,4 @@ android {
 
 dependencies {
     implementation libs.networkResponseAdapter
-    implementation libs.kotlinx.serialization.json
 }
