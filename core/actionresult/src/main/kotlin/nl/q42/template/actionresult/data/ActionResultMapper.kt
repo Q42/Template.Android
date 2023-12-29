@@ -47,26 +47,29 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
         }
 
         is NetworkResponse.NetworkError -> // Used to represent connectivity errors
-            when (this.error) {
+        {
+            when (val error = this.error) {
                 is UnknownHostException, is ConnectException, is SocketTimeoutException -> {
-                    ActionResult.Error.NetworkError(this.error)
+                    ActionResult.Error.NetworkError(error)
                 }
 
                 is EOFException -> {
                     // let's log this error, includes an incomplete json response
-                    ActionResult.Error.Other(this.error)
+                    ActionResult.Error.Other(error)
                 }
 
-                else -> ActionResult.Error.Other(this.error)
+                else -> ActionResult.Error.Other(error)
             }
+        }
         is NetworkResponse.UnknownError -> {
             val statusCode = this.code
             val errorMessage = "Received NetworkResponse.UnknownError with response code $statusCode and header ${this.headers}"
-            val exception = IOException(errorMessage, this.error)
-            Napier.w(this.error) { "NetworkResponse.UnknownError" }
+            val error = this.error
+            val exception = IOException(errorMessage, error)
+            Napier.w(error) { "NetworkResponse.UnknownError" }
             when {
-                this.error is SerializationException -> { // (usually json) parsing error
-                    ActionResult.Error.InvalidErrorResponse(this.error as SerializationException)
+                error is SerializationException -> { // (usually json) parsing error
+                    ActionResult.Error.InvalidErrorResponse(error)
                 }
 
                 statusCode == null -> {

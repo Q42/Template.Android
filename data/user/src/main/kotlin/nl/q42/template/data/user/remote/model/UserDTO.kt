@@ -9,11 +9,11 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
-data class UserDTO(
+internal data class UserDTO(
     val args: ArgsDTO
 )
 
 @Serializable
-data class ArgsDTO(
+internal data class ArgsDTO(
     val email: String
 )

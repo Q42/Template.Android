@@ -43,6 +43,7 @@ internal class NetworkModule {
     ): Retrofit {
         val contentType = "application/json".toMediaType()
 
+        // When the server adds new fields to the response, we don't want to crash
         val json = Json { ignoreUnknownKeys = true }
 
         return Retrofit.Builder()
