@@ -1,3 +1,0 @@
-apply {
-    plugin(libs.plugins.ksp.get().getPluginId())
-}
