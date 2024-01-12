@@ -11,7 +11,6 @@ import nl.q42.template.navigation.viewmodel.RouteNavigator
 @Module
 @InstallIn(ViewModelComponent::class)
 class NavigationModule {
-
     @Provides
     @ViewModelScoped
     fun bindRouteNavigator(): RouteNavigator = MyRouteNavigator()

@@ -1,13 +1,14 @@
 package nl.q42.template.actionresult.domain
 
 sealed class ActionResult<out T : Any?> {
-
     /**
      * An error class used so that feature modules can give an exact error message to the user.
      */
     sealed class Error(open val exception: Exception) : ActionResult<Nothing>() {
-
-        data class UnAuthorized(override val exception: Exception, val message: String?) : Error(exception)
+        data class UnAuthorized(
+            override val exception: Exception,
+            val message: String?
+        ) : Error(exception)
 
         data class TooManyRequests(override val exception: Exception) : Error(exception)
 
@@ -19,7 +20,9 @@ sealed class ActionResult<out T : Any?> {
         ) :
             Error(exception)
 
-        data class ServerError(override val exception: Exception, val message: String) : Error(exception)
+        data class ServerError(override val exception: Exception, val message: String) : Error(
+            exception
+        )
 
         data object NotFoundError : Error(Exception("404: Not Found"))
 

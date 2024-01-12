@@ -27,9 +27,10 @@ fun OnLifecycleEvent(onEvent: (event: Lifecycle.Event) -> Unit) {
     val eventHandler = rememberUpdatedState(onEvent)
     val lifecycleOwner by rememberUpdatedState(LocalLifecycleOwner.current)
     DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            eventHandler.value(event)
-        }
+        val observer =
+            LifecycleEventObserver { _, event ->
+                eventHandler.value(event)
+            }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)

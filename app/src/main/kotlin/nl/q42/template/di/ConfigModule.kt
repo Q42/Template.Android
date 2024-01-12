@@ -4,10 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import nl.q42.template.BuildConfig
 import nl.q42.template.core.network.di.ConfigApiMainPath
 import nl.q42.template.core.network.di.ConfigLogHttpCalls
-import javax.inject.Singleton
 
 /**
  * All application wide config can go in here. Used so that other modules don't need to access the BuildConfig, which has drawbacks and can cause bugs:
@@ -16,7 +16,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ConfigModule {
-
     @Provides
     @Singleton
     @ConfigApiMainPath

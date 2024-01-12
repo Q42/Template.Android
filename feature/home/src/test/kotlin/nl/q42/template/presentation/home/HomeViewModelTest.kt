@@ -5,6 +5,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
@@ -13,7 +14,6 @@ import nl.q42.template.domain.user.usecase.GetUserUseCase
 import nl.q42.template.ui.presentation.ViewStateString
 import org.junit.Rule
 import org.junit.Test
-import kotlin.time.Duration.Companion.seconds
 
 class HomeViewModelTest() {
     @get:Rule
@@ -31,7 +31,6 @@ class HomeViewModelTest() {
         val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
 
         viewModel.uiState.test {
-
             assertEquals(HomeViewState.Loading, awaitItem())
             val viewState = awaitItem()
             assertTrue(viewState is HomeViewState.Data)

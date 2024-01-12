@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 internal interface UserApi {
-
     /**
      * note: [dummyEmailForResponse] is set because this test server mirrors the request as response.
      */

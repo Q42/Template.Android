@@ -13,8 +13,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
  */
 @Composable
 fun InitNavigator(destinationsNavigator: DestinationsNavigator, routeNavigator: RouteNavigator) {
-
-    val viewState by routeNavigator.navigationState.collectAsStateWithLifecycle(initialValue = NavigationState.Idle)
+    val viewState by routeNavigator.navigationState.collectAsStateWithLifecycle(
+        initialValue = NavigationState.Idle
+    )
     LaunchedEffect(viewState) {
         updateNavigationState(destinationsNavigator, viewState, routeNavigator::onNavigated)
     }
@@ -26,7 +27,7 @@ fun InitNavigator(destinationsNavigator: DestinationsNavigator, routeNavigator: 
 private fun updateNavigationState(
     navigator: DestinationsNavigator,
     navigationState: NavigationState,
-    onNavigated: (navState: NavigationState) -> Unit,
+    onNavigated: (navState: NavigationState) -> Unit
 ) {
     when (navigationState) {
         is NavigationState.NavigateToRoute -> {

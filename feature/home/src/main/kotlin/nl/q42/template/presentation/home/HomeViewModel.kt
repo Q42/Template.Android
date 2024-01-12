@@ -3,6 +3,7 @@ package nl.q42.template.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -14,14 +15,14 @@ import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.ui.presentation.ViewStateString
-import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class HomeViewModel
+@Inject
+constructor(
     private val getUserUseCase: GetUserUseCase,
-    private val navigator: RouteNavigator,
+    private val navigator: RouteNavigator
 ) : ViewModel(), RouteNavigator by navigator {
-
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
     val uiState: Flow<HomeViewState> = _uiState
 
@@ -38,7 +39,6 @@ class HomeViewModel @Inject constructor(
 
     private fun loadUser() {
         viewModelScope.launch {
-
             _uiState.update { HomeViewState.Loading }
 
             handleAction(
@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
                             ViewStateString.Res(R.string.emailTitle, result.email)
                         )
                     }
-                },
+                }
             )
         }
     }
@@ -60,6 +60,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenOnboardingClicked() {
-        navigateTo(AppGraphRoutes.onboarding)
+        navigateTo(AppGraphRoutes.ONBOARDING)
     }
 }

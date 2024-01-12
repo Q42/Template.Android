@@ -17,22 +17,20 @@ import nl.q42.template.navigation.transitions.defaultPopExitTransition
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @ExperimentalAnimationApi
 @Composable
-fun AppNavigation(
-    navController: NavHostController,
-    navGraph: NavGraphSpec,
-    modifier: Modifier = Modifier,
-) {
+fun AppNavigation(navController: NavHostController, navGraph: NavGraphSpec, modifier: Modifier = Modifier) {
     DestinationsNavHost(
-        engine = rememberAnimatedNavHostEngine(
-            rootDefaultAnimations = RootNavGraphDefaultAnimations(
+        engine =
+        rememberAnimatedNavHostEngine(
+            rootDefaultAnimations =
+            RootNavGraphDefaultAnimations(
                 enterTransition = { defaultEnterTransition(initialState, targetState) },
                 exitTransition = { defaultExitTransition(initialState, targetState) },
                 popEnterTransition = { defaultPopEnterTransition() },
-                popExitTransition = { defaultPopExitTransition() },
+                popExitTransition = { defaultPopExitTransition() }
             )
         ),
         navController = navController,
         navGraph = navGraph,
-        modifier = modifier,
+        modifier = modifier
     )
 }

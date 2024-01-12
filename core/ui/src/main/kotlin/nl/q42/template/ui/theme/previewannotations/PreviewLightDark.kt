@@ -1,4 +1,4 @@
-package nl.q42.template.ui.theme
+package nl.q42.template.ui.theme.previewannotations
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES

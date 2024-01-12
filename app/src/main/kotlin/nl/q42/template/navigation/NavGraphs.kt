@@ -13,36 +13,42 @@ import nl.q42.template.ui.onboarding.start.destinations.OnboardingStartScreenDes
  * More info: https://composedestinations.rafaelcosta.xyz/codegenconfigs/#multi-module-configs
  */
 object NavGraphs {
+    val home =
+        object : NavGraphSpec {
+            override val route = AppGraphRoutes.HOME
 
-    val home = object : NavGraphSpec {
-        override val route = AppGraphRoutes.home
-        
-        override val startRoute = HomeScreenDestination
+            override val startRoute = HomeScreenDestination
 
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            HomeScreenDestination,
-            HomeSecondScreenDestination,
-        )
-            .associateBy { it.route }
-    }
+            override val destinationsByRoute =
+                listOf<DestinationSpec<*>>(
+                    HomeScreenDestination,
+                    HomeSecondScreenDestination
+                )
+                    .associateBy { it.route }
+        }
 
-    val onboarding = object : NavGraphSpec {
-        override val route = AppGraphRoutes.onboarding
+    val onboarding =
+        object : NavGraphSpec {
+            override val route = AppGraphRoutes.ONBOARDING
 
-        override val startRoute = OnboardingStartScreenDestination
+            override val startRoute = OnboardingStartScreenDestination
 
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            OnboardingStartScreenDestination,
-        )
-            .associateBy { it.route }
-    }
+            override val destinationsByRoute =
+                listOf<DestinationSpec<*>>(
+                    OnboardingStartScreenDestination
+                )
+                    .associateBy { it.route }
+        }
 
-    val root = object : NavGraphSpec {
-        override val route = AppGraphRoutes.root
-        override val startRoute = home
-        override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
-        override val nestedNavGraphs = listOf(
-            home, onboarding
-        )
-    }
+    val root =
+        object : NavGraphSpec {
+            override val route = AppGraphRoutes.ROOT
+            override val startRoute = home
+            override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
+            override val nestedNavGraphs =
+                listOf(
+                    home,
+                    onboarding
+                )
+        }
 }
