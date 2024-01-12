@@ -43,6 +43,13 @@ Using Bitrise instead? Then you can delete:
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
 
+## Code format and static analysis
+This project uses ktlint for code formatting and static analysis (anti-bikeshedding Kotlin linter and formatter).
+Once you clone the repo, you can run `./gradlew addKtlintCheckGitPreCommitHook addKtlintFormatGitPreCommitHook`
+to check and format the code automatically before every commit.
+Additionally, you can run `./gradlew ktlintApplyToIdea` to apply the ktlint formatting rules to Android Studio.
+More info about the used ktlint rules can be found [here (official docs)](https://pinterest.github.io/ktlint/) and [here for Compose rules](https://mrmans0n.github.io/compose-rules/rules/).
+
 ## Contributing
 
 To contribute, simply create a PR and let developers from other projects approve and merge it. A
