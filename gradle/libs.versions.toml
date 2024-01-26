@@ -24,7 +24,7 @@ hiltNavigationCompose = "1.1.0"
 composeLifecycle = "2.7.0"
 turbine = "1.0.0"
 ktlint = "12.1.0"
-ktlintRules = "0.3.9"
+ktlintRules = "0.3.11"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
