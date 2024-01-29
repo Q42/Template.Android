@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <debug-overrides>
+        <trust-anchors>
+            <!-- Required if we want to use Charles proxy (or any other proxy) for debugging on Android N and higher, see: https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/-->
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain> <!-- 10.0.2.2 is localhost for emulator -->
+    </domain-config>
+</network-security-config>
