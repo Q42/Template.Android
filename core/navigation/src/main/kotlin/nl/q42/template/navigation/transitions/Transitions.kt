@@ -14,7 +14,7 @@ import androidx.navigation.NavGraph
 @ExperimentalAnimationApi
 fun AnimatedContentTransitionScope<NavBackStackEntry>.defaultEnterTransition(
     initial: NavBackStackEntry,
-    target: NavBackStackEntry,
+    target: NavBackStackEntry
 ): EnterTransition {
     val initialNavGraph = initial.destination.hostNavGraph
     val targetNavGraph = target.destination.hostNavGraph
@@ -29,7 +29,7 @@ fun AnimatedContentTransitionScope<NavBackStackEntry>.defaultEnterTransition(
 @ExperimentalAnimationApi
 fun AnimatedContentTransitionScope<NavBackStackEntry>.defaultExitTransition(
     initial: NavBackStackEntry,
-    target: NavBackStackEntry,
+    target: NavBackStackEntry
 ): ExitTransition {
     val initialNavGraph = initial.destination.hostNavGraph
     val targetNavGraph = target.destination.hostNavGraph

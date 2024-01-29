@@ -12,7 +12,7 @@ import nl.q42.template.presentation.home.HomeViewState
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.PreviewAppTheme
-import nl.q42.template.ui.theme.PreviewLightDark
+import nl.q42.template.ui.theme.previewannotations.PreviewLightDark
 
 @Composable
 internal fun HomeContent(
@@ -22,20 +22,19 @@ internal fun HomeContent(
     onOpenOnboardingClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Center,
-        horizontalAlignment = CenterHorizontally,
+        horizontalAlignment = CenterHorizontally
     ) {
-
         /**
          * This is dummy. Use the strings file IRL.
          */
         when (viewState) {
-            is HomeViewState.Data -> viewState.userEmailTitle?.let { userEmailTitle ->
-                Text(text = userEmailTitle.get())
-            }
+            is HomeViewState.Data ->
+                viewState.userEmailTitle?.let { userEmailTitle ->
+                    Text(text = userEmailTitle.get())
+                }
 
             HomeViewState.Empty -> {}
             HomeViewState.Error -> Text(text = "Error")

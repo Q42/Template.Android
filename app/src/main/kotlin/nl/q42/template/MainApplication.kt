@@ -8,7 +8,6 @@ import io.github.aakira.napier.Napier
 
 @HiltAndroidApp
 class MainApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
 

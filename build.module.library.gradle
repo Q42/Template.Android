@@ -1,4 +1,5 @@
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 apply from: "$rootDir/build.config.jvm.gradle"
 apply from: "$rootDir/build.dep.di.gradle"
@@ -14,4 +15,11 @@ android {
 
 dependencies {
     implementation(libs.napier)
+
+    ktlintRuleset(libs.ktlint.ruleset)
+}
+
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }

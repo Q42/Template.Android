@@ -23,6 +23,8 @@ activityCompose = "1.8.2"
 hiltNavigationCompose = "1.1.0"
 composeLifecycle = "2.7.0"
 turbine = "1.0.0"
+ktlint = "12.1.0"
+ktlintRules = "0.3.11"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -31,6 +33,7 @@ hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-ksp = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+ktlint-ruleset = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlintRules" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -63,3 +66,4 @@ manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVers
 littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

@@ -1,4 +1,5 @@
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 apply from: "$rootDir/build.config.jvm.gradle"
 apply from: "$rootDir/build.dep.di.gradle"
@@ -37,9 +38,16 @@ dependencies {
     implementation(libs.activityCompose)
     implementation(libs.hiltNavigationCompose)
 
+    ktlintRuleset(libs.ktlint.ruleset)
+
     testImplementation libs.junit
     testImplementation libs.kotlinx.coroutines.test
     testImplementation libs.turbine
     testImplementation libs.mockk.android
     testImplementation libs.mockk.agent
+}
+
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }

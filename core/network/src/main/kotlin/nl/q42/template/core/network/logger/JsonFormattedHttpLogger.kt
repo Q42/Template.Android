@@ -10,11 +10,14 @@ import org.json.JSONObject
  */
 class JsonFormattedHttpLogger : HttpLoggingInterceptor.Logger {
     override fun log(message: String) {
-        if (message.startsWith("{") || message.startsWith("[")) try {
-            Napier.d { JSONObject(message).toString(4) }
-        } catch (e: JSONException) {
+        if (message.startsWith("{") || message.startsWith("[")) {
+            try {
+                Napier.d { JSONObject(message).toString(4) }
+            } catch (e: JSONException) {
+                Napier.d { message }
+            }
+        } else {
             Napier.d { message }
         }
-        else Napier.d { message }
     }
 }

@@ -24,4 +24,3 @@ fun <S, T> ActionResult<List<S>>.mapList(mapper: (S) -> T): ActionResult<List<T>
     is ActionResult.Error -> this
     is ActionResult.Success -> ActionResult.Success(this.result.map { mapper(it) })
 }
-

@@ -18,7 +18,10 @@ sealed class ViewStateString {
     ) : ViewStateString() {
         // Allow constructing ViewStateString.Res with varargs instead of passing a list
         @Suppress("unused")
-        constructor(@StringRes stringRes: Int, vararg formatArgs: Any) : this(stringRes, formatArgs.toList())
+        constructor(
+            @StringRes stringRes: Int,
+            vararg formatArgs: Any
+        ) : this(stringRes, formatArgs.toList())
     }
 
     data class PluralRes(
@@ -28,7 +31,11 @@ sealed class ViewStateString {
     ) : ViewStateString() {
         // Allow constructing ViewStateString.PluralRes with varargs instead of passing a list
         @Suppress("unused")
-        constructor(@PluralsRes pluralRes: Int, count: Int, vararg formatArgs: Any) : this(
+        constructor(
+            @PluralsRes pluralRes: Int,
+            count: Int,
+            vararg formatArgs: Any
+        ) : this(
             pluralRes,
             count,
             formatArgs.toList()
