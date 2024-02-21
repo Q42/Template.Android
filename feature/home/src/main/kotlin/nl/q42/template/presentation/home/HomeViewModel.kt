@@ -3,8 +3,8 @@ package nl.q42.template.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
@@ -21,7 +21,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
-    val uiState: Flow<HomeViewState> = _uiState
+    val uiState: StateFlow<HomeViewState> = _uiState
 
     init {
         loadUser()

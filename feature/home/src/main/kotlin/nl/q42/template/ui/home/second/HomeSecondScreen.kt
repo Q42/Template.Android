@@ -16,7 +16,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.navigation.viewmodel.InitNavigator
 import nl.q42.template.presentation.home.second.HomeSecondViewModel
-import nl.q42.template.presentation.home.second.HomeSecondViewState
 
 @Destination
 @Composable
@@ -33,7 +32,7 @@ fun HomeSecondScreen(
 
     InitNavigator(navigator, viewModel) // enables viewModel to navigate to other screens
 
-    val viewState by viewModel.uiState.collectAsStateWithLifecycle(initialValue = HomeSecondViewState(""))
+    val viewState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize(),

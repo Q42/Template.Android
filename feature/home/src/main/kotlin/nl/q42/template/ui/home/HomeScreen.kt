@@ -22,6 +22,6 @@ fun HomeScreen(
 
     OnLifecycleResume(viewModel::onScreenResumed)
 
-    val viewState by viewModel.uiState.collectAsStateWithLifecycle(initialValue = HomeViewState.Empty)
+    val viewState by viewModel.uiState.collectAsStateWithLifecycle()
     HomeContent(viewState, viewModel::onLoadClicked, viewModel::onOpenSecondScreenClicked, viewModel::onOpenOnboardingClicked)
 }

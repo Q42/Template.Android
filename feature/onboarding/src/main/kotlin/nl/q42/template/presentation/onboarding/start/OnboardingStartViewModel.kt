@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class OnboardingStartViewModel @Inject constructor(
 ) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow(OnboardingStartViewState("start"))
-    val uiState: Flow<OnboardingStartViewState> = _uiState
+    val uiState: StateFlow<OnboardingStartViewState> = _uiState
 
     fun onBackClicked() {
         navigateUp()
