@@ -21,13 +21,13 @@ sealed class ActionResult<out T : Any?> {
 
         data class ServerError(override val exception: Exception, val message: String) : Error(exception)
 
-        object NotFoundError : Error(Exception("404: Not Found"))
+        data object NotFoundError : Error(Exception("404: Not Found"))
 
         data class NetworkError(override val exception: Exception) : Error(exception)
 
         data class Other(override val exception: Exception) : Error(exception)
 
-        object NotImplemented : Error(Exception("API error format not implemented"))
+        data object NotImplemented : Error(Exception("API error format not implemented"))
     }
 
     data class Success<T : Any?>(val result: T) : ActionResult<T>()
