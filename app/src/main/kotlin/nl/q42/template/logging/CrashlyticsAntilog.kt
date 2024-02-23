@@ -26,21 +26,22 @@ class CrashlyticsAntilog : Antilog() {
         throwable: Throwable?,
         message: String?
     ) {
+        if (message == null && throwable == null) return
+
         if (BuildConfig.DEBUG || priority > LogLevel.DEBUG) {
             // also send to logcat
             logcatAntilog.log(priority, tag, throwable, message)
         }
 
-        val limitedMessage = message?.take(MAX_CHARS_IN_LOG) // to avoid OutOfMemoryError's
+        val limitedMessage = message?.take(MAX_CHARS_IN_LOG)  ?: "(no message)" // to avoid OutOfMemoryError's
 
-        if ((priority == LogLevel.INFO || priority == LogLevel.DEBUG || priority == LogLevel.WARNING) && limitedMessage != null) {
+        if (priority < LogLevel.ERROR) {
+            // at least one of message or throwable is not null
             val errorMessage = throwable?.let {
                 " with error: ${throwable}: ${throwable.message}".take(MAX_CHARS_IN_LOG)
             } ?: ""
             Firebase.crashlytics.log(limitedMessage + errorMessage)
-        }
-
-        if (priority == LogLevel.ERROR) {
+        } else {
             Firebase.crashlytics.log("recordException with message: $limitedMessage")
             Firebase.crashlytics.recordException(throwable ?: Exception(message))
         }
