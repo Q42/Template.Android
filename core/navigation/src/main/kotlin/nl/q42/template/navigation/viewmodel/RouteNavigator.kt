@@ -2,6 +2,7 @@ package nl.q42.template.navigation.viewmodel
 
 import androidx.annotation.VisibleForTesting
 import com.ramcosta.composedestinations.spec.Direction
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -43,6 +44,7 @@ class MyRouteNavigator : RouteNavigator {
 
     @VisibleForTesting
     fun navigate(state: NavigationState) {
+        Napier.i { state.toString() }
         navigationState.value = state
     }
 }
