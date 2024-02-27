@@ -27,7 +27,7 @@ fun OnboardingStartScreen(
 
     InitNavigator(navigator, viewModel) // enables viewModel to navigate to other screens
 
-    val viewState by viewModel.uiState.collectAsStateWithLifecycle(initialValue = OnboardingStartViewState(""))
+    val viewState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize(),
