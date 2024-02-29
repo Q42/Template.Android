@@ -12,7 +12,8 @@ manesVersions = "0.44.0"
 littleRobotsCatalogUpdates = "0.8.1"
 hilt = "2.50"
 retrofit = "2.9.0"
-moshi = "1.15.0"
+kotlinx-serialization = "1.6.2"
+retrofit2KotlinxSerializationConverter = "1.0.0"
 networkResponseAdapter = "5.0.0"
 napier = "2.7.1"
 composeDestinations = "1.9.60"
@@ -34,9 +35,8 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-moshiRetrofitConverter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
-moshiKotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
-moshiCodeGen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 networkResponseAdapter = { module = "com.github.haroldadmin:NetworkResponseAdapter", version.ref = "networkResponseAdapter" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttpLogging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
@@ -58,6 +58,7 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "gradlePlugin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 manesVersions = { id = "com-github-ben-manes-versions", version.ref = "manesVersions" }
 littleRobotsCatalogUpdates = { id = "nl.littlerobots.version-catalog-update", version.ref = "littleRobotsCatalogUpdates" }
