@@ -29,6 +29,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         loadUser()
+        Napier.e("Nino test error")
     }
 
     fun onScreenResumed() {
