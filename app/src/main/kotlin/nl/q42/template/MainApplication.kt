@@ -6,7 +6,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
-import nl.q42.template.logging.CrashlyticsAntilog
+import nl.q42.template.logging.CrashlyticsLogger
 
 @HiltAndroidApp
 class MainApplication : Application() {
@@ -28,7 +28,7 @@ class MainApplication : Application() {
             )
         } else {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
-            Napier.base(CrashlyticsAntilog())
+            Napier.base(CrashlyticsLogger())
         }
     }
 }

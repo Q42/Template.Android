@@ -16,7 +16,7 @@ private const val MAX_CHARS_IN_LOG = 1200
 /** A Crashlytics logger. The name Antilog might be an unfortunate choice by the Napier library;
  * this is not a stub
  */
-class CrashlyticsAntilog : Antilog() {
+class CrashlyticsLogger : Antilog() {
 
     private val logcatAntilog = DebugAntilog()
 
