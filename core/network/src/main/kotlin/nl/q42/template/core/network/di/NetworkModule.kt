@@ -1,27 +1,23 @@
 package nl.q42.template.core.network.di
 
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
-import com.squareup.moshi.Moshi
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import nl.q42.template.core.network.logger.JsonFormattedHttpLogger
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal class NetworkModule {
-
-    @Provides
-    @Singleton
-    fun providesMoshi(): Moshi = Moshi.Builder()
-        .build()
 
     @Provides
     @Singleton
@@ -43,12 +39,16 @@ internal class NetworkModule {
     @Provides
     fun provideRetrofit(
         httpClient: OkHttpClient,
-        moshi: Moshi,
         @ConfigApiMainPath apiMainPath: String,
     ): Retrofit {
+        val contentType = "application/json".toMediaType()
+
+        // When the server adds new fields to the response, we don't want to crash
+        val json = Json { ignoreUnknownKeys = true }
+
         return Retrofit.Builder()
             .baseUrl(apiMainPath)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(json.asConverterFactory(contentType))
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .client(httpClient)
             .build()

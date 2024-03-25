@@ -1,6 +1,11 @@
+apply {
+    plugin(libs.plugins.kotlinSerialization.get().getPluginId())
+}
+
 dependencies {
     implementation libs.retrofit
-    implementation libs.moshiRetrofitConverter
+    implementation(libs.kotlinx.serialization.json)
+    implementation libs.retrofit2.kotlinx.serialization.converter
     implementation libs.networkResponseAdapter
     implementation libs.okhttp
     implementation libs.okhttpLogging

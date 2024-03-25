@@ -6,6 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
@@ -25,7 +27,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
-    val uiState: Flow<HomeViewState> = _uiState
+    val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
 
     init {
         loadUser()
