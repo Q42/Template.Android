@@ -236,14 +236,9 @@ yet).
 
 ### JSON parsing
 
-We use [Moshi](https://github.com/square/moshi) and moshi code generation for all json parsing
-because it is fast, modern and has many extensions available, like support for sealed classes.
-Make sure to use `@JsonClass(generateAdapter = true)` on your models, it greatly improves parsing
-speed.
-For date parsing you can use `com.squareup.moshi:moshi-adapters`. To keep the template small, it is
-not included yet.
-
-### Logging
+We use [Kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for all json parsing
+because it is fast, modern and has IDE integration (which warns you when you forget to add @Serializable annotations).
+It also has multiplatform support, so we can use it in our KMP projects as well.
 
 We use Napier because it's usage is close to Timber/Tolbaaken, but Napier supports KMM.
 

@@ -16,9 +16,9 @@ private const val MAX_CHARS_IN_LOG = 1200
 /** A Crashlytics logger. The name Antilog might be an unfortunate choice by the Napier library;
  * this is not a stub
  */
-class CrashlyticsAntilog : Antilog() {
+class CrashlyticsLogger : Antilog() {
 
-    private val logcatAntilog = DebugAntilog()
+    private val logcatLogger = DebugAntilog()
 
     override fun performLog(
         priority: LogLevel,
@@ -30,7 +30,7 @@ class CrashlyticsAntilog : Antilog() {
 
         if (BuildConfig.DEBUG || priority > LogLevel.DEBUG) {
             // also send to logcat
-            logcatAntilog.log(priority, tag, throwable, message)
+            logcatLogger.log(priority, tag, throwable, message)
         }
 
         val limitedMessage = message?.take(MAX_CHARS_IN_LOG)  ?: "(no message)" // to avoid OutOfMemoryError's
@@ -58,7 +58,7 @@ class CrashlyticsAntilog : Antilog() {
         val numToRemove = 4
         val lastToRemove = stackTrace[numToRemove - 1]
         if (lastToRemove.className != "io.github.aakira.napier.Napier" || lastToRemove.methodName != "e\$default"){
-            logcatAntilog.log(priority = LogLevel.ERROR, tag = null, throwable = null,
+            logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
                     message = "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
             )
         }
