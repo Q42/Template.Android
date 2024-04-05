@@ -1,5 +1,7 @@
 plugins {
     id "com.android.application"
+    alias libs.plugins.googleServices
+    alias libs.plugins.firebaseCrashlyticsPlugin
 }
 
 apply from: "$rootDir/build.module.feature-and-app.gradle"
@@ -63,4 +65,7 @@ dependencies {
     implementation(project(":data:user"))  // needed for di
     implementation(project(":core:network")) // needed for di
     implementation(libs.composeDestinations)
+
+    api platform(libs.firebaseBoM)
+    implementation(libs.firebaseCrashlytics)
 }

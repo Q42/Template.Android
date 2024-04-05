@@ -3,6 +3,8 @@ package nl.q42.template.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.aakira.napier.Napier
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,6 +17,7 @@ import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.ui.presentation.ViewStateString
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,6 +60,9 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenSecondScreenClicked() {
+        Napier.e(RuntimeException("Open Second Screen tapped. This will be shown as the non-fatal title")) {
+            "Open Second Screen Tapped. This will be shown in the Crashlytics breadcrumbs"
+        }
         navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 
