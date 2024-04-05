@@ -18,7 +18,7 @@ private const val MAX_CHARS_IN_LOG = 1200
  */
 class CrashlyticsLogger : Antilog() {
 
-    private val logcatAntilog = DebugAntilog()
+    private val logcatLogger = DebugAntilog()
 
     override fun performLog(
         priority: LogLevel,
@@ -30,7 +30,7 @@ class CrashlyticsLogger : Antilog() {
 
         if (BuildConfig.DEBUG || priority > LogLevel.DEBUG) {
             // also send to logcat
-            logcatAntilog.log(priority, tag, throwable, message)
+            logcatLogger.log(priority, tag, throwable, message)
         }
 
         val limitedMessage = message?.take(MAX_CHARS_IN_LOG)  ?: "(no message)" // to avoid OutOfMemoryError's
