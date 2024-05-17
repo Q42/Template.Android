@@ -55,7 +55,7 @@ class CrashlyticsLogger : Antilog() {
      */
     private fun buildCrashlyticsSyntheticException(message: String): Exception {
         val stackTrace = Thread.currentThread().stackTrace
-        val numToRemove = 4
+        val numToRemove = 9
         val lastToRemove = stackTrace[numToRemove - 1]
         if (lastToRemove.className != "io.github.aakira.napier.Napier" || lastToRemove.methodName != "e\$default"){
             logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
