@@ -1,4 +1,4 @@
-package nl.q42.data.user.remote.model
+package nl.q42.template.data.user.remote
 
 import com.haroldadmin.cnradapter.NetworkResponse
 import nl.q42.template.actionresult.data.ApiErrorResponse
