@@ -1,5 +1,6 @@
 plugins {
     id "com.android.library"
+    alias libs.plugins.compose.compiler
 }
 apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"

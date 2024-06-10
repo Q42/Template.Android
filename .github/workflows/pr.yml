@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: "corretto" # See 'Supported distributions' for available options
-          java-version: "17"
+          java-version: "21"
           cache: "gradle"
       - name: Update version code
         uses: chkfung/android-version-actions@v1.2.1

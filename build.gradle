@@ -17,6 +17,7 @@ plugins { // sets class paths only (because of 'apply false')
     alias libs.plugins.ksp apply false
     alias libs.plugins.googleServices apply false
     alias libs.plugins.firebaseCrashlyticsPlugin apply false
+    alias libs.plugins.compose.compiler apply false
 }
 
 allprojects {
