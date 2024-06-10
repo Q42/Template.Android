@@ -13,8 +13,8 @@ interface RouteNavigator {
     fun onNavigated(state: NavigationState)
     fun navigateUp()
     fun popToRoute(staticRoute: String)
-    fun navigateTo(routeDestination: Direction)
-    fun navigateTo(route: String)
+    fun navigateTo(route: String, addToBackStack: Boolean = true, clearBackStack: Boolean = false)
+    fun navigateTo(routeDestination: Direction, addToBackStack: Boolean = true, clearBackStack: Boolean = false)
 
     val navigationState: StateFlow<NavigationState>
 }
@@ -38,13 +38,14 @@ class MyRouteNavigator : RouteNavigator {
 
     override fun navigateUp() = navigate(NavigationState.NavigateUp())
 
-    override fun navigateTo(routeDestination: Direction) = navigate(NavigationState.NavigateToRoute(routeDestination.route))
+    override fun navigateTo(route: String, addToBackStack: Boolean, clearBackStack: Boolean) =
+        navigate(NavigationState.NavigateToRoute(route, addToBackStack, clearBackStack))
 
-    override fun navigateTo(route: String) = navigate(NavigationState.NavigateToRoute(route))
+    override fun navigateTo(routeDestination: Direction, addToBackStack: Boolean, clearBackStack: Boolean) =
+        navigateTo(routeDestination.route, addToBackStack, clearBackStack)
 
     @VisibleForTesting
     fun navigate(state: NavigationState) {
-        Napier.i { state.toString() }
         navigationState.value = state
     }
 }
