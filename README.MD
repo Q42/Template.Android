@@ -2,6 +2,17 @@
 
 A template for creating Android projects at Q42.
 
+## TODO list
+
+- Research android screen transition standards + update our animations
+- Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
+  Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
+  singing keys in this setup.
+- Switch build files to KTS (Frank), also build some custom plugins (Frank).
+- Optionally: Add compose events from VM to
+  View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
+- Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
+
 ## Features
 
 Only basic features that almost all projects use, were added in this template:
@@ -20,15 +31,18 @@ Only basic features that almost all projects use, were added in this template:
 
 ### CI
 
-This project uses Github Actions + fastlane for CI. There is a nice upgrade path to automatically 
+This project uses Github Actions + fastlane for CI. There is a nice upgrade path to automatically
 deploy builds to Firebase App Distribution and Play Store.
 
 #### Installing fastlane
-A big advantage of fastlane is that the ci and publishing steps can run locally. 
+
+A big advantage of fastlane is that the ci and publishing steps can run locally.
 Use `brew install fastlane` and then `fastlane test` to verify this installation.
 
 #### Removing Github Actions + fastlane
+
 Using Bitrise instead? Then you can delete:
+
 - `./fastlane`
 - `./GemFile`
 - `./Gemfile.lock`
@@ -43,7 +57,8 @@ Using Bitrise instead? Then you can delete:
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
 1. Replace google-services.json with your own Firebase config file.
-   The template Firebase project can be found here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
+   The template Firebase project can be found
+   here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
    Google Services currently in use:
     - Crashlytics
 
@@ -55,11 +70,6 @@ note on changes:
 - Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
-
-## Features that still need to be added
-
-- Research android screen transition standards + update our animations
-- DTO model generation from server schema.
 
 ## Setup decisions
 
@@ -237,16 +247,16 @@ yet).
 ### JSON parsing
 
 We use [Kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for all json parsing
-because it is fast, modern and has IDE integration (which warns you when you forget to add @Serializable annotations).
+because it is fast, modern and has IDE integration (which warns you when you forget to add
+@Serializable annotations).
 It also has multiplatform support, so we can use it in our KMP projects as well.
 
 We use Napier because it's usage is close to Timber/Tolbaaken, but Napier supports KMM.
 
 We use Crashlytics for crash reporting. Note that Google Analytics is not added. Google [recommends]
 (https://firebase.google.com/docs/crashlytics/get-started?platform=android#before-you-begin)
-to enable it for more insight such as breadcrumbs and crash-free percentage. 
+to enable it for more insight such as breadcrumbs and crash-free percentage.
 If you don't want to use Google Analytics, you can remove it by simply removing the dependency.
-
 
 ### Image loading
 
