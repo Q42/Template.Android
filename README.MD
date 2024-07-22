@@ -2,7 +2,7 @@
 
 A template for creating Android projects at Q42.
 
-## TODO list
+## Wishlist for changes / new features
 
 - Research android screen transition standards + update our animations
 - Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
