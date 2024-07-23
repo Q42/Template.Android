@@ -9,6 +9,7 @@ A template for creating Android projects at Q42.
   Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
   singing keys in this setup.
 - Switch build files to KTS (Frank), also build some custom plugins (Frank).
+- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys, because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
   View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
 - Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
