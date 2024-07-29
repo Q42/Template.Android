@@ -1,6 +1,6 @@
 [versions]
 androidxCore = "1.13.1"
-androidxLifecycle = "2.8.1"
+androidxLifecycle = "2.8.4"
 kotlinxCoroutinesTest = "1.8.1"
 junit = "4.13.2"
 mockkAndroid = "1.13.9"
