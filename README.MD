@@ -29,8 +29,10 @@ note on changes:
 
 - Research android screen transition standards + update our animations
 - Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
-  Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
-  singing keys in this setup.
+  Github Actions only, that's a much simpler setup. 
+      - Make sure to also demonstrate / implement CI singing keys in this setup.
+      - Make a "any branche" setup: debug build only
+      - Make a "develop & main branche" setup: all builds, dev and release
 - Switch build files to KTS, also build some custom plugins.
 - Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys, because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
