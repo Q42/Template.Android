@@ -31,11 +31,17 @@ private fun updateNavigationState(
 ) {
     when (navigationState) {
         is NavigationState.NavigateToRoute -> {
-            if (!navigationState.addToBackStack) {
-                navigator.popBackStack()
-            }
-            if (navigationState.clearBackStack) {
-                navigator.popBackStack(AppGraphRoutes.root, true)
+            when (navigationState.backstackBehavior) {
+                BackstackBehavior.Default -> {
+                }
+
+                BackstackBehavior.RemoveCurrent -> {
+                    navigator.popBackStack()
+                }
+
+                BackstackBehavior.Clear -> {
+                    navigator.popBackStack(AppGraphRoutes.root, true)
+                }
             }
             navigator.navigate(navigationState.route)
             onNavigated(navigationState)

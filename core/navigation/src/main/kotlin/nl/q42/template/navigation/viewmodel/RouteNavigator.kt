@@ -2,7 +2,6 @@ package nl.q42.template.navigation.viewmodel
 
 import androidx.annotation.VisibleForTesting
 import com.ramcosta.composedestinations.spec.Direction
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -13,8 +12,8 @@ interface RouteNavigator {
     fun onNavigated(state: NavigationState)
     fun navigateUp()
     fun popToRoute(staticRoute: String)
-    fun navigateTo(route: String, addToBackStack: Boolean = true, clearBackStack: Boolean = false)
-    fun navigateTo(routeDestination: Direction, addToBackStack: Boolean = true, clearBackStack: Boolean = false)
+    fun navigateTo(route: String, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
+    fun navigateTo(routeDestination: Direction, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
 
     val navigationState: StateFlow<NavigationState>
 }
@@ -38,11 +37,11 @@ class MyRouteNavigator : RouteNavigator {
 
     override fun navigateUp() = navigate(NavigationState.NavigateUp())
 
-    override fun navigateTo(route: String, addToBackStack: Boolean, clearBackStack: Boolean) =
-        navigate(NavigationState.NavigateToRoute(route, addToBackStack, clearBackStack))
+    override fun navigateTo(route: String, backstackBehavior: BackstackBehavior) =
+        navigate(NavigationState.NavigateToRoute(route = route, backstackBehavior = backstackBehavior))
 
-    override fun navigateTo(routeDestination: Direction, addToBackStack: Boolean, clearBackStack: Boolean) =
-        navigateTo(routeDestination.route, addToBackStack, clearBackStack)
+    override fun navigateTo(routeDestination: Direction, backstackBehavior: BackstackBehavior) =
+        navigateTo(route = routeDestination.route, backstackBehavior = backstackBehavior)
 
     @VisibleForTesting
     fun navigate(state: NavigationState) {
