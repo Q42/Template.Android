@@ -2,13 +2,36 @@
 
 A template for creating Android projects at Q42.
 
+## Using this template
+
+1. Click the green "Use this template" button in the Github repo to create your own repository with
+   this code template.
+1. Clone the new repo locally on your machine.
+1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
+   project root, to change the project name and the package names. The script will ask for your new
+   project name and update all references.
+1. Replace google-services.json with your own Firebase config file.
+   The template Firebase project can be found
+   here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
+   Google Services currently in use:
+    - Crashlytics
+
+## Contributing
+
+To contribute, simply create a PR and let developers from other projects approve and merge it. A
+note on changes:
+
+- Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
+- Additions should only be added if 90%+ of our projects use it.
+- In your PR description, please include a section: "Why is this important".
+
 ## Wishlist for changes / new features
 
 - Research android screen transition standards + update our animations
 - Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
   Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
   singing keys in this setup.
-- Switch build files to KTS (Frank), also build some custom plugins (Frank).
+- Switch build files to KTS, also build some custom plugins.
 - Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys, because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
   View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
@@ -48,29 +71,6 @@ Using Bitrise instead? Then you can delete:
 - `./GemFile`
 - `./Gemfile.lock`
 - `./.github/workflows`
-
-## Using this template
-
-1. Click the green "Use this template" button in the Github repo to create your own repository with
-   this code template.
-1. Clone the new repo locally on your machine.
-1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
-   project root, to change the project name and the package names. The script will ask for your new
-   project name and update all references.
-1. Replace google-services.json with your own Firebase config file.
-   The template Firebase project can be found
-   here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
-   Google Services currently in use:
-    - Crashlytics
-
-## Contributing
-
-To contribute, simply create a PR and let developers from other projects approve and merge it. A
-note on changes:
-
-- Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
-- Additions should only be added if 90%+ of our projects use it.
-- In your PR description, please include a section: "Why is this important".
 
 ## Setup decisions
 
