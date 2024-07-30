@@ -6,6 +6,9 @@ on:
       name:
         description: "Release-Build"
         default: "Generate release build"
+  pull_request:
+    branches-ignore:
+      - main # run on all pull requests, except on those to the main branch
 
 jobs:
   build:

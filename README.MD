@@ -40,7 +40,11 @@ you.
 
 ### CI
 
-This project uses Github Actions for CI.
+This project uses Github Actions for CI. We have to workflows setup:
+
+- debug: runs on commits to any branch and creates debug builds
+- release: runs on PR creation and PR changes and creates signed release builds
+- upload: runs on changes to develop (merged PRs), uploads to firebase
 
 TODO: add instructions for uploading an app specific signing key to Github secrets.
 
