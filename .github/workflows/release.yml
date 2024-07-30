@@ -28,7 +28,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2.0.10
 
-      - name: Update version code # we increase the version code with each build
+      - name: Update Version Code # we increase the version code with each build
         uses: chkfung/android-version-actions@v1.1
         with:
           gradlePath: app/build.gradle
@@ -46,31 +46,39 @@ jobs:
         run: |
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d <keystore-b64.txt >upload-keystore.jks
-      #      - name: Prepare build
-      #        uses: ./.github/workflows/_prepare.yml
 
-      - name: Build Release bundle
+      #      - name: Prepare build
+      #        uses: ./.github/workflows/prepare
+
+      - name: Build Release apk
+        env:
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Get APK path
+        id: releaseApk
+        run: echo "apkfile=$(find app/build/outputs/apk/release/*.apk)" >> $GITHUB_OUTPUT
+
+      - name: Upload Release APK to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
+          path: ${{ steps.releaseApk.outputs.apkfile }}
+
+      - name: Build Release Bundle
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew bundleRelease --stacktrace
 
-      - name: Get release file aab path
+      - name: Get Bundle Path
         id: releaseAab
         run: echo "aabfile=$(find app/build/outputs/bundle/release/*.aab)" >> $GITHUB_OUTPUT
 
-      - name: Get release file apk path
-        id: releaseApk
-        run: echo "apkfile=$(find app/build/outputs/apk/release/*.apk)" >> $GITHUB_OUTPUT
-
-      - name: Upload Release Build to Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-artifacts
-          path: ${{ steps.releaseApk.outputs.apkfile }}
-
-      - name: Upload Release Build to Artifacts
+      - name: Upload Release Bundle to Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: release-artifacts
