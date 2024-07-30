@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import nl.q42.template.navigation.AppGraphRoutes
 
 /**
  * Ensures that [routeNavigator] can navigate on this composition. [routeNavigator] will usually be a ViewModel.
@@ -30,6 +31,18 @@ private fun updateNavigationState(
 ) {
     when (navigationState) {
         is NavigationState.NavigateToRoute -> {
+            when (navigationState.backstackBehavior) {
+                BackstackBehavior.Default -> {
+                }
+
+                BackstackBehavior.RemoveCurrent -> {
+                    navigator.popBackStack()
+                }
+
+                BackstackBehavior.Clear -> {
+                    navigator.popBackStack(AppGraphRoutes.root, true)
+                }
+            }
             navigator.navigate(navigationState.route)
             onNavigated(navigationState)
         }
