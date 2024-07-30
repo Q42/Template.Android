@@ -4,9 +4,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerComposeExtensionVersion.get()
-    }
 }
 
 dependencies {
