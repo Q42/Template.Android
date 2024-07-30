@@ -21,7 +21,7 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+            ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-debug.apk
 
       - name: Build Debug Bundle
         run: ./gradlew bundleDebug --stacktrace
@@ -31,4 +31,4 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/bundle/debug/app-debug.aab
+            ${{ github.workspace }}/app/build/outputs/bundle/dev/debug/app-debug.aab

@@ -48,7 +48,7 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
+            ${{ github.workspace }}/app/build/outputs/apk/dev/release/app-release.apk
 
       - name: Build Release Bundle
         env:
@@ -62,4 +62,4 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/bundle/release/app-release.aab
+            ${{ github.workspace }}/app/build/outputs/bundle/dev/release/app-release.aab
