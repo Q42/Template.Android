@@ -5,7 +5,7 @@ on:
   push:
     branches: [ '*' ] # run on all pushes on any branch
 
-jobs: #bla
+jobs:
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     permissions: # TODO still needed?
@@ -13,25 +13,8 @@ jobs: #bla
       contents: read
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: "corretto"
-          java-version: "21" # keep the same as your Android Studio version
-          cache: "gradle"
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2.0.10
-
-      - name: Update Version Code # we increase the version code with each build
-        uses: chkfung/android-version-actions@v1.1
-        with:
-          gradlePath: app/build.gradle
-          versionCode: ${{ github.run_number }}
-
-      #      - name: Prepare build
-      #        uses: ./.github/workflows/prepare
+      - name: Prepare build
+        uses: ./.github/workflows/prepare
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace

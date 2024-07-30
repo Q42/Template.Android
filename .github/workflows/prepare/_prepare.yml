@@ -11,7 +11,9 @@ jobs:
     permissions: # TODO still needed?
       packages: read
       contents: read
+
     steps:
+      - uses: actions/checkout@v3
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
@@ -22,7 +24,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2.0.10
 
-      - name: Update version code # we increase the version code with each build
+      - name: Update Version Code # we increase the version code with each build
         uses: chkfung/android-version-actions@v1.1
         with:
           gradlePath: app/build.gradle
@@ -39,4 +41,4 @@ jobs:
 
         run: |
           echo $ENCODED_STRING > keystore-b64.txt
-          base64 -d <keystore-b64.txt >upload_keystore.jks
+          base64 -d <keystore-b64.txt >upload-keystore.jks
