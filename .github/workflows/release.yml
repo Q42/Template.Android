@@ -7,8 +7,7 @@ on:
         description: "Release-Build"
         default: "Generate release build"
   pull_request:
-    branches:
-      - '*' # run on all pull requests
+    branches: [ '*' ] # run on all pull requests
 
 jobs:
   build:
