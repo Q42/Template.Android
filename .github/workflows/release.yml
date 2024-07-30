@@ -8,11 +8,13 @@ on:
         default: "Generate release build"
 
 jobs:
-  uses: ./.github/workflows/_prepare.yml
   build:
     runs-on: [ self-hosted, macOS ] # we host on our own mac mini, it's twice as fast
 
     steps:
+      - name: Prepare build
+        uses: ./.github/workflows/_prepare.yml
+
       - name: Build Release bundle
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
