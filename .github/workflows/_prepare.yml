@@ -8,9 +8,7 @@ on:
 jobs:
   build:
 
-
-    # we host on our own mac mini, it's twice as fast and cheaper than hosting on a github runner. See README for more info.
-    runs-on: [ self-hosted, macOS ]
+    runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
 
     permissions: # TODO still needed?
       packages: read

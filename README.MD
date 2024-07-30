@@ -42,9 +42,11 @@ you.
 
 This project uses Github Actions for CI.
 
-We run on our own mac mini, because this is twice as
-fast as using Github hosted runners (and a lot
+You can run on our own mac mini, this is twice as fast as using Github hosted runners (and a lot
 cheaper). [The documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2)
+For security reasons, using the mac mini is not possible on a public repo (like this template repo):
+but on a private repo you can enable it using "[self-hosted,
+macOS]" in the .github/workflows/*.yml files.
 
 We have these workflows:
 
