@@ -15,10 +15,7 @@ jobs:
       contents: read
 
     steps:
-
-      - name: Checking out branch, needed for the self-hosted runner...
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
