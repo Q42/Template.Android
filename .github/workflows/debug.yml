@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Prepare build
-        uses: ./.github/workflows/prepare
+        uses: ./.github/workflows/scripts/prepare
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
