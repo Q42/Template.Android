@@ -23,10 +23,10 @@ android {
 
     signingConfigs {
         upload {
-            keyAlias System.getenv("BOEDELBAK_UPLOAD_KEY_ALIAS")
-            keyPassword System.getenv("BOEDELBAK_UPLOAD_KEY_PW")
             storeFile file("../upload-keystore.jks")
-            storePassword System.getenv("BOEDELBAK_UPLOAD_KEY_STORE_PW")
+            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
+            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
         }
     }
 

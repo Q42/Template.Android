@@ -54,7 +54,31 @@ We have these workflows:
 - release: runs on PR creation and PR changes and creates signed release builds.
 - upload: runs on changes to develop (merged PRs), uploads to Firebase distribution.
 
-TODO: add instructions for uploading an app specific signing key to Github secrets.
+Adding the keystore details on Github Actions:
+
+- First create your own keystore and store it in 1pw. *You do not add this keystore to the repo* (
+  like we did
+  in this template, that is just an example).
+- [create a KEYSTORE_BASE_64 github repository secret](./settings/secrets/actions/new) that is the
+  encoded text
+  representation of the upload
+  keystore of your app. CI will later decode it into a keystore file and then make it available for
+  the system to sign the app.
+
+Run the below command to generate Encoded text representation
+of [your keystore](https://developer.android.com/studio/publish/app-signing#generate-key):
+
+    openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
+
+The above command will generate a new file called keystore.base64.txt , open the file, copy the
+contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64 .
+
+Also [add these repository secrets](./settings/secrets/actions/new) in github:
+
+- RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
+- RELEASE_KEYSTORE_ALIAS ('template' for this template)
+- RELEASE_KEY_PASSWORD ('secondpass' for this template)
+
 TODO: add instructions for firebase distributon (or removing it).
 
 #### Removing Github Actions
