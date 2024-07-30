@@ -1,5 +1,5 @@
 name: Release Build
-# Preparation steps that can be used in other steps and workflows.
+
 on:
   workflow_dispatch:
     inputs:
