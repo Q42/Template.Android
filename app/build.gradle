@@ -12,12 +12,21 @@ android {
     namespace = "nl.q42.template"
 
     defaultConfig {
-        versionCode = 1
+        versionCode = 1 // version code is set by CI
         versionName = "1.0"
     }
 
     buildFeatures { // only app may have buildConfigFields
         buildConfig = true
+    }
+
+    signingConfigs {
+        upload {
+            keyAlias System.getenv("BOEDELBAK_UPLOAD_KEY_ALIAS")
+            keyPassword System.getenv("BOEDELBAK_UPLOAD_KEY_PW")
+            storeFile file("../upload-keystore.jks")
+            storePassword System.getenv("BOEDELBAK_UPLOAD_KEY_STORE_PW")
+        }
     }
 
     buildTypes {
@@ -27,6 +36,7 @@ android {
         }
         release {
             minifyEnabled true
+            signingConfig signingConfigs.upload
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             buildConfigField 'boolean', 'config_log_http_calls', "false"
         }
