@@ -40,13 +40,20 @@ you.
 
 ### CI
 
-This project uses Github Actions for CI. We have to workflows setup:
+This project uses Github Actions for CI.
 
-- debug: runs on commits to any branch and creates debug builds
-- release: runs on PR creation and PR changes and creates signed release builds
-- upload: runs on changes to develop (merged PRs), uploads to firebase
+We run on our own mac mini, because this is twice as
+fast as using Github hosted runners (and a lot
+cheaper). [The documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2)
+
+We have these workflows:
+
+- debug: runs on commits to any branch and creates debug builds only.
+- release: runs on PR creation and PR changes and creates signed release builds.
+- upload: runs on changes to develop (merged PRs), uploads to Firebase distribution.
 
 TODO: add instructions for uploading an app specific signing key to Github secrets.
+TODO: add instructions for firebase distributon (or removing it).
 
 #### Removing Github Actions
 

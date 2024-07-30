@@ -7,13 +7,18 @@ on:
 
 jobs:
   build:
-    runs-on: [ self-hosted, macOS ] # we host on our own mac mini, it's twice as fast as hosting on github
-    permissions:
+
+
+    # we host on our own mac mini, it's twice as fast and cheaper than hosting on a github runner. See README for more info.
+    runs-on: [ self-hosted, macOS ]
+
+    permissions: # TODO still needed?
       packages: read
       contents: read
 
     steps:
-      - name: Checking out branch
+
+      - name: Checking out branch, needed for the self-hosted runner...
         uses: actions/checkout@v3
 
       - name: Setup Java

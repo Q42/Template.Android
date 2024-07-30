@@ -11,9 +11,14 @@ on:
 
 jobs:
   build:
-    runs-on: [ self-hosted, macOS ] # we host on our own mac mini, it's twice as fast
+    # we host on our own mac mini, it's twice as fast and cheaper than hosting on a github runner. See README for more info.
+    runs-on: [ self-hosted, macOS ]
 
     steps:
+
+      - name: Checking out branch, needed for the self-hosted runner...
+        uses: actions/checkout@v3
+
       - name: Prepare build
         uses: ./.github/workflows/_prepare.yml
 
