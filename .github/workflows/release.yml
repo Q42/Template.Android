@@ -50,22 +50,19 @@ jobs:
       #      - name: Prepare build
       #        uses: ./.github/workflows/prepare
 
-      - name: Build Release apk
+      - name: Build Release APK
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew assembleRelease --stacktrace
 
-      - name: Get APK path
-        id: releaseApk
-        run: echo "apkfile=$(find app/build/outputs/apk/release/*.apk)" >> $GITHUB_OUTPUT
-
       - name: Upload Release APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: release-artifacts
-          path: ${{ steps.releaseApk.outputs.apkfile }}
+          name: ${{ github.run_number }}_apk_debug
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
 
       - name: Build Release Bundle
         env:
@@ -74,12 +71,9 @@ jobs:
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew bundleRelease --stacktrace
 
-      - name: Get Bundle Path
-        id: releaseAab
-        run: echo "aabfile=$(find app/build/outputs/bundle/release/*.aab)" >> $GITHUB_OUTPUT
-
       - name: Upload Release Bundle to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: release-artifacts
-          path: ${{ steps.releaseApk.outputs.aabfile }}
+          name: ${{ github.run_number }}_apk_debug
+          path: |
+            ${{ github.workspace }}/app/build/outputs/bundle/release/app-release.aab
