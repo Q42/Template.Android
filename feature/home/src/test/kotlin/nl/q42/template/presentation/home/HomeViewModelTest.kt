@@ -8,6 +8,7 @@ import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
+import nl.q42.template.domain.user.model.EmailAddress
 import nl.q42.template.domain.user.model.User
 import nl.q42.template.domain.user.usecase.GetUserUseCase
 import nl.q42.template.ui.presentation.ViewStateString
@@ -25,7 +26,7 @@ class HomeViewModelTest() {
         coEvery { getUserUseCaseMock.invoke() }.coAnswers {
             // demonstration of test scheduler. This does not actually block the test for 4 seconds
             delay(4.seconds)
-            ActionResult.Success(User("test@test.com"))
+            ActionResult.Success(User(EmailAddress("test@test.com")))
         }
 
         val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
@@ -44,7 +45,7 @@ class HomeViewModelTest() {
         val getUserUseCaseMock: GetUserUseCase = mockk()
         coEvery { getUserUseCaseMock.invoke() }.returns(
             ActionResult.Success(
-                User("test@test.com")
+                User(EmailAddress("test@test.com"))
             )
         )
 

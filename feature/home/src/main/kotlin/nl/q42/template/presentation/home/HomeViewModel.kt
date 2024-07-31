@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.aakira.napier.Napier
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +16,6 @@ import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.ui.presentation.ViewStateString
-import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -51,7 +49,7 @@ class HomeViewModel @Inject constructor(
                 onSuccess = { result ->
                     _uiState.update {
                         HomeViewState.Data(
-                            ViewStateString.Res(R.string.emailTitle, result.email)
+                            ViewStateString.Res(R.string.emailTitle, result.email.value)
                         )
                     }
                 },
