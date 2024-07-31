@@ -1,4 +1,4 @@
-name: Debug Build
+name: Debug Builds
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       - name: Upload Dev Debug APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.run_number }}_apk_dev_debug
+          name: ${GITHUB_REPOSITORY#*/}-${{ github.run_number }}-dev-debug-apk
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/devDebug/app-dev-debug.apk
 
@@ -29,6 +29,6 @@ jobs:
       - name: Upload Prod Debug APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.run_number }}_apk_prod_debug
+          name: ${GITHUB_REPOSITORY#*/}_${{ github.run_number }}-prod-debug-apk
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/prodDebug/app-prod-debug.apk

@@ -2,13 +2,37 @@
 
 A template for creating Android projects at Q42.
 
+## Using this template
+
+1. Click the green "Use this template" button in the Github repo to create your own repository with
+   this code template.
+1. Clone the new repo locally on your machine.
+1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
+   project root, to change the project name and the package names. The script will ask for your new
+   project name and update all references.
+1. Replace google-services.json with your own Firebase config file.
+   The template Firebase project can be found
+   here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
+   Google Services currently in use:
+   - Crashlytics
+1. Setup your signing key secrets for usage in automated builds, . Steps are described in [CI / Automated Builds](#ci--automated-builds)
+1. You probably want to enable the self-hosted runner, as described in [self hosted runner](#self-hosted-runner), when using Github Actions.
+
+## Contributing
+
+To contribute, simply create a PR and let developers from other projects approve and merge it. A
+note on changes:
+
+- Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
+- Additions should only be added if 90%+ of our projects use it.
+- In your PR description, please include a section: "Why is this important".
+
 ## Wishlist for changes / new features
 
 - Research android screen transition standards + update our animations
-- Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
-  Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
-  singing keys in this setup.
-- Switch build files to KTS (Frank), also build some custom plugins (Frank).
+- Github: upload to Firebase Distribution on merges to develop
+- Github: run unittests on all commits
+- Switch build files to KTS, also build some custom plugins.
 - Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
   because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
@@ -38,77 +62,55 @@ and call it 'upload-keystore.jks'. Note that you probably don't need to use loca
 build setup builds and signs your app for
 you.
 
-### CI
+### CI / Automated Builds
 
-This project uses Github Actions for CI.
+This project uses Github Actions for CI. We have added these workflows for now:
 
-You can run on our own mac mini, this is twice as fast as using Github hosted runners (and a lot
-cheaper). [The documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2)
-For security reasons, using the mac mini is not possible on a public repo (like this template repo):
-but on a private repo you can enable it using "[self-hosted,
-macOS]" in the .github/workflows/*.yml files.
+- _debug.yml_: any commit on any branch triggers a `devDebug` apk and a `prodDebug` apk build
+- _release.yml_: any PR triggers signed release builds (`prodRelease` bundle and `prodRelease` apk)
 
-We have these workflows:
+#### Adding your own keystore's details on Github Actions
 
-- debug: runs on commits to any branch and creates debug builds only.
-- release: runs on PR creation and PR changes and creates signed release builds.
-- upload: runs on changes to develop (merged PRs), uploads to Firebase distribution.
-
-Adding the keystore details on Github Actions:
-
-- First create your own keystore and store it in 1pw. *You do not add this keystore to the repo* (
-  like we did
-  in this template, that is just an example).
-- [create a KEYSTORE_BASE_64 github repository secret](./settings/secrets/actions/new) that is the
+- First create your own keystore and store it in 1pw. _You do not add this keystore to the repo_ (
+  like we did in this template as an example).
+- add a KEYSTORE_BASE_64 [new github repository secret](./settings/secrets/actions/new) that is the
   encoded text
   representation of the upload
   keystore of your app. CI will later decode it into a keystore file and then make it available for
   the system to sign the app.
 
-Run the below command to generate Encoded text representation
-of [your keystore](https://developer.android.com/studio/publish/app-signing#generate-key):
+Run the below command to generate an encoded text representation
+of your keystore. If you don't have one, you can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
 
     openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
 
-The above command will generate a new file called keystore.base64.txt , open the file, copy the
-contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64 .
+The above command will generate a new file called `keystore.base64.txt`. Open the file, copy the
+contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
-Also [add these repository secrets](./settings/secrets/actions/new) in github:
+Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in your projects 1Password vault as well:
 
 - RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
 - RELEASE_KEYSTORE_ALIAS ('template' for this template)
 - RELEASE_KEY_PASSWORD ('secondpass' for this template)
 
-TODO: add instructions for firebase distributon (or removing it).
+#### Self-hosted runner
+
+You can run the worlkflows on our self-hosted runner (a mac mini). This is:
+
+- 2-3 times faster (compared to building with Github hosted runners)
+- a lot cheaper
+
+In a private repo you can enable the use of our self-hosted runner using `[self-hosted,
+macOS]` as desribed in the `.github/workflows/\*.yml` files. If you need more help:
+[the documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2).
+
+For security reasons, using the mac mini is not possible on a public repo (like this template repo).
 
 #### Removing Github Actions
 
-Using Bitrise instead? Then you can delete:
+Using Bitrise or another CI tool instead? Then you can skip the above and delete this folder:
 
 - `./.github/workflows`
-
-## Using this template
-
-1. Click the green "Use this template" button in the Github repo to create your own repository with
-   this code template.
-1. Clone the new repo locally on your machine.
-1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
-   project root, to change the project name and the package names. The script will ask for your new
-   project name and update all references.
-1. Replace google-services.json with your own Firebase config file.
-   The template Firebase project can be found
-   here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
-   Google Services currently in use:
-    - Crashlytics
-
-## Contributing
-
-To contribute, simply create a PR and let developers from other projects approve and merge it. A
-note on changes:
-
-- Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
-- Additions should only be added if 90%+ of our projects use it.
-- In your PR description, please include a section: "Why is this important".
 
 ## Setup decisions
 
@@ -211,9 +213,9 @@ Other options we considered and denied:
 
 1. Domain and data could have been kotlin modules if we used
    a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843).
-    - Pro: cleanliness, faster compile time.
-    - Con: no HiltModules possible in domain and data; The app module will have to contain
-      DataModule and DomainModule to wire interfaces to their implementations.
+   - Pro: cleanliness, faster compile time.
+   - Con: no HiltModules possible in domain and data; The app module will have to contain
+     DataModule and DomainModule to wire interfaces to their implementations.
 1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two
    types of injection, depending on where you are, is confusing.
 1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new
@@ -318,9 +320,9 @@ compose at HEMA.
 ## Inspiration Material
 
 - [Clean Architecture book](https://www.amazon.nl/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?__mk_nl_NL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PL4CNRB0N4UI&keywords=Robert+C.+Martin+Series+-+Clean+Architecture&qid=1675245338&sprefix=robert+c.+martin+series+-+clean+architecture%2Caps%2C54&sr=8-1)
-    - A clear book that is easy to read. If you have read many articles on the subject, then still
-      this
-      book might teach you a few things.
+  - A clear book that is easy to read. If you have read many articles on the subject, then still
+    this
+    book might teach you a few things.
 - [Google Architecture Guidelines](https://developer.android.com/topic/architecture) - We largely
   follow these, with some adjustments. Also lists
   valuable [do's and don't's](https://developer.android.com/topic/architecture/recommendations).
