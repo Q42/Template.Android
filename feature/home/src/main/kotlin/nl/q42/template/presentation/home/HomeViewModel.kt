@@ -4,59 +4,44 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.aakira.napier.Napier
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
-import nl.q42.template.domain.user.usecase.GetUserUseCase
+import nl.q42.template.domain.user.usecase.FetchUserUseCase
+import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
 import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.ui.presentation.ViewStateString
-import java.lang.RuntimeException
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase,
+    private val fetchUserUseCase: FetchUserUseCase,
+    private val getUserFlowUseCase: GetUserFlowUseCase,
     private val navigator: RouteNavigator,
 ) : ViewModel(), RouteNavigator by navigator {
 
-    private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Empty)
+    private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState())
     val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
 
     init {
-        loadUser()
+        startObservingUserChanges()
+        fetchUser()
     }
 
     fun onScreenResumed() {
     }
 
     fun onLoadClicked() {
-        loadUser()
-    }
-
-    private fun loadUser() {
-        viewModelScope.launch {
-
-            _uiState.update { HomeViewState.Loading }
-
-            handleAction(
-                getUserUseCase(),
-                onError = { _uiState.update { HomeViewState.Error } },
-                onSuccess = { result ->
-                    _uiState.update {
-                        HomeViewState.Data(
-                            ViewStateString.Res(R.string.emailTitle, result.email)
-                        )
-                    }
-                },
-            )
-        }
+        fetchUser()
     }
 
     fun onOpenSecondScreenClicked() {
@@ -68,5 +53,28 @@ class HomeViewModel @Inject constructor(
 
     fun onOpenOnboardingClicked() {
         navigateTo(AppGraphRoutes.onboarding)
+    }
+
+    fun fetchUser() {
+        viewModelScope.launch {
+
+            _uiState.update { it.copy(showError = false, isLoading = true) }
+
+            handleAction(
+                action = fetchUserUseCase(),
+                onError = { _uiState.update { it.copy(showError = true, isLoading = false) } },
+                onSuccess = { _uiState.update { it.copy(isLoading = false) } },
+            )
+        }
+    }
+
+    private fun startObservingUserChanges() {
+        getUserFlowUseCase().filterNotNull().onEach { user ->
+            _uiState.update {
+                it.copy(
+                    userEmailTitle = ViewStateString.Res(R.string.emailTitle, user.email.value)
+                )
+            }
+        }.launchIn(viewModelScope)
     }
 }

@@ -3,57 +3,64 @@ package nl.q42.template.presentation.home
 import app.cash.turbine.test
 import io.mockk.coEvery
 import io.mockk.mockk
-import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
-import nl.q42.template.domain.user.model.User
-import nl.q42.template.domain.user.usecase.GetUserUseCase
-import nl.q42.template.ui.presentation.ViewStateString
+import nl.q42.template.domain.user.usecase.FetchUserUseCase
+import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
 import org.junit.Rule
 import org.junit.Test
 import kotlin.time.Duration.Companion.seconds
 
-class HomeViewModelTest() {
+class HomeViewModelTest {
+
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     @Test
-    fun `WHEN I subscribe to uiState with a slow UserUseCase THEN I get the loading state and expected email address`() = runTest {
-        val getUserUseCaseMock: GetUserUseCase = mockk()
-        coEvery { getUserUseCaseMock.invoke() }.coAnswers {
-            // demonstration of test scheduler. This does not actually block the test for 4 seconds
-            delay(4.seconds)
-            ActionResult.Success(User("test@test.com"))
+    fun `WHEN fetchUserUseCase is called THEN loading state is set on the ViewState`() = runTest {
+
+        val fetchUserUseCaseMock: FetchUserUseCase = mockk()
+        coEvery { fetchUserUseCaseMock() }.coAnswers {
+            delay(1.seconds)
+            ActionResult.Success(Unit)
         }
 
-        val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
+        val getUserFlowUseCaseMock: GetUserFlowUseCase = mockk()
+        coEvery { getUserFlowUseCaseMock() } returns flowOf()
+
+        val viewModel = HomeViewModel(
+            fetchUserUseCase = fetchUserUseCaseMock,
+            getUserFlowUseCase = getUserFlowUseCaseMock,
+            navigator = mockk()
+        )
 
         viewModel.uiState.test {
-
-            assertEquals(HomeViewState.Loading, awaitItem())
-            val viewState = awaitItem()
-            assertTrue(viewState is HomeViewState.Data)
-            assertTrue((viewState as HomeViewState.Data).userEmailTitle is ViewStateString.Res)
+            assertTrue(awaitItem().isLoading)
         }
     }
 
     @Test
-    fun `WHEN I subscribe to uiState with a fast UserUseCase THEN I get expected email address immediately`() = runTest {
-        val getUserUseCaseMock: GetUserUseCase = mockk()
-        coEvery { getUserUseCaseMock.invoke() }.returns(
-            ActionResult.Success(
-                User("test@test.com")
-            )
+    fun `WHEN fetchUserUseCase returns an error THEN an error is show on the ViewState`() = runTest {
+
+        val errorResult = ActionResult.Error.Other(Exception()) as ActionResult<Unit>
+
+        val fetchUserUseCaseMock: FetchUserUseCase = mockk()
+        coEvery { fetchUserUseCaseMock() } returns errorResult
+
+        val getUserFlowUseCaseMock: GetUserFlowUseCase = mockk()
+        coEvery { getUserFlowUseCaseMock() } returns flowOf()
+
+        val viewModel = HomeViewModel(
+            fetchUserUseCase = fetchUserUseCaseMock,
+            getUserFlowUseCase = getUserFlowUseCaseMock,
+            navigator = mockk()
         )
 
-        val viewModel = HomeViewModel(getUserUseCaseMock, mockk())
-
         viewModel.uiState.test {
-            val viewState = awaitItem()
-            assertTrue(viewState is HomeViewState.Data)
-            assertTrue((viewState as HomeViewState.Data).userEmailTitle is ViewStateString.Res)
+            assertTrue(awaitItem().showError)
         }
     }
 }

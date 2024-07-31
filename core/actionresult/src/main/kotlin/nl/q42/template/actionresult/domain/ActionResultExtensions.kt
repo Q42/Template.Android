@@ -2,7 +2,7 @@ package nl.q42.template.actionresult.domain
 
 fun <T> ActionResult<T>.getDataOrNull(): T? = when (this) {
     is ActionResult.Error -> null
-    is ActionResult.Success -> result
+    is ActionResult.Success -> data
 }
 
 /**
@@ -12,7 +12,7 @@ fun <T> ActionResult<T>.getDataOrNull(): T? = when (this) {
  */
 fun <S, T> ActionResult<S>.map(mapper: (S) -> T): ActionResult<T> = when (this) {
     is ActionResult.Error -> this
-    is ActionResult.Success -> ActionResult.Success(mapper(this.result))
+    is ActionResult.Success -> ActionResult.Success(mapper(this.data))
 }
 
 /**
@@ -22,6 +22,5 @@ fun <S, T> ActionResult<S>.map(mapper: (S) -> T): ActionResult<T> = when (this) 
  */
 fun <S, T> ActionResult<List<S>>.mapList(mapper: (S) -> T): ActionResult<List<T>> = when (this) {
     is ActionResult.Error -> this
-    is ActionResult.Success -> ActionResult.Success(this.result.map { mapper(it) })
+    is ActionResult.Success -> ActionResult.Success(this.data.map { mapper(it) })
 }
-
