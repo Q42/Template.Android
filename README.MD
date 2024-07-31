@@ -2,6 +2,91 @@
 
 A template for creating Android projects at Q42.
 
+## Wishlist for changes / new features
+
+- Research android screen transition standards + update our animations
+- Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
+  Github Actions only, that's a much simpler setup. Make sure to also demonstrate / implement CI
+  singing keys in this setup.
+- Switch build files to KTS (Frank), also build some custom plugins (Frank).
+- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
+  because that is what we have in 90%+ of our projects.
+- Optionally: Add compose events from VM to
+  View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
+- Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
+
+## Features
+
+Only basic features that almost all projects use, were added in this template:
+
+- compose
+- theming
+- screen navigation (inc. multi-module navigation and navigation initiated from ViewModel)
+- dependency injection
+- networking
+- json parsing
+- action results
+- clean architecture
+- automated dependency updates
+
+## Project Setup
+
+### Signing Builds
+
+If you need local signing of release builds, copy the upload keystore into the root of your project,
+and call it 'upload-keystore.jks'. Note that you probably don't need to use local signing. The CI
+build setup builds and signs your app for
+you.
+
+### CI
+
+This project uses Github Actions for CI.
+
+You can run on our own mac mini, this is twice as fast as using Github hosted runners (and a lot
+cheaper). [The documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2)
+For security reasons, using the mac mini is not possible on a public repo (like this template repo):
+but on a private repo you can enable it using "[self-hosted,
+macOS]" in the .github/workflows/*.yml files.
+
+We have these workflows:
+
+- debug: runs on commits to any branch and creates debug builds only.
+- release: runs on PR creation and PR changes and creates signed release builds.
+- upload: runs on changes to develop (merged PRs), uploads to Firebase distribution.
+
+Adding the keystore details on Github Actions:
+
+- First create your own keystore and store it in 1pw. *You do not add this keystore to the repo* (
+  like we did
+  in this template, that is just an example).
+- [create a KEYSTORE_BASE_64 github repository secret](./settings/secrets/actions/new) that is the
+  encoded text
+  representation of the upload
+  keystore of your app. CI will later decode it into a keystore file and then make it available for
+  the system to sign the app.
+
+Run the below command to generate Encoded text representation
+of [your keystore](https://developer.android.com/studio/publish/app-signing#generate-key):
+
+    openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
+
+The above command will generate a new file called keystore.base64.txt , open the file, copy the
+contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64 .
+
+Also [add these repository secrets](./settings/secrets/actions/new) in github:
+
+- RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
+- RELEASE_KEYSTORE_ALIAS ('template' for this template)
+- RELEASE_KEY_PASSWORD ('secondpass' for this template)
+
+TODO: add instructions for firebase distributon (or removing it).
+
+#### Removing Github Actions
+
+Using Bitrise instead? Then you can delete:
+
+- `./.github/workflows`
+
 ## Using this template
 
 1. Click the green "Use this template" button in the Github repo to create your own repository with
@@ -24,55 +109,6 @@ note on changes:
 - Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
-
-## Wishlist for changes / new features
-
-- Research android screen transition standards + update our animations
-- Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
-  Github Actions only, that's a much simpler setup. 
-  - Make sure to also demonstrate / implement CI singing keys in this setup.
-  - Make a "any branche" setup: debug build only
-  - Make a "develop & main branche" setup: all builds, dev and release
-- Switch build files to KTS, also build some custom plugins.
-- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys, because that is what we have in 90%+ of our projects.
-- Optionally: Add compose events from VM to
-  View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
-- Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
-
-## Features
-
-Only basic features that almost all projects use, were added in this template:
-
-- compose
-- theming
-- screen navigation (inc. multi-module navigation and navigation initiated from ViewModel)
-- dependency injection
-- networking
-- json parsing
-- action results
-- clean architecture
-- automated dependency updates
-
-## Project Setup
-
-### CI
-
-This project uses Github Actions + fastlane for CI. There is a nice upgrade path to automatically
-deploy builds to Firebase App Distribution and Play Store.
-
-#### Installing fastlane
-
-A big advantage of fastlane is that the ci and publishing steps can run locally.
-Use `brew install fastlane` and then `fastlane test` to verify this installation.
-
-#### Removing Github Actions + fastlane
-
-Using Bitrise instead? Then you can delete:
-
-- `./fastlane`
-- `./GemFile`
-- `./Gemfile.lock`
-- `./.github/workflows`
 
 ## Setup decisions
 

@@ -1,0 +1,34 @@
+name: Debug Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ '*' ] # run on all pushes on any branch
+
+jobs:
+  build:
+    runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare build
+        uses: ./.github/workflows/scripts/prepare
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDevDebug --stacktrace
+
+      - name: Upload Dev Debug APK to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.run_number }}_apk_dev_debug
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/devDebug/app-dev-debug.apk
+
+      - name: Build Prod APK
+        run: ./gradlew assembleProdDebug --stacktrace
+
+      - name: Upload Prod Debug APK to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.run_number }}_apk_prod_debug
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/prodDebug/app-prod-debug.apk
