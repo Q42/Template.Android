@@ -58,4 +58,4 @@ jobs:
         with:
           name: ${{ github.event.repository.name }}-${{ github.run_number }}-prod-release-bundle
           path: |
-            ${{ github.workspace }}/app/build/outputs/bundle/prod/release/app-prod-release.aab
+            ${{ github.workspace }}/app/build/outputs/bundle/prodRelease/app-prod-release.aab
