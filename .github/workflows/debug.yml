@@ -21,7 +21,7 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_dev_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/devDebug/debug/app-dev-debug.apk
+            ${{ github.workspace }}/app/build/outputs/apk/devDebug/app-dev-debug.apk
 
       - name: Build Prod APK
         run: ./gradlew assembleProdDebug --stacktrace
@@ -31,4 +31,4 @@ jobs:
         with:
           name: ${{ github.run_number }}_apk_prod_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/prodDebug/debug/app-prod-debug.apk
+            ${{ github.workspace }}/app/build/outputs/apk/prodDebug/app-prod-debug.apk
