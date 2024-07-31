@@ -36,30 +36,30 @@ jobs:
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d <keystore-b64.txt >upload-keystore.jks
 
-      - name: Build Release APK
+      - name: Build Prod Release APK
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleProdRelease --stacktrace
 
       - name: Upload Release APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/dev/release/app-release.apk
+            ${{ github.workspace }}/app/build/outputs/apk/prodRelease/app-prod-release.apk
 
-      - name: Build Release Bundle
+      - name: Build Prod Release Bundle
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-        run: ./gradlew bundleRelease --stacktrace
+        run: ./gradlew bundleProdRelease --stacktrace
 
       - name: Upload Release Bundle to Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.run_number }}_apk_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/bundle/dev/release/app-release.aab
+            ${{ github.workspace }}/app/build/outputs/bundle/prodRelease/app-prod-release.aab

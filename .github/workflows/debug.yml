@@ -14,21 +14,21 @@ jobs:
         uses: ./.github/workflows/scripts/prepare
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDevDebug --stacktrace
 
-      - name: Upload Debug APK to Artifacts
+      - name: Upload Dev Debug APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.run_number }}_apk_debug
+          name: ${{ github.run_number }}_apk_dev_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-debug.apk
+            ${{ github.workspace }}/app/build/outputs/apk/devDebug/debug/app-dev-debug.apk
 
-      - name: Build Debug Bundle
-        run: ./gradlew bundleDebug --stacktrace
+      - name: Build Prod APK
+        run: ./gradlew assembleProdDebug --stacktrace
 
-      - name: Upload Debug Bundle to Artifacts
+      - name: Upload Prod Debug APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.run_number }}_apk_debug
+          name: ${{ github.run_number }}_apk_prod_debug
           path: |
-            ${{ github.workspace }}/app/build/outputs/bundle/dev/debug/app-debug.aab
+            ${{ github.workspace }}/app/build/outputs/apk/prodDebug/debug/app-prod-debug.apk
