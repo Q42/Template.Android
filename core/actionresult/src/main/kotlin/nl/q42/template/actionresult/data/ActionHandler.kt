@@ -11,7 +11,7 @@ suspend fun <T> handleAction(
     onError: suspend (ActionResult.Error) -> Unit,
 ) {
     when (action) {
-        is ActionResult.Success -> onSuccess(action.result)
+        is ActionResult.Success -> onSuccess(action.data)
         is ActionResult.Error -> onError(action)
     }
 }
