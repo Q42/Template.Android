@@ -14,9 +14,11 @@ A template for creating Android projects at Q42.
    The template Firebase project can be found
    here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
    Google Services currently in use:
-   - Crashlytics
-1. Setup your signing key secrets for usage in automated builds, . Steps are described in [CI / Automated Builds](#ci--automated-builds)
-1. You probably want to enable the self-hosted runner, as described in [self hosted runner](#self-hosted-runner), when using Github Actions.
+    - Crashlytics
+1. Setup your signing key secrets for usage in automated builds, . Steps are described
+   in [CI / Automated Builds](#ci--automated-builds)
+1. You probably want to enable the self-hosted runner, as described
+   in [self hosted runner](#self-hosted-runner), when using Github Actions.
 
 ## Contributing
 
@@ -29,10 +31,15 @@ note on changes:
 
 ## Wishlist for changes / new features
 
+- on most projects we only use one module for data, and one for domain. We could simplify the
+  template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
+  in that way more modules can easily be added, but are not added by default.
 - Research android screen transition standards + update our animations
 - Github: upload to Firebase Distribution on merges to develop
 - Github: run unittests on all commits
 - Switch build files to KTS, also build some custom plugins.
+- Use lifecycle events from Google (we use our own now)
+- Use preview light dark from google (we use our own now)
 - Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
   because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
@@ -80,14 +87,16 @@ This project uses Github Actions for CI. We have added these workflows for now:
   the system to sign the app.
 
 Run the below command to generate an encoded text representation
-of your keystore. If you don't have one, you can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
+of your keystore. If you don't have one, you
+can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
 
     openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
 
 The above command will generate a new file called `keystore.base64.txt`. Open the file, copy the
 contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
-Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in your projects 1Password vault as well:
+Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
+your projects 1Password vault as well:
 
 - RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
 - RELEASE_KEYSTORE_ALIAS ('template' for this template)
@@ -213,9 +222,9 @@ Other options we considered and denied:
 
 1. Domain and data could have been kotlin modules if we used
    a [Java inject to annotate injected constructors](https://stackoverflow.com/a/67869843).
-   - Pro: cleanliness, faster compile time.
-   - Con: no HiltModules possible in domain and data; The app module will have to contain
-     DataModule and DomainModule to wire interfaces to their implementations.
+    - Pro: cleanliness, faster compile time.
+    - Con: no HiltModules possible in domain and data; The app module will have to contain
+      DataModule and DomainModule to wire interfaces to their implementations.
 1. We could have mixed dagger (non-android modules) with hilt (android modules). Con: Having two
    types of injection, depending on where you are, is confusing.
 1. We could have used dagger only. Con: Dagger is more complex and harder to grasp for new
@@ -320,9 +329,9 @@ compose at HEMA.
 ## Inspiration Material
 
 - [Clean Architecture book](https://www.amazon.nl/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?__mk_nl_NL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PL4CNRB0N4UI&keywords=Robert+C.+Martin+Series+-+Clean+Architecture&qid=1675245338&sprefix=robert+c.+martin+series+-+clean+architecture%2Caps%2C54&sr=8-1)
-  - A clear book that is easy to read. If you have read many articles on the subject, then still
-    this
-    book might teach you a few things.
+    - A clear book that is easy to read. If you have read many articles on the subject, then still
+      this
+      book might teach you a few things.
 - [Google Architecture Guidelines](https://developer.android.com/topic/architecture) - We largely
   follow these, with some adjustments. Also lists
   valuable [do's and don't's](https://developer.android.com/topic/architecture/recommendations).
