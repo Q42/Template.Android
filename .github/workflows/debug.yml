@@ -1,9 +1,6 @@
 name: Debug Builds
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ '*' ] # run on all pushes on any branch
+on: [ push ] # run on all pushes on any branch
 
 jobs:
   build:
