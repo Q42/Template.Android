@@ -2,9 +2,6 @@ name: Prepare Release
 
 on:
   workflow_call:
-    secrets:
-      KEYSTORE_BASE_64:
-        required: true
 
 jobs:
   prepareRelease:
