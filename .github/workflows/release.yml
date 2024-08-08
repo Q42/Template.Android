@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/workflows/_prepare-release.yml@main
+      - uses: ./.github/workflows/_prepare-release.yml
 
       - name: Build Prod Release APK
         env:
