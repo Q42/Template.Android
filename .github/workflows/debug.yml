@@ -1,20 +1,20 @@
 name: Debug Builds
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ '*' ] # run on all pushes on any branch
+on: [ push ] # run on all pushes on any branch
 
 jobs:
+  prepare-all:
+    uses: ./.github/workflows/_prepare-all.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3
-      - name: Prepare build
-        uses: ./.github/workflows/scripts/prepare
 
       - name: Build Debug APK
         run: ./gradlew assembleDevDebug --stacktrace
+
+      - name: Run unit tests
+        run: ./gradlew test --stacktrace
 
       - name: Upload Dev Debug APK to Artifacts
         uses: actions/upload-artifact@v3
