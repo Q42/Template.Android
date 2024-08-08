@@ -30,10 +30,10 @@ jobs:
       # and generates and keystore file and gets stored in /android-app path
       - name: Decode Keystore
         env:
-          ENCODED_STRING: "${{ secrets.KEYSTORE_BASE_64 }}"
-          RELEASE_KEYSTORE_PASSWORD: "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
-          RELEASE_KEYSTORE_ALIAS: "${{ secrets.RELEASE_KEYSTORE_ALIAS }}"
-          RELEASE_KEY_PASSWORD: "${{ secrets.RELEASE_KEY_PASSWORD }}"
+          ENCODED_STRING: ${{ secrets.KEYSTORE_BASE_64 }}"
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
 
         shell: bash
         run: |
