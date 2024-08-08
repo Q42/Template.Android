@@ -12,9 +12,6 @@ jobs:
     uses: ./.github/workflows/_prepare-release.yml
     secrets:
       KEYSTORE_BASE_64: ${{ secrets.KEYSTORE_BASE_64 }}
-      RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-      RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
-      RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
