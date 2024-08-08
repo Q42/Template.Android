@@ -36,8 +36,6 @@ note on changes:
   template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
   in that way more modules can easily be added, but are not added by default.
 - Research android screen transition standards + update our animations
-- Github: upload to Firebase Distribution on merges to develop
-- Github: run unittests on all commits
 - Switch build files to KTS, also build some custom plugins.
 - Use lifecycle events from Google (we use our own now)
 - Use preview light dark from google (we use our own now)
@@ -109,8 +107,11 @@ We use a [firebase app github action](https://github.com/nickwph/firebase-app-di
 in our github actions setup) to automatically upload release builds to firebase.
 
 To change this to your own firebase project, you need to set two secrets:
-- `FIREBASE_PROD_APP_ID` from your firebase project settings. It's in your firebase project settings (for the app you want to publish), it looks something like `1:xxxxxxxxx:android:yyyyyyyy`
-- `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
+
+- `FIREBASE_PROD_APP_ID` from your firebase project settings. It's in your firebase project
+  settings (for the app you want to publish), it looks something like `1:xxxxxxxxx:android:yyyyyyyy`
+- `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found
+  in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
 
 #### Self-hosted runner
 

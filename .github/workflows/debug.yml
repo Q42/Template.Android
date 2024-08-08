@@ -16,6 +16,9 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew assembleDevDebug --stacktrace
 
+      - name: Run unittests
+        run: ./gradlew test --stacktrace
+
       - name: Upload Dev Debug APK to Artifacts
         uses: actions/upload-artifact@v3
         with:
