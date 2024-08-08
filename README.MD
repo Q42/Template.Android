@@ -19,6 +19,7 @@ A template for creating Android projects at Q42.
    in [CI / Automated Builds](#ci--automated-builds)
 1. You probably want to enable the self-hosted runner, as described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
+1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
 
 ## Contributing
 
@@ -101,6 +102,15 @@ your projects 1Password vault as well:
 - RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
 - RELEASE_KEYSTORE_ALIAS ('template' for this template)
 - RELEASE_KEY_PASSWORD ('secondpass' for this template)
+
+#### Firebase app distribution
+
+We use a [firebase app github action](https://github.com/nickwph/firebase-app-distribution-action) (
+in our github actions setup) to automatically upload release builds to firebase.
+
+To change this to your own firebase project, you need to set two secrets:
+- `FIREBASE_PROD_APP_ID` from your firebase project settings. It's in your firebase project settings (for the app you want to publish), it looks something like `1:xxxxxxxxx:android:yyyyyyyy`
+- `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
 
 #### Self-hosted runner
 

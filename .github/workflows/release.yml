@@ -46,6 +46,13 @@ jobs:
           path: |
             ${{ github.workspace }}/app/build/outputs/apk/prod/release/app-prod-release.apk
 
+      - name: Upload Prod Release APK to Firebase App Distribution
+        uses: nickwph/firebase-app-distribution-action@v1
+        with:
+          file: ${{ github.workspace }}/app/build/outputs/apk/prod/release/app-prod-release.apk
+          app: ${{ secrets.FIREBASE_PROD_APP_ID }}
+          credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+
       - name: Build Prod Release Bundle
         env:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
