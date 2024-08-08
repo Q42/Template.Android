@@ -13,7 +13,7 @@ jobs:
         uses: chkfung/android-version-actions@v1.1
         with:
           gradlePath: app/build.gradle
-          versionCode: ${{ inputs.GITHUB_RUN_NUMBER }}
+          versionCode: ${{ github.run_number }}
 
       # This will decode the keystore from base 64 text representation that we have stored in secrets
       # and generates and keystore file and gets stored in /android-app path
