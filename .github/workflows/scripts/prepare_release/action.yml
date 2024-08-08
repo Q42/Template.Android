@@ -16,10 +16,10 @@ runs:
     # and generates and keystore file and gets stored in /android-app path
     - name: Decode Keystore
       env:
-        ENCODED_STRING: ${{ env.KEYSTORE_BASE_64 }}
-        RELEASE_KEYSTORE_PASSWORD: ${{ env.RELEASE_KEYSTORE_PASSWORD }}
-        RELEASE_KEYSTORE_ALIAS: ${{ env.RELEASE_KEYSTORE_ALIAS }}
-        RELEASE_KEY_PASSWORD: ${{ env.RELEASE_KEY_PASSWORD }}
+        ENCODED_STRING: "${{ env.KEYSTORE_BASE_64 }}"
+        RELEASE_KEYSTORE_PASSWORD: "${{ env.RELEASE_KEYSTORE_PASSWORD }}"
+        RELEASE_KEYSTORE_ALIAS: "${{ env.RELEASE_KEYSTORE_ALIAS }}"
+        RELEASE_KEY_PASSWORD: "${{ env.RELEASE_KEY_PASSWORD }}"
 
       shell: bash
       run: |
