@@ -2,6 +2,15 @@ name: Prepare Release
 
 on:
   workflow_call:
+    secrets:
+      KEYSTORE_BASE_64:
+        required: true
+      RELEASE_KEYSTORE_PASSWORD:
+        required: true
+      RELEASE_KEYSTORE_ALIAS:
+        required: true
+      RELEASE_KEY_PASSWORD:
+        required: true
 
 jobs:
   prepareRelease:
