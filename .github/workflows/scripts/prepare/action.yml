@@ -1,4 +1,6 @@
 name: Preparation
+description: |
+  This action prepares the build by setting up the Java and Android SDK versions.
 
 runs:
   using: "composite"
