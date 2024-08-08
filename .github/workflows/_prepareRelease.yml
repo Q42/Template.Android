@@ -2,6 +2,10 @@ name: Prepare Release
 
 on:
   workflow_call:
+    inputs:
+      GITHUB_RUN_NUMBER:
+        required: true
+        type: string
     secrets:
       KEYSTORE_BASE_64:
         required: true
@@ -20,7 +24,7 @@ jobs:
         uses: chkfung/android-version-actions@v1.1
         with:
           gradlePath: app/build.gradle
-          versionCode: ${{ github.run_number }}
+          versionCode: ${{ inputs.GITHUB_RUN_NUMBER }}
 
       # This will decode the keystore from base 64 text representation that we have stored in secrets
       # and generates and keystore file and gets stored in /android-app path
