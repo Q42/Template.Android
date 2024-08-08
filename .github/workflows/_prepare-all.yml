@@ -1,0 +1,20 @@
+name: Prepare All
+
+on:
+  workflow_call:
+
+jobs:
+  prepare-all:
+    runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "corretto"
+          java-version: "21" # keep the same as your Android Studio version
+          cache: "gradle"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2.0.10
