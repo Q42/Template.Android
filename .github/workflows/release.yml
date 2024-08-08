@@ -6,16 +6,15 @@ on:
     branches: [ '*' ] # run on all pull requests
 
 jobs:
+  prepareAll:
+    uses: ./.github/workflows/_prepareAll.yml
+  prepareRelease:
+    uses: ./.github/workflows/_prepareRelease.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3
 
-      - name: Prepare build
-        uses: ./.github/workflows/scripts/prepare
-
-      - name: Prepare release build
-        uses: ./.github/workflows/scripts/prepare_release
         env:
           RELEASE_KEYSTORE_PASSWORD: "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
           RELEASE_KEYSTORE_ALIAS: "${{ secrets.RELEASE_KEYSTORE_ALIAS }}"

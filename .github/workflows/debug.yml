@@ -3,17 +3,17 @@ name: Debug Builds
 on: [ push ] # run on all pushes on any branch
 
 jobs:
+  prepareAll:
+    uses: ./.github/workflows/_prepareAll.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3
-      - name: Prepare build
-        uses: ./.github/workflows/scripts/prepare
 
       - name: Build Debug APK
         run: ./gradlew assembleDevDebug --stacktrace
 
-      - name: Run unittests
+      - name: Run unit tests
         run: ./gradlew test --stacktrace
 
       - name: Upload Dev Debug APK to Artifacts

@@ -1,4 +1,4 @@
-name: Prepare release
+name: Prepare Release
 
 on:
   workflow_call:
@@ -13,7 +13,7 @@ on:
         required: true
 
 jobs:
-  prepare:
+  prepareRelease:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - name: Update Version Code # we increase the version code with each build
@@ -21,7 +21,7 @@ jobs:
         with:
           gradlePath: app/build.gradle
           versionCode: ${{ github.run_number }}
-  
+
       # This will decode the keystore from base 64 text representation that we have stored in secrets
       # and generates and keystore file and gets stored in /android-app path
       - name: Decode Keystore
@@ -30,7 +30,7 @@ jobs:
           RELEASE_KEYSTORE_PASSWORD: "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
           RELEASE_KEYSTORE_ALIAS: "${{ secrets.RELEASE_KEYSTORE_ALIAS }}"
           RELEASE_KEY_PASSWORD: "${{ secrets.RELEASE_KEY_PASSWORD }}"
-  
+
         shell: bash
         run: |
           echo $ENCODED_STRING > keystore-b64.txt
