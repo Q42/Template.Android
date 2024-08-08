@@ -6,14 +6,14 @@ on:
     branches: [ '*' ] # run on all pull requests
 
 jobs:
-  prepareAll:
-    uses: ./.github/workflows/_prepareAll.yml
+  prepare-all:
+    uses: ./.github/workflows/_prepare-all.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/workflows/_prepareRelease.yml
+      - uses: ./.github/workflows/_prepare-release.yml@main
 
       - name: Build Prod Release APK
         env:

@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  prepareAll:
+  prepare-all:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3

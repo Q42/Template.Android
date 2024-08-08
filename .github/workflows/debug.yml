@@ -3,8 +3,8 @@ name: Debug Builds
 on: [ push ] # run on all pushes on any branch
 
 jobs:
-  prepareAll:
-    uses: ./.github/workflows/_prepareAll.yml
+  prepare-all:
+    uses: ./.github/workflows/_prepare-all.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
