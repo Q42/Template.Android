@@ -8,19 +8,12 @@ on:
 jobs:
   prepareAll:
     uses: ./.github/workflows/_prepareAll.yml
-  prepareRelease:
-    uses: ./.github/workflows/_prepareRelease.yml
-    with:
-      GITHUB_RUN_NUMBER: "${{ github.run_number }}"
-    secrets:
-      KEYSTORE_BASE_64: ${{ secrets.KEYSTORE_BASE_64 }}
-      RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-      RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
-      RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/_prepareRelease.yml
 
       - name: Build Prod Release APK
         env:
