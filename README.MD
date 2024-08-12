@@ -32,6 +32,7 @@ note on changes:
 
 ## Wishlist for changes / new features
 
+- add this wishlist as issues in Git, so we can self-assign, etc. :) + remove it here.
 - on most projects we only use one module for data, and one for domain. We could simplify the
   template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
   in that way more modules can easily be added, but are not added by default.
