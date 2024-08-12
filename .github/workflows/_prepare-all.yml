@@ -16,8 +16,8 @@ jobs:
           java-version: "21" # keep the same as your Android Studio version
           cache: "gradle"
           cache-dependency-path:
-            sub-project/*.gradle*
-            sub-project/**/gradle-wrapper.properties
+            "**/build.gradle"
+            "gradle/wrapper/gradle-wrapper.properties"
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
