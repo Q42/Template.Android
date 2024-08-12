@@ -17,7 +17,7 @@ A template for creating Android projects at Q42.
     - Crashlytics
 1. Setup your signing key secrets for usage in automated builds, . Steps are described
    in [CI / Automated Builds](#ci--automated-builds)
-1. You probably want to enable the self-hosted runner, as described
+1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
 

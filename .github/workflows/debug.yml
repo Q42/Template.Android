@@ -17,7 +17,7 @@ jobs:
         run: ./gradlew test --stacktrace
 
       - name: Upload Dev Debug APK to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}-${{ github.run_number }}-dev-debug-apk
           path: |
@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew assembleProdDebug --stacktrace
 
       - name: Upload Prod Debug APK to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}_${{ github.run_number }}-prod-debug-apk
           path: |
