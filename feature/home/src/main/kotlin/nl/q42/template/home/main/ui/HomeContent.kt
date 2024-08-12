@@ -1,4 +1,4 @@
-package nl.q42.template.ui.home
+package nl.q42.template.home.main.ui
 
 import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import nl.q42.template.presentation.home.HomeViewState
+import nl.q42.template.home.main.presentation.HomeViewState
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.PreviewAppTheme

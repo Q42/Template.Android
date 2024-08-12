@@ -1,4 +1,4 @@
-package nl.q42.template.ui.home.second
+package nl.q42.template.home.second.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import nl.q42.template.home.second.presentation.HomeSecondViewModel
 import nl.q42.template.navigation.viewmodel.InitNavigator
-import nl.q42.template.presentation.home.second.HomeSecondViewModel
 
 @Destination
 @Composable

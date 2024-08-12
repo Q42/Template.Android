@@ -2,9 +2,9 @@ package nl.q42.template.navigation
 
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
-import nl.q42.template.ui.home.destinations.HomeScreenDestination
-import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
-import nl.q42.template.ui.onboarding.start.destinations.OnboardingStartScreenDestination
+import nl.q42.template.home.destinations.HomeScreenDestination
+import nl.q42.template.home.destinations.HomeSecondScreenDestination
+import nl.q42.template.onboarding.ui.start.destinations.OnboardingStartScreenDestination
 
 /**
  *
@@ -16,7 +16,7 @@ object NavGraphs {
 
     val home = object : NavGraphSpec {
         override val route = AppGraphRoutes.home
-        
+
         override val startRoute = HomeScreenDestination
 
         override val destinationsByRoute = listOf<DestinationSpec<*>>(

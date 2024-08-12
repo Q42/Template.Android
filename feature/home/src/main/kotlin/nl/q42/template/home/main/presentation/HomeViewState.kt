@@ -1,4 +1,4 @@
-package nl.q42.template.presentation.home
+package nl.q42.template.home.main.presentation
 
 import nl.q42.template.ui.presentation.ViewStateString
 

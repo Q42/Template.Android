@@ -1,4 +1,4 @@
-package nl.q42.template.ui.home
+package nl.q42.template.home.main.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -6,9 +6,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import nl.q42.template.home.main.presentation.HomeViewModel
 import nl.q42.template.navigation.viewmodel.InitNavigator
-import nl.q42.template.presentation.home.HomeViewModel
-import nl.q42.template.presentation.home.HomeViewState
 import nl.q42.template.ui.compose.OnLifecycleResume
 
 @Destination

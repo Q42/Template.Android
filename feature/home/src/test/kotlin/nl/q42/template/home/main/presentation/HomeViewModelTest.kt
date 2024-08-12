@@ -1,4 +1,4 @@
-package nl.q42.template.presentation.home
+package nl.q42.template.home.main.presentation
 
 import app.cash.turbine.test
 import io.mockk.coEvery
@@ -10,10 +10,15 @@ import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
 import nl.q42.template.domain.user.usecase.FetchUserUseCase
 import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
+import nl.q42.template.presentation.home.MainDispatcherRule
 import org.junit.Rule
 import org.junit.Test
 import kotlin.time.Duration.Companion.seconds
 
+/**
+ * An example ViewModel test. Weather you want to test ViewModels is up to you. On most projects,
+ * you probably want to focus on unit testing the Domain layer first.
+ */
 class HomeViewModelTest {
 
     @get:Rule

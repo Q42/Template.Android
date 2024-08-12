@@ -1,4 +1,4 @@
-package nl.q42.template.presentation.home
+package nl.q42.template.home.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,9 +16,9 @@ import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.FetchUserUseCase
 import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
+import nl.q42.template.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import nl.q42.template.ui.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.ui.presentation.ViewStateString
 import javax.inject.Inject
 
