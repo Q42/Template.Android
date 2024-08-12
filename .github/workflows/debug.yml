@@ -1,0 +1,34 @@
+name: Debug Builds
+
+on: [ push ] # run on all pushes on any branch
+
+jobs:
+  prepare-all:
+    uses: ./.github/workflows/_prepare-all.yml
+  build:
+    runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDevDebug --stacktrace
+
+      - name: Run unit tests
+        run: ./gradlew test --stacktrace
+
+      - name: Upload Dev Debug APK to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.repository.name }}-${{ github.run_number }}-dev-debug-apk
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/dev/debug/app-dev-debug.apk
+
+      - name: Build Prod APK
+        run: ./gradlew assembleProdDebug --stacktrace
+
+      - name: Upload Prod Debug APK to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.repository.name }}_${{ github.run_number }}-prod-debug-apk
+          path: |
+            ${{ github.workspace }}/app/build/outputs/apk/prod/debug/app-prod-debug.apk
