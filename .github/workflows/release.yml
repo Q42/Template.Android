@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # This will decode the keystore from base 64 text representation that we have stored in secrets
       # and generates and keystore file and gets stored in /android-app path
