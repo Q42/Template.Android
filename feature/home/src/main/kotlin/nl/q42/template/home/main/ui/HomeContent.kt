@@ -30,13 +30,16 @@ internal fun HomeContent(
         horizontalAlignment = CenterHorizontally,
     ) {
 
-        /**
-         * This is dummy. Use the strings file IRL.
-         */
-        viewState.userEmailTitle?.get()?.let { Text(text = it) }
-
-        if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) Text(text = "Error")
+        when(viewState) {
+            is HomeViewState.Content -> {
+                /**
+                 * This is dummy. Use the strings file IRL.
+                 */
+                Text(text = viewState.userEmailTitle.get())
+            }
+            HomeViewState.Loading -> CircularProgressIndicator()
+            HomeViewState.Error -> Text(text = "Error")
+        }
 
         Button(onClick = onLoadClicked) {
             Text("Refresh")
@@ -55,7 +58,7 @@ internal fun HomeContent(
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState(showError = true), {}, {}, {})
+        HomeContent(HomeViewState.Error, {}, {}, {})
     }
 }
 
@@ -63,7 +66,7 @@ private fun HomeContentErrorPreview() {
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState(isLoading = true), {}, {}, {})
+        HomeContent(HomeViewState.Loading, {}, {}, {})
     }
 }
 
@@ -71,6 +74,6 @@ private fun HomeContentLoadingPreview() {
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewAppTheme {
-        HomeContent(HomeViewState(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
+        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
     }
 }
