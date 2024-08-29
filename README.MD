@@ -33,6 +33,7 @@ note on changes:
 ## Wishlist for changes / new features
 
 - add this wishlist as issues in Git, so we can self-assign, etc. :) + remove it here.
+- small fix: don't use ENV vars in the build scripts, but sercrets.properties instead. [Example from my project here](https://github.com/Q42/widm-android/pull/324)
 - on most projects we only use one module for data, and one for domain. We could simplify the
   template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
   in that way more modules can easily be added, but are not added by default.
