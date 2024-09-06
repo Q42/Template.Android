@@ -17,6 +17,11 @@ A template for creating Android projects at Q42.
    here: [Firebase project](https://console.firebase.google.com/u/0/project/template-android-799ab/overview)
    Google Services currently in use:
     - Crashlytics
+1. Setup your signing key secrets for usage in automated builds, . Steps are described
+   in [CI / Automated Builds](#ci--automated-builds)
+1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as described
+   in [self hosted runner](#self-hosted-runner), when using Github Actions.
+1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
 1. Build your awesome project :-)
 1. Consider contributing to this template when you find something that could be improved.
 
@@ -31,14 +36,16 @@ note on changes:
 
 ## Wishlist for changes / new features
 
+- add this wishlist as issues in Git, so we can self-assign, etc. :) + remove it here.
+- on most projects we only use one module for data, and one for domain. We could simplify the
+  template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
+  in that way more modules can easily be added, but are not added by default.
 - Research android screen transition standards + update our animations
-- Github Actions only: CI now combines fastlane with Github Actions, with responsibility shared. Use
-  Github Actions only, that's a much simpler setup. 
-  - Make sure to also demonstrate / implement CI singing keys in this setup.
-  - Make a "any branche" setup: debug build only
-  - Make a "develop & main branche" setup: all builds, dev and release
 - Switch build files to KTS, also build some custom plugins.
-- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys, because that is what we have in 90%+ of our projects.
+- Use lifecycle events from Google (we use our own now)
+- Use preview light dark from google (we use our own now)
+- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
+  because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
   View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
 - Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
@@ -59,23 +66,75 @@ Only basic features that almost all projects use, were added in this template:
 
 ## Project Setup
 
-### CI
+### Signing Builds
 
-This project uses Github Actions + fastlane for CI. There is a nice upgrade path to automatically
-deploy builds to Firebase App Distribution and Play Store.
+If you need local signing of release builds, copy the upload keystore into the root of your project,
+and call it 'upload-keystore.jks'. Note that you probably don't need to use local signing. The CI
+build setup builds and signs your app for
+you.
 
-#### Installing fastlane
+### CI / Automated Builds
 
-A big advantage of fastlane is that the ci and publishing steps can run locally.
-Use `brew install fastlane` and then `fastlane test` to verify this installation.
+This project uses Github Actions for CI. We have added these workflows for now:
 
-#### Removing Github Actions + fastlane
+- _debug.yml_: any commit on any branch triggers a `devDebug` apk and a `prodDebug` apk build
+- _release.yml_: any PR triggers signed release builds (`prodRelease` bundle and `prodRelease` apk)
 
-Using Bitrise instead? Then you can delete:
+#### Adding your own keystore's details on Github Actions
 
-- `./fastlane`
-- `./GemFile`
-- `./Gemfile.lock`
+- First create your own keystore and store it in 1pw. _You do not add this keystore to the repo_ (
+  like we did in this template as an example).
+- add a KEYSTORE_BASE_64 [new github repository secret](./settings/secrets/actions/new) that is the
+  encoded text
+  representation of the upload
+  keystore of your app. CI will later decode it into a keystore file and then make it available for
+  the system to sign the app.
+
+Run the below command to generate an encoded text representation
+of your keystore. If you don't have one, you
+can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
+
+    openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
+
+The above command will generate a new file called `keystore.base64.txt`. Open the file, copy the
+contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
+
+Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
+your projects 1Password vault as well:
+
+- RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
+- RELEASE_KEYSTORE_ALIAS ('template' for this template)
+- RELEASE_KEY_PASSWORD ('secondpass' for this template)
+
+#### Firebase app distribution
+
+We use a [firebase app github action](https://github.com/nickwph/firebase-app-distribution-action) (
+in our github actions setup) to automatically upload release builds to firebase.
+
+To change this to your own firebase project, you need to set two secrets:
+
+- `FIREBASE_PROD_APP_ID` from your firebase project settings. It's in your firebase project
+  settings (for the app you want to publish), it looks something like `1:xxxxxxxxx:android:yyyyyyyy`
+- `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found
+  in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
+
+#### Self-hosted runner
+
+You can run the worlkflows on our self-hosted runner (a mac mini). This is:
+
+- 2-3 times faster (compared to building with Github hosted runners)
+- a lot cheaper
+
+In a private repo you can enable the use of our self-hosted runner using `[self-hosted,
+macOS]` as desribed in the `.github/workflows/\*.yml` files. If you need more help:
+[the documentation is in Notion](https://www.notion.so/q42/GitHub-Actions-CI-op-onze-self-hosted-runner-Mac-Mini-7f7d2e6312444b98be521394223db6e2).
+
+For security reasons, using the mac mini is not possible on a public repo (like this template repo).
+
+#### Removing Github Actions
+
+Using Bitrise or another CI tool instead? Then you can skip the above and delete this folder:
+
 - `./.github/workflows`
 
 ## Setup decisions

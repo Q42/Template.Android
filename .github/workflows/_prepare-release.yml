@@ -1,0 +1,16 @@
+name: Prepare Release
+
+on:
+  workflow_call:
+
+jobs:
+  prepareRelease:
+    runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Version Code # we increase the version code with each build
+        uses: chkfung/android-version-actions@v1.2.3
+        with:
+          gradlePath: app/build.gradle
+          versionCode: ${{ github.run_number }}
