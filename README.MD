@@ -7,6 +7,8 @@ A template for creating Android projects at Q42.
 1. Click the green "Use this template" button in the Github repo to create your own repository with
    this code template.
 1. Clone the new repo locally on your machine.
+1. Update dependencies and check whether everything still works. After that, create a PR to the
+   `main` branch of this template. This helps both your project and this template to stay up to date. 
 1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
@@ -20,6 +22,8 @@ A template for creating Android projects at Q42.
 1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
+1. Build your awesome project :-)
+1. Consider contributing to this template when you find something that could be improved.
 
 ## Contributing
 
