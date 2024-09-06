@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
 import nl.q42.template.domain.user.usecase.FetchUserUseCase
@@ -29,7 +28,7 @@ class HomeViewModel @Inject constructor(
     private val navigator: RouteNavigator,
 ) : ViewModel(), RouteNavigator by navigator {
 
-    private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState())
+    private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Loading)
     val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
 
     init {
@@ -58,23 +57,21 @@ class HomeViewModel @Inject constructor(
     fun fetchUser() {
         viewModelScope.launch {
 
-            _uiState.update { it.copy(showError = false, isLoading = true) }
+            _uiState.value = HomeViewState.Loading
 
             handleAction(
                 action = fetchUserUseCase(),
-                onError = { _uiState.update { it.copy(showError = true, isLoading = false) } },
-                onSuccess = { _uiState.update { it.copy(isLoading = false) } },
+                onError = { _uiState.value = HomeViewState.Error },
+                onSuccess = {},
             )
         }
     }
 
     private fun startObservingUserChanges() {
         getUserFlowUseCase().filterNotNull().onEach { user ->
-            _uiState.update {
-                it.copy(
-                    userEmailTitle = ViewStateString.Res(R.string.emailTitle, user.email.value)
-                )
-            }
+            _uiState.value = HomeViewState.Content(
+                userEmailTitle = ViewStateString.Res(R.string.emailTitle, user.email.value)
+            )
         }.launchIn(viewModelScope)
     }
 }
