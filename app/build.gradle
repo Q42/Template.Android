@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     alias libs.plugins.googleServices
     alias libs.plugins.firebaseCrashlyticsPlugin
+    alias libs.plugins.compose.compiler
 }
 
 apply from: "$rootDir/build.module.feature-and-app.gradle"
@@ -12,12 +13,21 @@ android {
     namespace = "nl.q42.template"
 
     defaultConfig {
-        versionCode = 1
+        versionCode = 1 // version code is set by CI
         versionName = "1.0"
     }
 
     buildFeatures { // only app may have buildConfigFields
         buildConfig = true
+    }
+
+    signingConfigs {
+        upload {
+            storeFile file("../upload-keystore.jks")
+            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
+            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+        }
     }
 
     buildTypes {
@@ -27,6 +37,7 @@ android {
         }
         release {
             minifyEnabled true
+            signingConfig signingConfigs.upload
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             buildConfigField 'boolean', 'config_log_http_calls', "false"
         }

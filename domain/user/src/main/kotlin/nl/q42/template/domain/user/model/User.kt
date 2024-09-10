@@ -1,3 +1,6 @@
 package nl.q42.template.domain.user.model
 
-data class User(val email: String)
+@JvmInline
+value class EmailAddress(val value: String)
+
+data class User(val email: EmailAddress)

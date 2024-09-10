@@ -30,5 +30,5 @@ sealed class ActionResult<out T : Any?> {
         data object NotImplemented : Error(Exception("API error format not implemented"))
     }
 
-    data class Success<T : Any?>(val result: T) : ActionResult<T>()
+    data class Success<T : Any?>(val data: T) : ActionResult<T>()
 }
