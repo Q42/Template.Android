@@ -10,8 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import nl.q42.template.home.main.presentation.HomeViewState
+import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
 
@@ -36,20 +38,24 @@ internal fun HomeContent(
         viewState.userEmailTitle?.get()?.let { Text(text = it) }
 
         if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) Text(text = "Error")
+        if (viewState.showError) Text(
+            text = "Error",
+            style = AppTheme.typography.body,
+            color = AppTheme.colors.error
+        )
 
-        Button(onClick = onLoadClicked) {
-            Text("Refresh")
-        }
+        TemplateButton("Refresh", onLoadClicked)
 
-        Button(onClick = onOpenSecondScreenClicked) {
-            Text("Open second screen")
-        }
-        Button(onClick = onOpenOnboardingClicked) {
-            Text("Open onboarding")
-        }
+        TemplateButton("Open second screen", onOpenSecondScreenClicked)
+
+//        Button(onClick = onOpenOnboardingClicked) {
+//            Text("Open onboarding")
+//        }
+        TemplateButton("Open Onboarding", onOpenOnboardingClicked)
     }
 }
+
+
 
 @PreviewLightDark
 @Composable
