@@ -48,9 +48,6 @@ internal fun HomeContent(
 
         TemplateButton("Open second screen", onOpenSecondScreenClicked)
 
-//        Button(onClick = onOpenOnboardingClicked) {
-//            Text("Open onboarding")
-//        }
         TemplateButton("Open Onboarding", onOpenOnboardingClicked)
     }
 }
