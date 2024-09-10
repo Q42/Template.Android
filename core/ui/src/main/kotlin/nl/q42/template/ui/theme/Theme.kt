@@ -23,7 +23,7 @@ import androidx.core.view.WindowCompat
 
 private val LocalAppTypography = staticCompositionLocalOf { AppTypography() }
 private val LocalAppColorTokens = staticCompositionLocalOf<AppColorTokens> {
-    // Dummy default, will be replaced for the actual theme by the Provider
+    // Dummy default, will be replaced for the actual tokens by the Provider
     AppColorTokensLight
 }
 private val LocalAppShapes = staticCompositionLocalOf { AppShapes() }
