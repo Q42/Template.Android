@@ -16,6 +16,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.home.second.presentation.HomeSecondViewModel
 import nl.q42.template.navigation.viewmodel.InitNavigator
+import nl.q42.template.ui.compose.composables.widgets.TemplateButton
+import nl.q42.template.ui.theme.AppTheme
 
 @Destination
 @Composable
@@ -40,10 +42,8 @@ fun HomeSecondScreen(
         verticalArrangement = Arrangement.Center,
     ) {
 
-        Text(viewState.title, style = MaterialTheme.typography.titleMedium)
+        Text(viewState.title, style = AppTheme.typography.h1, color = AppTheme.colors.textPrimary)
 
-        Button(onClick = viewModel::onBackClicked) {
-            Text("Close")
-        }
+        TemplateButton("Close", viewModel::onBackClicked)
     }
 }
