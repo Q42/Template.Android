@@ -3,7 +3,7 @@ androidxCore = "1.13.1"
 androidxLifecycle = "2.8.4"
 kotlinxCoroutinesTest = "1.8.1"
 junit = "4.13.2"
-mockkAndroid = "1.13.9"
+mockkAndroid = "1.13.12"
 jvmTarget = "21"
 kotlin = "2.0.20"
 # should match kotlin https://github.com/google/ksp/releases
