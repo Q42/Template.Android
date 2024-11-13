@@ -24,7 +24,7 @@ composePlatform = "2024.09.00"
 activityCompose = "1.9.2"
 hiltNavigationCompose = "1.2.0"
 composeLifecycle = "2.8.5"
-turbine = "1.0.0"
+turbine = "1.2.0"
 
 [libraries]
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
