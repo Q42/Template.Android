@@ -1,4 +1,4 @@
-package nl.q42.template.onboarding.ui.start
+package nl.q42.template.onboarding.start.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.navigation.viewmodel.InitNavigator
-import nl.q42.template.onboarding.presentation.start.OnboardingStartViewModel
+import nl.q42.template.onboarding.start.presentation.OnboardingStartViewModel
 
 @Destination
 @Composable
