@@ -6,6 +6,7 @@ object AppColorTokensLight : AppColorTokens {
     override val buttonText: Color = White
     override val accent: Color = Purple40
     override val textPrimary = Black
-    override val surface: Color = White
+    override val surface = White
+    override val surfaceSelected = Color(0xff1b1b1b)
     override val error: Color = Red80
 }

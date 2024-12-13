@@ -7,5 +7,6 @@ interface AppColorTokens {
     val accent: Color
     val textPrimary: Color
     val surface: Color
+    val surfaceSelected: Color
     val error: Color
 }
