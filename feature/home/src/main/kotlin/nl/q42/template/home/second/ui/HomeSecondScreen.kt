@@ -3,8 +3,6 @@ package nl.q42.template.home.second.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,6 +42,6 @@ fun HomeSecondScreen(
 
         Text(viewState.title, style = AppTheme.typography.h1, color = AppTheme.colors.textPrimary)
 
-        TemplateButton("Close", viewModel::onBackClicked)
+        TemplateButton("Close", onClick = viewModel::onBackClicked)
     }
 }

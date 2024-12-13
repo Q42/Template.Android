@@ -8,12 +8,15 @@ import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
 
 @Composable
-fun TemplateButton(text: String, onClick: () -> Unit) {
+fun TemplateButton(text: String, enabled: Boolean = true, onClick: () -> Unit) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         colors = ButtonDefaults.buttonColors(
             containerColor = AppTheme.colors.accent,
-            contentColor = AppTheme.colors.buttonText
+            contentColor = AppTheme.colors.buttonText,
+            disabledContentColor = AppTheme.colors.buttonText.copy(alpha = 0.5f),
+            disabledContainerColor = AppTheme.colors.accent.copy(alpha = 0.5f)
         )
     ) {
         Text(
@@ -28,6 +31,6 @@ fun TemplateButton(text: String, onClick: () -> Unit) {
 @PreviewLightDark
 private fun TemplateButtonPreview() {
     AppTheme {
-        TemplateButton("Button", {})
+        TemplateButton("Button",) {}
     }
 }

@@ -53,11 +53,13 @@ internal fun HomeContent(
             horizontalAlignment = CenterHorizontally,
             verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
         ) {
-            TemplateButton("Refresh", onLoadClicked)
+            TemplateButton("Refresh", onClick = onLoadClicked)
 
-            TemplateButton("Open second screen", onOpenSecondScreenClicked)
+            TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
 
-            TemplateButton("Open Onboarding", onOpenOnboardingClicked)
+            TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+
+            TemplateButton("Disabled button", enabled = false) {}
         }
 
     }
