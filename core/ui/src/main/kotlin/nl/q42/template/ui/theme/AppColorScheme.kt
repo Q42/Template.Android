@@ -2,7 +2,7 @@ package nl.q42.template.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-interface AppColorTokens {
+interface AppColorScheme {
     val buttonText: Color
     val accent: Color
     val textPrimary: Color

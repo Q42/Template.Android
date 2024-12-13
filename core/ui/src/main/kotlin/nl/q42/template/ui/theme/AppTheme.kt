@@ -3,16 +3,19 @@ package nl.q42.template.ui.theme
 import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
@@ -24,9 +27,9 @@ import nl.q42.template.ui.compose.composables.widgets.AppSurface
  */
 
 private val LocalAppTypography = staticCompositionLocalOf { AppTypography() }
-private val LocalAppColorTokens = staticCompositionLocalOf<AppColorTokens> {
+private val LocalAppColorScheme = staticCompositionLocalOf<AppColorScheme> {
     // Dummy default, will be replaced for the actual tokens by the Provider
-    AppColorTokensLight
+    AppColorSchemeLight
 }
 private val LocalAppShapes = staticCompositionLocalOf { AppShapes() }
 
@@ -34,7 +37,7 @@ private val LocalAppShapes = staticCompositionLocalOf { AppShapes() }
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     typography: AppTypography = AppTheme.typography,
-    colors: AppColorTokens = AppTheme.colors,
+    colors: AppColorScheme = AppTheme.colors,
     shapes: AppShapes = AppTheme.shapes,
 
     content: @Composable () -> Unit
@@ -50,7 +53,7 @@ fun AppTheme(
 
     CompositionLocalProvider(
         LocalAppTypography provides typography,
-        LocalAppColorTokens provides if (darkTheme) AppColorTokensDark else AppColorTokensLight,
+        LocalAppColorScheme provides if (darkTheme) AppColorSchemeDark else AppColorSchemeLight,
         LocalAppShapes provides shapes,
         /** configures the ripple for material components */
         LocalRippleConfiguration provides AppRippleConfiguration,
@@ -68,10 +71,10 @@ object AppTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalAppTypography.current
-    val colors: AppColorTokens
+    val colors: AppColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalAppColorTokens.current
+        get() = LocalAppColorScheme.current
     val shapes: AppShapes
         @Composable
         @ReadOnlyComposable
