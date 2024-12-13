@@ -4,18 +4,15 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
@@ -80,13 +77,6 @@ object AppTheme {
         @ReadOnlyComposable
         get() = LocalAppShapes.current
 }
-
-@Immutable
-data class AppShapes(
-    val small: Shape = RoundedCornerShape(Dimens.Containers.cornerRadius),
-    val medium: Shape = RoundedCornerShape(Dimens.Containers.cornerRadius),
-    val large: Shape = RoundedCornerShape(Dimens.Containers.cornerRadiusLarge)
-)
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
