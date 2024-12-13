@@ -1,9 +1,11 @@
 package nl.q42.template.home.main.ui
 
 import androidx.compose.foundation.layout.Arrangement.Center
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +16,7 @@ import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.AppTheme
+import nl.q42.template.ui.theme.Dimens
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
 
@@ -44,11 +47,19 @@ internal fun HomeContent(
             color = AppTheme.colors.error
         )
 
-        TemplateButton("Refresh", onLoadClicked)
+        Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
-        TemplateButton("Open second screen", onOpenSecondScreenClicked)
+        Column(
+            horizontalAlignment = CenterHorizontally,
+            verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
+        ) {
+            TemplateButton("Refresh", onLoadClicked)
 
-        TemplateButton("Open Onboarding", onOpenOnboardingClicked)
+            TemplateButton("Open second screen", onOpenSecondScreenClicked)
+
+            TemplateButton("Open Onboarding", onOpenOnboardingClicked)
+        }
+
     }
 }
 
