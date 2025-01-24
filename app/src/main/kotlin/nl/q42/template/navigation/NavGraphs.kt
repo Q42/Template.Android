@@ -4,7 +4,7 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import nl.q42.template.home.destinations.HomeScreenDestination
 import nl.q42.template.home.destinations.HomeSecondScreenDestination
-import nl.q42.template.onboarding.ui.start.destinations.OnboardingStartScreenDestination
+import nl.q42.template.onboarding.start.ui.destinations.OnboardingStartScreenDestination
 
 /**
  *
