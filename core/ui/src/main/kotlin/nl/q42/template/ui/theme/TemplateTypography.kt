@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 val defaultFontFamily = FontFamily.Default
 
 @Immutable
-data class AppTypography(
+data class TemplateTypography(
     // The names of these styles are shared with your team's design system
     // So it is easy to communicate with designers about what text style to use
 

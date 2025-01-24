@@ -19,26 +19,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import nl.q42.template.ui.compose.composables.widgets.AppSurface
+import nl.q42.template.ui.compose.composables.widgets.TemplateSurface
 
 /**
  * Generate this using: https://m2.material.io/material-theme-builder/. For more info and resources: see the
  * README file of our project.
  */
 
-private val LocalAppTypography = staticCompositionLocalOf { AppTypography() }
-private val LocalAppColorScheme = staticCompositionLocalOf<AppColorScheme> {
+private val LocalTemplateTypography = staticCompositionLocalOf { TemplateTypography() }
+private val LocalTemplateColorScheme = staticCompositionLocalOf<TemplateColorScheme> {
     // Dummy default, will be replaced for the actual tokens by the Provider
-    AppColorSchemeLight
+    TemplateColorSchemeLight
 }
-private val LocalAppShapes = staticCompositionLocalOf { AppShapes() }
+private val LocalTemplateShapes = staticCompositionLocalOf { TemplateShapes() }
 
 @Composable
-fun AppTheme(
+fun TemplateTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    typography: AppTypography = AppTheme.typography,
-    colors: AppColorScheme = AppTheme.colors,
-    shapes: AppShapes = AppTheme.shapes,
+    typography: TemplateTypography = TemplateTheme.typography,
+    colors: TemplateColorScheme = TemplateTheme.colors,
+    shapes: TemplateShapes = TemplateTheme.shapes,
     content: @Composable () -> Unit
 ) {
     // status bar color
@@ -52,13 +52,13 @@ fun AppTheme(
     }
 
     CompositionLocalProvider(
-        LocalAppTypography provides typography,
-        LocalAppColorScheme provides if (darkTheme) AppColorSchemeDark else AppColorSchemeLight,
-        LocalAppShapes provides shapes,
+        LocalTemplateTypography provides typography,
+        LocalTemplateColorScheme provides if (darkTheme) TemplateColorSchemeDark else TemplateColorSchemeLight,
+        LocalTemplateShapes provides shapes,
         /** configures the ripple for material components */
-        LocalRippleConfiguration provides AppRippleConfiguration,
+        LocalRippleConfiguration provides TemplateRippleConfiguration,
         /** needed for non-material components to have a material ripple. eg [Modifier.clickable] */
-        LocalIndication provides AppRipple,
+        LocalIndication provides TemplateRipple,
         /** merges the platform style with our type, @see [ProvideTextStyle] for more context */
         LocalTextStyle provides LocalTextStyle.current.merge(typography.body),
         LocalContentColor provides colors.textPrimary,
@@ -66,27 +66,27 @@ fun AppTheme(
     )
 }
 
-object AppTheme {
-    val typography: AppTypography
+object TemplateTheme {
+    val typography: TemplateTypography
         @Composable
         @ReadOnlyComposable
-        get() = LocalAppTypography.current
-    val colors: AppColorScheme
+        get() = LocalTemplateTypography.current
+    val colors: TemplateColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalAppColorScheme.current
-    val shapes: AppShapes
+        get() = LocalTemplateColorScheme.current
+    val shapes: TemplateShapes
         @Composable
         @ReadOnlyComposable
-        get() = LocalAppShapes.current
+        get() = LocalTemplateShapes.current
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun PreviewAppTheme(content: @Composable () -> Unit) {
-    AppTheme {
+fun PreviewTemplateTheme(content: @Composable () -> Unit) {
+    TemplateTheme {
         Scaffold {
-            AppSurface {
+            TemplateSurface {
                 content()
             }
         }

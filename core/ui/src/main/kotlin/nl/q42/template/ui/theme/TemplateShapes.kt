@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
 @Immutable
-data class AppShapes(
+data class TemplateShapes(
     val small: Shape = RoundedCornerShape(8.dp),
     val medium: Shape = RoundedCornerShape(16.dp),
     val large: Shape = RoundedCornerShape(20.dp)
