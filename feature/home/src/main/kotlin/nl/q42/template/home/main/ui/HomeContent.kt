@@ -1,17 +1,23 @@
 package nl.q42.template.home.main.ui
 
 import androidx.compose.foundation.layout.Arrangement.Center
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import nl.q42.template.home.main.presentation.HomeViewState
+import nl.q42.template.ui.compose.composables.text.BodyText
+import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
+import nl.q42.template.ui.theme.AppTheme
+import nl.q42.template.ui.theme.Dimens
 import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
 
@@ -36,18 +42,23 @@ internal fun HomeContent(
         viewState.userEmailTitle?.get()?.let { Text(text = it) }
 
         if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) Text(text = "Error")
+        if (viewState.showError) BodyText("Error", AppTheme.colors.error)
 
-        Button(onClick = onLoadClicked) {
-            Text("Refresh")
+        Spacer(Modifier.height(Dimens.componentSpacingVertical))
+
+        Column(
+            horizontalAlignment = CenterHorizontally,
+            verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
+        ) {
+            TemplateButton("Refresh", onClick = onLoadClicked)
+
+            TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
+
+            TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+
+            TemplateButton("Disabled button", enabled = false) {}
         }
 
-        Button(onClick = onOpenSecondScreenClicked) {
-            Text("Open second screen")
-        }
-        Button(onClick = onOpenOnboardingClicked) {
-            Text("Open onboarding")
-        }
     }
 }
 
