@@ -45,8 +45,6 @@ note on changes:
 - Switch build files to KTS, also build some custom plugins.
 - Use lifecycle events from Google (we use our own now)
 - Use preview light dark from google (we use our own now)
-- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
-  because that is what we have in 90%+ of our projects.
 - Optionally: Add compose events from VM to
   View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
 - Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
