@@ -7,6 +7,6 @@ object AppColorSchemeLight : AppColorScheme {
     override val accent: Color = Purple40
     override val textPrimary = Black
     override val surface = White
-    override val surfaceSelected = Color(0xff1b1b1b)
+    override val surfaceSelected = Gray10
     override val error: Color = Red80
 }

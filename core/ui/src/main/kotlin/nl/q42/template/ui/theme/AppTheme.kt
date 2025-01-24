@@ -39,9 +39,9 @@ fun AppTheme(
     typography: AppTypography = AppTheme.typography,
     colors: AppColorScheme = AppTheme.colors,
     shapes: AppShapes = AppTheme.shapes,
-
     content: @Composable () -> Unit
 ) {
+    // status bar color
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
