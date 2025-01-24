@@ -35,15 +35,44 @@ class CrashlyticsLogger : Antilog() {
 
         val limitedMessage = message?.take(MAX_CHARS_IN_LOG)  ?: "(no message)" // to avoid OutOfMemoryError's
 
+        // at least one of message or throwable is not null
         if (priority < LogLevel.ERROR) {
-            // at least one of message or throwable is not null
             val errorMessage = throwable?.let {
                 " with error: ${throwable}: ${throwable.message}".take(MAX_CHARS_IN_LOG)
             } ?: ""
             Firebase.crashlytics.log(limitedMessage + errorMessage)
         } else {
             Firebase.crashlytics.log("recordException with message: $limitedMessage")
-            Firebase.crashlytics.recordException(throwable ?: Exception(message))
+            Firebase.crashlytics.recordException(throwable ?: buildCrashlyticsSyntheticException(limitedMessage))
         }
+    }
+
+    /** Strip the stacktrace so that the calls implementing error logging are removed and the actual
+     * code that called Napier.e() remains.
+     *
+     * This is a workaround for the fact that Crashlytics groups errors by stacktrace
+     * [https://stackoverflow.com/a/59779764](https://stackoverflow.com/a/59779764)
+     */
+    private fun buildCrashlyticsSyntheticException(message: String): Exception {
+        val stackTrace = Thread.currentThread().stackTrace
+        val numToRemove = 9
+        val lastToRemove = stackTrace[numToRemove - 1]
+        if (lastToRemove.className != "io.github.aakira.napier.Napier" || lastToRemove.methodName != "e\$default"){
+            logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
+                    message = "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
+            )
+        }
+        val abbreviatedStackTrace = stackTrace.takeLast(stackTrace.size - numToRemove).toTypedArray()
+        return SyntheticException("Synthetic Exception: $message", abbreviatedStackTrace)
+    }
+
+}
+
+class SyntheticException(
+        message: String,
+        private val abbreviatedStackTrace: Array<StackTraceElement>
+) : Exception(message) {
+    override fun getStackTrace(): Array<StackTraceElement> {
+        return abbreviatedStackTrace
     }
 }
