@@ -1,4 +1,4 @@
-name: Release Builds
+name: Publish Prod Build to App Distribution
 
 on:
   workflow_dispatch:
