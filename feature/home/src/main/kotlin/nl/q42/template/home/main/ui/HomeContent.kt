@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import nl.q42.template.home.main.presentation.HomeViewState
+import nl.q42.template.ui.compose.composables.text.BodyText
 import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
@@ -41,11 +42,7 @@ internal fun HomeContent(
         viewState.userEmailTitle?.get()?.let { Text(text = it) }
 
         if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) Text(
-            text = "Error",
-            style = AppTheme.typography.body,
-            color = AppTheme.colors.error
-        )
+        if (viewState.showError) BodyText("Error", AppTheme.colors.error)
 
         Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
@@ -64,8 +61,6 @@ internal fun HomeContent(
 
     }
 }
-
-
 
 @PreviewLightDark
 @Composable
