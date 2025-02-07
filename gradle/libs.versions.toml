@@ -6,7 +6,7 @@ jvmTarget = "21"
 kotlin = "2.1.0"
 # should match kotlin https://github.com/google/ksp/releases
 ksp = "2.1.0-1.0.29"
-gradlePlugin = "8.7.3"
+gradlePlugin = "8.8.0"
 googleServices = "4.4.2"
 crashlyticsPlugin = "3.0.2"
 firebaseBOM = "33.2.0"
