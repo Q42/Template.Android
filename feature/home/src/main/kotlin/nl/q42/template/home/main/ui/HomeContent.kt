@@ -16,10 +16,10 @@ import nl.q42.template.ui.compose.composables.text.BodyText
 import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
-import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.Dimens
-import nl.q42.template.ui.theme.PreviewAppTheme
 import nl.q42.template.ui.theme.PreviewLightDark
+import nl.q42.template.ui.theme.PreviewTemplateTheme
+import nl.q42.template.ui.theme.TemplateTheme
 
 @Composable
 internal fun HomeContent(
@@ -42,7 +42,7 @@ internal fun HomeContent(
         viewState.userEmailTitle?.get()?.let { Text(text = it) }
 
         if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) BodyText("Error", AppTheme.colors.error)
+        if (viewState.showError) BodyText("Error", TemplateTheme.colors.error)
 
         Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
@@ -65,7 +65,7 @@ internal fun HomeContent(
 @PreviewLightDark
 @Composable
 private fun HomeContentErrorPreview() {
-    PreviewAppTheme {
+    PreviewTemplateTheme {
         HomeContent(HomeViewState(showError = true), {}, {}, {})
     }
 }
@@ -73,7 +73,7 @@ private fun HomeContentErrorPreview() {
 @PreviewLightDark
 @Composable
 private fun HomeContentLoadingPreview() {
-    PreviewAppTheme {
+    PreviewTemplateTheme {
         HomeContent(HomeViewState(isLoading = true), {}, {}, {})
     }
 }
@@ -81,7 +81,7 @@ private fun HomeContentLoadingPreview() {
 @PreviewLightDark
 @Composable
 private fun HomeContentEmptyPreview() {
-    PreviewAppTheme {
+    PreviewTemplateTheme {
         HomeContent(HomeViewState(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
     }
 }

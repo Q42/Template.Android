@@ -11,8 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import nl.q42.template.navigation.AppNavigation
 import nl.q42.template.navigation.NavGraphs
-import nl.q42.template.ui.compose.composables.widgets.AppSurface
-import nl.q42.template.ui.theme.AppTheme
+import nl.q42.template.ui.compose.composables.widgets.TemplateSurface
+import nl.q42.template.ui.theme.TemplateTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -25,11 +25,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            AppTheme {
+            TemplateTheme {
 
                 val navController = rememberNavController()
 
-                AppSurface (
+                TemplateSurface (
                     modifier = Modifier.fillMaxSize(),
                 ) {
                     AppNavigation(navController = navController, navGraph = NavGraphs.root)

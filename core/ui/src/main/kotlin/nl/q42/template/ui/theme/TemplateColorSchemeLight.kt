@@ -2,7 +2,7 @@ package nl.q42.template.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-object AppColorSchemeLight : AppColorScheme {
+object TemplateColorSchemeLight : TemplateColorScheme {
     override val buttonText: Color = White
     override val accent: Color = Purple40
     override val textPrimary = Black

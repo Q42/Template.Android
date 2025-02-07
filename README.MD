@@ -269,7 +269,7 @@ or replacement parameter logic.
 
 Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
 probably also want to
-wrap your preview content with a `PreviewAppTheme{..}` so that your previews have the correct theme
+wrap your preview content with a `PreviewTemplateTheme{..}` so that your previews have the correct theme
 background.
 
 ### BuildConfig
