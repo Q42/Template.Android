@@ -1,7 +1,6 @@
 package nl.q42.template.ui.theme
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -13,12 +12,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
 import nl.q42.template.ui.compose.composables.widgets.AppSurface
 
 /**
@@ -41,15 +36,6 @@ fun AppTheme(
     shapes: AppShapes = AppTheme.shapes,
     content: @Composable () -> Unit
 ) {
-    // status bar color
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colors.accent.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
 
     CompositionLocalProvider(
         LocalAppTypography provides typography,

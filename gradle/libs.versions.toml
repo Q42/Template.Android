@@ -1,7 +1,5 @@
 [versions]
-androidxCore = "1.13.1"
-androidxLifecycle = "2.8.5"
-kotlinxCoroutinesTest = "1.8.1"
+ kotlinxCoroutinesTest = "1.8.1"
 junit = "4.13.2"
 mockkAndroid = "1.13.12"
 jvmTarget = "21"
@@ -20,15 +18,13 @@ networkResponseAdapter = "5.0.0"
 napier = "2.7.1"
 composeDestinations = "1.10.2"
 okhttp = "4.12.0"
-composePlatform = "2024.09.00"
-activityCompose = "1.9.2"
+composePlatform = "2025.01.00"
+activityCompose = "1.10.0"
 hiltNavigationCompose = "1.2.0"
-composeLifecycle = "2.8.5"
+composeLifecycle = "2.8.7"
 turbine = "1.0.0"
 
 [libraries]
-androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-androidxLifecycleKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-ksp = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -44,7 +40,6 @@ okhttpLogging = { module = "com.squareup.okhttp3:logging-interceptor", version.r
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 composeDestinations = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "composeDestinations" }
 composeDestinationsKps = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
-composeUI = { module = "androidx.compose.ui:ui" }
 composeUIGraphics = { module = "androidx.compose.ui:ui-graphics" }
 composeUITooling = { module = "androidx.compose.ui:ui-tooling" }
 composeUIToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
