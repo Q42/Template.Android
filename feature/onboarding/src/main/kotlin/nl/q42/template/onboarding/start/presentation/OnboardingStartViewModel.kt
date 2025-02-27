@@ -1,4 +1,4 @@
-package nl.q42.template.onboarding.presentation.start
+package nl.q42.template.onboarding.start.presentation
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

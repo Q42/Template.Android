@@ -34,23 +34,6 @@ note on changes:
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
 
-## Wishlist for changes / new features
-
-- add this wishlist as issues in Git, so we can self-assign, etc. :) + remove it here.
-- small fix: don't use ENV vars in the build scripts, but sercrets.properties instead. [Example from my project here](https://github.com/Q42/widm-android/pull/324)
-- on most projects we only use one module for data, and one for domain. We could simplify the
-  template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
-  in that way more modules can easily be added, but are not added by default.
-- Research android screen transition standards + update our animations
-- Switch build files to KTS, also build some custom plugins.
-- Use lifecycle events from Google (we use our own now)
-- Use preview light dark from google (we use our own now)
-- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
-  because that is what we have in 90%+ of our projects.
-- Optionally: Add compose events from VM to
-  View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
-- Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
-
 ## Features
 
 Only basic features that almost all projects use, were added in this template:
@@ -64,6 +47,11 @@ Only basic features that almost all projects use, were added in this template:
 - action results
 - clean architecture
 - automated dependency updates
+
+## How to request new feature's in this template
+
+- Develop it yourself in a branch and create a PR explaining why it's needed in the template. (Discussing beforehand with others is recommended)
+- Or create a Github issue with the feature request / discussion topic.
 
 ## Project Setup
 
@@ -271,7 +259,7 @@ or replacement parameter logic.
 
 Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
 probably also want to
-wrap your preview content with a `PreviewAppTheme{..}` so that your previews have the correct theme
+wrap your preview content with a `PreviewTemplateTheme{..}` so that your previews have the correct theme
 background.
 
 ### BuildConfig
