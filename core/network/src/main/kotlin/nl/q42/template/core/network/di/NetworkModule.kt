@@ -2,11 +2,12 @@ package nl.q42.template.core.network.di
 
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import nl.q42.template.core.network.interceptor.UserAgentHeaderInterceptor
 import nl.q42.template.core.network.logger.JsonFormattedHttpLogger
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -23,6 +24,7 @@ internal class NetworkModule {
     @Singleton
     fun providesOkhttpClient(
         @ConfigLogHttpCalls logHttpCalls: Boolean,
+        userAgentHeaderInterceptor: UserAgentHeaderInterceptor,
     ) =
         OkHttpClient.Builder()
             .apply {
@@ -32,6 +34,8 @@ internal class NetworkModule {
 
                 if (logHttpCalls) addInterceptor(HttpLoggingInterceptor(JsonFormattedHttpLogger())
                     .apply { level = HttpLoggingInterceptor.Level.BODY })
+
+                addInterceptor(userAgentHeaderInterceptor)
 
             }.build()
 
@@ -53,4 +57,5 @@ internal class NetworkModule {
             .client(httpClient)
             .build()
     }
+
 }
