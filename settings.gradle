@@ -15,8 +15,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Template.Android"
 include ":app"
-include ":data:user"
-include ":domain:user"
+include ':data:main'
+include ':domain:main'
 include ":feature:home"
 include ":feature:onboarding"
 include ":core:network"
