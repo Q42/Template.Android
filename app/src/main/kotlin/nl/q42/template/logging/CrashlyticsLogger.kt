@@ -57,7 +57,7 @@ class CrashlyticsLogger : Antilog() {
         val stackTrace = Thread.currentThread().stackTrace
         val numToRemove = 9
         val lastToRemove = stackTrace[numToRemove - 1]
-        if (lastToRemove.className != "io.github.aakira.napier.Napier" || lastToRemove.methodName != "e\$default"){
+        if (lastToRemove.className != io.github.aakira.napier.Napier::class.java.name || lastToRemove.methodName != "e\$default"){
             logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
                     message = "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
             )
