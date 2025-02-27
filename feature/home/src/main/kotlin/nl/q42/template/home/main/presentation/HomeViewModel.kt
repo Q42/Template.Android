@@ -35,7 +35,6 @@ class HomeViewModel @Inject constructor(
     init {
         startObservingUserChanges()
         fetchUser()
-        Napier.e("Nino test error")
     }
 
     fun onScreenResumed() {
@@ -46,9 +45,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenSecondScreenClicked() {
-        Napier.e(RuntimeException("Open Second Screen tapped. This will be shown as the non-fatal title")) {
-            "Open Second Screen Tapped. This will be shown in the Crashlytics breadcrumbs"
-        }
+        Napier.e { "Open Second Screen tapped. This will be shown In LogCat and on prod builds also as as the title of a Non-Fatal event" }
         navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 

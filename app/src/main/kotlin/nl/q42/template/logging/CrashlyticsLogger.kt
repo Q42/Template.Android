@@ -56,14 +56,20 @@ class CrashlyticsLogger : Antilog() {
     private fun buildCrashlyticsSyntheticException(message: String): Exception {
         val stackTrace = Thread.currentThread().stackTrace
         val numToRemove = 9
-        val lastToRemove = stackTrace[numToRemove - 1]
+        val lastToRemove = stackTrace.getOrNull(numToRemove - 1)
+        if (lastToRemove == null) {
+            logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
+                    message = "Got unexpected stacktrace while logging a message: ${stackTrace.contentToString()}"
+            )
+            return SyntheticException(message, stackTrace)
+        }
         if (lastToRemove.className != io.github.aakira.napier.Napier::class.java.name || lastToRemove.methodName != "e\$default"){
             logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
                     message = "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
             )
         }
         val abbreviatedStackTrace = stackTrace.takeLast(stackTrace.size - numToRemove).toTypedArray()
-        return SyntheticException("Synthetic Exception: $message", abbreviatedStackTrace)
+        return SyntheticException(message, abbreviatedStackTrace)
     }
 
 }
