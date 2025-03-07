@@ -17,7 +17,7 @@ import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.Dimens
-import nl.q42.template.ui.theme.PreviewLightDark
+import nl.q42.template.ui.theme.PreviewAll
 import nl.q42.template.ui.theme.PreviewTemplateTheme
 import nl.q42.template.ui.theme.TemplateTheme
 
@@ -65,7 +65,7 @@ internal fun HomeContent(
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewTemplateTheme {
@@ -73,7 +73,7 @@ private fun HomeContentErrorPreview() {
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewTemplateTheme {
@@ -81,7 +81,7 @@ private fun HomeContentLoadingPreview() {
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewTemplateTheme {
