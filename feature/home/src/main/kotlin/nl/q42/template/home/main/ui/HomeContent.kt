@@ -5,9 +5,8 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -57,26 +56,27 @@ internal fun HomeContent(
              */
             viewState.userEmailTitle?.get()?.let { Text(text = it) }
 
-        if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) BodyText("Error", TemplateTheme.colors.error)
+            if (viewState.isLoading) CircularProgressIndicator()
+            if (viewState.showError) BodyText("Error", TemplateTheme.colors.error)
 
-        Spacer(Modifier.height(Dimens.componentSpacingVertical))
+            Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
-        Column(
-            horizontalAlignment = CenterHorizontally,
-            verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
-        ) {
-            TemplateButton("Refresh", onClick = onLoadClicked)
+            Column(
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
+            ) {
+                TemplateButton("Refresh", onClick = onLoadClicked)
 
-            TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
+                TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
 
-            TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+                TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
 
-            TemplateButton("Disabled button", enabled = false) {}
+                TemplateButton("Disabled button", enabled = false) {}
 
-            TemplateButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
+                TemplateButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
+            }
+
         }
-
     }
 }
 
