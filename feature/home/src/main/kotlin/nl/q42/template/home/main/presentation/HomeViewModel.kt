@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.q42.template.actionresult.data.handleAction
-import nl.q42.template.domain.user.usecase.FetchUserUseCase
-import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
+import nl.q42.template.domain.main.usecase.FetchUserUseCase
+import nl.q42.template.domain.main.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
 import nl.q42.template.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.navigation.AppGraphRoutes
@@ -49,9 +49,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onOpenSecondScreenClicked() {
-        Napier.e(RuntimeException("Open Second Screen tapped. This will be shown as the non-fatal title")) {
-            "Open Second Screen Tapped. This will be shown in the Crashlytics breadcrumbs"
-        }
+        Napier.e { "Open Second Screen tapped. This will be shown In LogCat and on prod builds also as as the title of a Non-Fatal event" }
         navigateTo(HomeSecondScreenDestination(title = "Hello world!"))
     }
 

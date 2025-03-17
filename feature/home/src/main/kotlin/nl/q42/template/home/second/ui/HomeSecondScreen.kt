@@ -3,9 +3,6 @@ package nl.q42.template.home.second.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -16,6 +13,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import nl.q42.template.home.second.presentation.HomeSecondViewModel
 import nl.q42.template.navigation.viewmodel.InitNavigator
+import nl.q42.template.ui.compose.composables.text.H1Text
+import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 
 @Destination
 @Composable
@@ -40,10 +39,8 @@ fun HomeSecondScreen(
         verticalArrangement = Arrangement.Center,
     ) {
 
-        Text(viewState.title, style = MaterialTheme.typography.titleMedium)
+        H1Text(text = viewState.title)
 
-        Button(onClick = viewModel::onBackClicked) {
-            Text("Close")
-        }
+        TemplateButton("Close", onClick = viewModel::onBackClicked)
     }
 }

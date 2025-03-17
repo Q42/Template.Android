@@ -7,6 +7,8 @@ A template for creating Android projects at Q42.
 1. Click the green "Use this template" button in the Github repo to create your own repository with
    this code template.
 1. Clone the new repo locally on your machine.
+1. Update dependencies and check whether everything still works. After that, create a PR to the
+   `main` branch of this template. This helps both your project and this template to stay up to date. 
 1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
@@ -20,6 +22,8 @@ A template for creating Android projects at Q42.
 1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
+1. Build your awesome project :-)
+1. Consider contributing to this template when you find something that could be improved.
 
 ## Contributing
 
@@ -29,22 +33,6 @@ note on changes:
 - Changes should be practical and pragmatic. Do not add complexity for the sake of aesthetics.
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
-
-## Wishlist for changes / new features
-
-- add this wishlist as issues in Git, so we can self-assign, etc. :) + remove it here.
-- on most projects we only use one module for data, and one for domain. We could simplify the
-  template by removing the data and domain modules and calling them 'data/main' and 'domain/main',
-  in that way more modules can easily be added, but are not added by default.
-- Research android screen transition standards + update our animations
-- Switch build files to KTS, also build some custom plugins.
-- Use lifecycle events from Google (we use our own now)
-- Use preview light dark from google (we use our own now)
-- Optionally: Setup proper Typography in AppTheme, using custom (non-material) Typography keys,
-  because that is what we have in 90%+ of our projects.
-- Optionally: Add compose events from VM to
-  View (https://github.com/leonard-palm/compose-state-events) and showcase with snackbar or toast.
-- Optionally: Switch from retrofit to ktor (because Ktor is multiplatform)
 
 ## Features
 
@@ -59,6 +47,11 @@ Only basic features that almost all projects use, were added in this template:
 - action results
 - clean architecture
 - automated dependency updates
+
+## How to request new feature's in this template
+
+- Develop it yourself in a branch and create a PR explaining why it's needed in the template. (Discussing beforehand with others is recommended)
+- Or create a Github issue with the feature request / discussion topic.
 
 ## Project Setup
 
@@ -140,6 +133,10 @@ Using Bitrise or another CI tool instead? Then you can skip the above and delete
 We use [Clean Architecture](#inspiration-material), to a very large extend. Our setup:
 
 ![Q42-CA](https://user-images.githubusercontent.com/2270625/216325003-8629f40a-c46c-43e6-ba1e-342dfb524ff9.png)
+
+Note that the image shows separate modules per feature for domain and data (ie. data:user and domain:user). It is recommended for larger projects
+to make this separation, but for smaller projects, it might be too much overhead. Therefore, this template starts with a single module for domain and data: domain:main 
+and data:main. Decide with your team whether you want to split these modules up.
 
 #### Clean Architecture layers
 
@@ -266,7 +263,7 @@ or replacement parameter logic.
 
 Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
 probably also want to
-wrap your preview content with a `PreviewAppTheme{..}` so that your previews have the correct theme
+wrap your preview content with a `PreviewTemplateTheme{..}` so that your previews have the correct theme
 background.
 
 ### BuildConfig
