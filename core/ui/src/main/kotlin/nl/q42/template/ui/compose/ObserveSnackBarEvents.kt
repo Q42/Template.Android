@@ -7,11 +7,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import de.palm.composestateevents.EventEffect
-import nl.q42.template.ui.presentation.SnackBarPresenter
 import nl.q42.template.ui.presentation.SnackBarMessageViewState
+import nl.q42.template.ui.presentation.SnackBarPresenter
 
 /**
- * Re-usable composable that connects a SnackBarPresenter event's to the UI state.
+ * Composable that connects a SnackBarPresenter event's to the UI's SnackbarHostState that displays it.
  */
 @Composable
 fun ObserveSnackBarEvents(snackBarPresenter: SnackBarPresenter, snackBarHostState: SnackbarHostState) {
