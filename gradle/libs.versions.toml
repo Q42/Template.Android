@@ -23,7 +23,7 @@ composeLifecycle = "2.8.7"
 kotlinxCoroutinesTest = "1.8.1"
 junit = "4.13.2"
 mockkAndroid = "1.13.12"
-turbine = "1.0.0"
+turbine = "1.2.0"
 
 [libraries]
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
