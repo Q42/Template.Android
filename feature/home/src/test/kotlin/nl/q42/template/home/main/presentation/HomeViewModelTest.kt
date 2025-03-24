@@ -44,7 +44,7 @@ class HomeViewModelTest {
         )
 
         viewModel.uiState.test {
-            assertTrue(awaitItem().isLoading)
+            assertTrue(awaitItem() == HomeViewState.Loading)
         }
     }
 
@@ -67,7 +67,7 @@ class HomeViewModelTest {
         )
 
         viewModel.uiState.test {
-            assertTrue(awaitItem().showError)
+            assertTrue(awaitItem() == HomeViewState.Error)
         }
     }
 }

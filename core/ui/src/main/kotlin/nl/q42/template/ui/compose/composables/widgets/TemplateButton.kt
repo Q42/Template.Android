@@ -4,7 +4,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import nl.q42.template.ui.theme.PreviewLightDark
+import nl.q42.template.ui.theme.PreviewAll
 import nl.q42.template.ui.theme.TemplateTheme
 
 @Composable
@@ -28,7 +28,7 @@ fun TemplateButton(text: String, enabled: Boolean = true, onClick: () -> Unit) {
 }
 
 @Composable
-@PreviewLightDark
+@PreviewAll
 private fun TemplateButtonPreview() {
     TemplateTheme {
         TemplateButton("Button",) {}
