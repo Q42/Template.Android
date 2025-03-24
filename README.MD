@@ -277,16 +277,12 @@ for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buil
 ### Navigation
 
 We added extra logic to navigate from ViewModel. To enable this for your ViewModel:
-// TODO check/update this:
+
 - Add a navigator `private val navigator: RouteNavigator` to the constructor of your ViewModel.
 - Let your ViewModel delegate RouteNavigator: `RouteNavigator by navigator`
 - Call `InitNavigator(navigator, viewModel)` from navigation setup.
 - Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
   methods, etc.
-
-  You can call navigateTo with a `AppGraphRoutes` (in core.navigation) to navigate to the root of a
-  different
-  graph route.
 
 ### Networking
 
