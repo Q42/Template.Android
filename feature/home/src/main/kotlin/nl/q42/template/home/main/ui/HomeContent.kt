@@ -51,16 +51,17 @@ internal fun HomeContent(
             horizontalAlignment = CenterHorizontally,
         ) {
 
-        when(viewState) {
-            is HomeViewState.Content -> {
-                /**
-                 * This is dummy. Use the strings file IRL.
-                 */
-                Text(text = viewState.userEmailTitle.get())
+            when (viewState) {
+                is HomeViewState.Content -> {
+                    /**
+                     * This is dummy. Use the strings file IRL.
+                     */
+                    Text(text = viewState.userEmailTitle.get())
+                }
+
+                is HomeViewState.Loading -> CircularProgressIndicator()
+                is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
             }
-            is HomeViewState.Loading -> CircularProgressIndicator()
-            is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
-        }
 
             Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
@@ -87,8 +88,7 @@ internal fun HomeContent(
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(showError = true), SnackbarHostState(), {}, {}, {}, {})
-        HomeContent(HomeViewState.Error, {}, {}, {})
+        HomeContent(HomeViewState.Error, SnackbarHostState(), {}, {}, {}, {})
     }
 }
 
@@ -96,8 +96,7 @@ private fun HomeContentErrorPreview() {
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(isLoading = true), SnackbarHostState(), {}, {}, {}, {})
-        HomeContent(HomeViewState.Loading, {}, {}, {})
+        HomeContent(HomeViewState.Loading, SnackbarHostState(), {}, {}, {}, {})
     }
 }
 
@@ -105,7 +104,6 @@ private fun HomeContentLoadingPreview() {
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(userEmailTitle = "preview@preview.com".toViewStateString()), SnackbarHostState(), {}, {}, {}, {})
-        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
+        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), SnackbarHostState(), {}, {}, {}, {})
     }
 }
