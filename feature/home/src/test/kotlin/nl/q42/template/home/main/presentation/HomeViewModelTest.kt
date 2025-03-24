@@ -8,8 +8,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import nl.q42.template.actionresult.domain.ActionResult
-import nl.q42.template.domain.user.usecase.FetchUserUseCase
-import nl.q42.template.domain.user.usecase.GetUserFlowUseCase
+import nl.q42.template.domain.main.usecase.FetchUserUseCase
+import nl.q42.template.domain.main.usecase.GetUserFlowUseCase
 import nl.q42.template.presentation.home.MainDispatcherRule
 import org.junit.Rule
 import org.junit.Test
@@ -43,7 +43,7 @@ class HomeViewModelTest {
         )
 
         viewModel.uiState.test {
-            assertTrue(awaitItem().isLoading)
+            assertTrue(awaitItem() == HomeViewState.Loading)
         }
     }
 
@@ -65,7 +65,7 @@ class HomeViewModelTest {
         )
 
         viewModel.uiState.test {
-            assertTrue(awaitItem().showError)
+            assertTrue(awaitItem() == HomeViewState.Error)
         }
     }
 }

@@ -134,6 +134,10 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
 
 ![Q42-CA](https://user-images.githubusercontent.com/2270625/216325003-8629f40a-c46c-43e6-ba1e-342dfb524ff9.png)
 
+Note that the image shows separate modules per feature for domain and data (ie. data:user and domain:user). It is recommended for larger projects
+to make this separation, but for smaller projects, it might be too much overhead. Therefore, this template starts with a single module for domain and data: domain:main 
+and data:main. Decide with your team whether you want to split these modules up.
+
 #### Clean Architecture layers
 
 - _UI_ with Jetpack Compose

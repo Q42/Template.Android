@@ -17,7 +17,7 @@ import nl.q42.template.ui.compose.composables.widgets.TemplateButton
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
 import nl.q42.template.ui.theme.Dimens
-import nl.q42.template.ui.theme.PreviewLightDark
+import nl.q42.template.ui.theme.PreviewAll
 import nl.q42.template.ui.theme.PreviewTemplateTheme
 import nl.q42.template.ui.theme.TemplateTheme
 
@@ -36,13 +36,16 @@ internal fun HomeContent(
         horizontalAlignment = CenterHorizontally,
     ) {
 
-        /**
-         * This is dummy. Use the strings file IRL.
-         */
-        viewState.userEmailTitle?.get()?.let { Text(text = it) }
-
-        if (viewState.isLoading) CircularProgressIndicator()
-        if (viewState.showError) BodyText("Error", TemplateTheme.colors.error)
+        when(viewState) {
+            is HomeViewState.Content -> {
+                /**
+                 * This is dummy. Use the strings file IRL.
+                 */
+                Text(text = viewState.userEmailTitle.get())
+            }
+            is HomeViewState.Loading -> CircularProgressIndicator()
+            is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
+        }
 
         Spacer(Modifier.height(Dimens.componentSpacingVertical))
 
@@ -62,26 +65,26 @@ internal fun HomeContent(
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(showError = true), {}, {}, {})
+        HomeContent(HomeViewState.Error, {}, {}, {})
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(isLoading = true), {}, {}, {})
+        HomeContent(HomeViewState.Loading, {}, {}, {})
     }
 }
 
-@PreviewLightDark
+@PreviewAll
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
+        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
     }
 }
