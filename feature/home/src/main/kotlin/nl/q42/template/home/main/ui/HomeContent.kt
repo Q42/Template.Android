@@ -6,7 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -24,44 +29,58 @@ import nl.q42.template.ui.theme.TemplateTheme
 @Composable
 internal fun HomeContent(
     viewState: HomeViewState,
+    snackBarHostState: SnackbarHostState,
     onLoadClicked: () -> Unit,
     onOpenSecondScreenClicked: () -> Unit,
     onOpenOnboardingClicked: () -> Unit,
+    onShowDummySnackBarClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Center,
-        horizontalAlignment = CenterHorizontally,
-    ) {
-
-        when(viewState) {
-            is HomeViewState.Content -> {
-                /**
-                 * This is dummy. Use the strings file IRL.
-                 */
-                Text(text = viewState.userEmailTitle.get())
-            }
-            is HomeViewState.Loading -> CircularProgressIndicator()
-            is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
-        }
-
-        Spacer(Modifier.height(Dimens.componentSpacingVertical))
+    Scaffold(
+        snackbarHost = { // display SnackBars here, because it might differ per screen where exactly you want to display it / if they are supported.
+            SnackbarHost(snackBarHostState) { data -> Snackbar(snackbarData = data) }
+        },
+    ) { paddingValues ->
 
         Column(
+            modifier = modifier
+                .padding(paddingValues)
+                .fillMaxSize(),
+            verticalArrangement = Center,
             horizontalAlignment = CenterHorizontally,
-            verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
         ) {
-            TemplateButton("Refresh", onClick = onLoadClicked)
 
-            TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
+            when (viewState) {
+                is HomeViewState.Content -> {
+                    /**
+                     * This is dummy. Use the strings file IRL.
+                     */
+                    Text(text = viewState.userEmailTitle.get())
+                }
 
-            TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+                is HomeViewState.Loading -> CircularProgressIndicator()
+                is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
+            }
 
-            TemplateButton("Disabled button", enabled = false) {}
+            Spacer(Modifier.height(Dimens.componentSpacingVertical))
+
+            Column(
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
+            ) {
+                TemplateButton("Refresh", onClick = onLoadClicked)
+
+                TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
+
+                TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+
+                TemplateButton("Disabled button", enabled = false) {}
+
+                TemplateButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
+            }
+
         }
-
     }
 }
 
@@ -69,7 +88,7 @@ internal fun HomeContent(
 @Composable
 private fun HomeContentErrorPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState.Error, {}, {}, {})
+        HomeContent(HomeViewState.Error, SnackbarHostState(), {}, {}, {}, {})
     }
 }
 
@@ -77,7 +96,7 @@ private fun HomeContentErrorPreview() {
 @Composable
 private fun HomeContentLoadingPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState.Loading, {}, {}, {})
+        HomeContent(HomeViewState.Loading, SnackbarHostState(), {}, {}, {}, {})
     }
 }
 
@@ -85,6 +104,6 @@ private fun HomeContentLoadingPreview() {
 @Composable
 private fun HomeContentEmptyPreview() {
     PreviewTemplateTheme {
-        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), {}, {}, {})
+        HomeContent(HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()), SnackbarHostState(), {}, {}, {}, {})
     }
 }

@@ -18,15 +18,19 @@ import nl.q42.template.feature.home.R
 import nl.q42.template.home.destinations.HomeSecondScreenDestination
 import nl.q42.template.navigation.AppGraphRoutes
 import nl.q42.template.navigation.viewmodel.RouteNavigator
+import nl.q42.template.ui.presentation.SnackBarPresenter
+import nl.q42.template.ui.presentation.SnackBarMessageViewState
 import nl.q42.template.ui.presentation.ViewStateString
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val fetchUserUseCase: FetchUserUseCase,
     private val getUserFlowUseCase: GetUserFlowUseCase,
+    private val snackBarPresenter: SnackBarPresenter,
     private val navigator: RouteNavigator,
-) : ViewModel(), RouteNavigator by navigator {
+) : ViewModel(), SnackBarPresenter by snackBarPresenter, RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Loading)
     val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
@@ -52,7 +56,11 @@ class HomeViewModel @Inject constructor(
         navigateTo(AppGraphRoutes.onboarding)
     }
 
-    fun fetchUser() {
+    fun onShowDummySnackBarClicked() {
+        showSnackBarMessage(SnackBarMessageViewState(title = ViewStateString.Basic("A SnackBar message. Random: " + Random.nextInt() % 100)))
+    }
+
+    private fun fetchUser() {
         viewModelScope.launch {
 
             _uiState.value = HomeViewState.Loading
