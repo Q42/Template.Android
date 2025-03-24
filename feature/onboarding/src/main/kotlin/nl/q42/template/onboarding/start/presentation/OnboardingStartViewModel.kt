@@ -15,7 +15,7 @@ class OnboardingStartViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel(), RouteNavigator by navigator {
 
-    private val _uiState = MutableStateFlow(OnboardingStartViewState("start"))
+    private val _uiState = MutableStateFlow(OnboardingStartViewState("Onboarding start"))
     val uiState: StateFlow<OnboardingStartViewState> = _uiState.asStateFlow()
 
     fun onBackClicked() {

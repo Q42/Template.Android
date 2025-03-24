@@ -1,9 +1,9 @@
 package nl.q42.template.navigation.viewmodel
 
 import androidx.annotation.VisibleForTesting
-import com.ramcosta.composedestinations.spec.Direction
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import nl.q42.template.navigation.Destination
 
 /**
  * Navigator to use when initiating navigation from a ViewModel.
@@ -11,9 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 interface RouteNavigator {
     fun onNavigated(state: NavigationState)
     fun navigateUp()
-    fun popToRoute(staticRoute: String)
-    fun navigateTo(route: String, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
-    fun navigateTo(routeDestination: Direction, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
+    fun popToRoute(destination: Destination)
+    fun navigateTo(destination: Destination, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
 
     val navigationState: StateFlow<NavigationState>
 }
@@ -33,15 +32,12 @@ class MyRouteNavigator : RouteNavigator {
         navigationState.compareAndSet(state, NavigationState.Idle)
     }
 
-    override fun popToRoute(staticRoute: String) = navigate(NavigationState.PopToRoute(staticRoute))
+    override fun popToRoute(destination: Destination) = navigate(NavigationState.PopToDestination(destination))
 
     override fun navigateUp() = navigate(NavigationState.NavigateUp())
 
-    override fun navigateTo(route: String, backstackBehavior: BackstackBehavior) =
-        navigate(NavigationState.NavigateToRoute(route = route, backstackBehavior = backstackBehavior))
-
-    override fun navigateTo(routeDestination: Direction, backstackBehavior: BackstackBehavior) =
-        navigateTo(route = routeDestination.route, backstackBehavior = backstackBehavior)
+    override fun navigateTo(destination: Destination, backstackBehavior: BackstackBehavior) =
+        navigate(NavigationState.NavigateToRoute(destination = destination, backstackBehavior = backstackBehavior))
 
     @VisibleForTesting
     fun navigate(state: NavigationState) {

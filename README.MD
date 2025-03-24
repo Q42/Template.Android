@@ -276,20 +276,11 @@ for [clarity and to avoid bugs](https://blog.dipien.com/stop-generating-the-buil
 
 ### Navigation
 
-We use [compose destinations](https://github.com/raamcosta/compose-destinations) for navigation
-because it's low risk, high gain:
-
-- It reduces the amount of custom logic and effort needed to use compose-navigation.
-- It's a layer over compose-navigation, so we can later easily switch to compose-navigation if we
-  want to.
-
-We
-added [extra logic to navigate from ViewModel](https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde)
-. To enable this for your ViewModel:
-
+We added extra logic to navigate from ViewModel. To enable this for your ViewModel:
+// TODO check/update this:
 - Add a navigator `private val navigator: RouteNavigator` to the constructor of your ViewModel.
 - Let your ViewModel delegate RouteNavigator: `RouteNavigator by navigator`
-- Call `InitNavigator(navigator, viewModel)` from your screen.
+- Call `InitNavigator(navigator, viewModel)` from navigation setup.
 - Call `navigateTo(destination)` from your ViewModel to navigate somewhere. There are also popUpTo
   methods, etc.
 
