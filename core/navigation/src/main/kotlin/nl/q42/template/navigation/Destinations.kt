@@ -27,5 +27,11 @@ sealed class Destination {
     data class HomeSecond(val title: String) : Destination()
 
     @Serializable
+    data object ProfileGraph : Destination()
+
+    @Serializable
+    data object Profile : Destination()
+
+    @Serializable
     data object Onboarding : Destination()
 }
