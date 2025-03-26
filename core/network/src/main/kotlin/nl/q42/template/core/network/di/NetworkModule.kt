@@ -36,7 +36,6 @@ internal class NetworkModule {
                     .apply { level = HttpLoggingInterceptor.Level.BODY })
 
                 addInterceptor(userAgentHeaderInterceptor)
-
             }.build()
 
     @Singleton
