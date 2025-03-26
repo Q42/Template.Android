@@ -17,7 +17,7 @@ android {
     }
 }
 dependencies {
-    implementation project(':domain:user')
+    implementation project(':domain:main')
     implementation project(':core:ui')
     implementation project(':core:actionresult')
     implementation project(':core:navigation')

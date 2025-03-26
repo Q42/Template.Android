@@ -1,28 +1,30 @@
 [versions]
- kotlinxCoroutinesTest = "1.8.1"
-junit = "4.13.2"
-mockkAndroid = "1.13.12"
 jvmTarget = "21"
-kotlin = "2.1.0"
+kotlin = "2.1.20"
 # should match kotlin https://github.com/google/ksp/releases
-ksp = "2.1.0-1.0.29"
-gradlePlugin = "8.8.0"
+ksp = "2.1.20-1.0.31"
+gradlePlugin = "8.9.0"
 googleServices = "4.4.2"
 crashlyticsPlugin = "3.0.2"
-firebaseBOM = "33.2.0"
-hilt = "2.52"
+firebaseBOM = "33.11.0"
+hilt = "2.56"
 retrofit = "2.11.0"
-kotlinx-serialization = "1.7.2"
+kotlinx-serialization = "1.8.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 networkResponseAdapter = "5.0.0"
 napier = "2.7.1"
 composeDestinations = "1.10.2"
 okhttp = "4.12.0"
-composePlatform = "2025.01.00"
-activityCompose = "1.10.0"
+composePlatform = "2025.03.00"
+activityCompose = "1.10.1"
 hiltNavigationCompose = "1.2.0"
 composeLifecycle = "2.8.7"
-turbine = "1.0.0"
+# Test dependencies
+kotlinxCoroutinesTest = "1.9.0"
+junit = "4.13.2"
+mockkAndroid = "1.13.17"
+turbine = "1.2.0"
+composeStateEvents = "2.2.0"
 
 [libraries]
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -51,7 +53,7 @@ activityCompose = { module = "androidx.activity:activity-compose", version.ref =
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
-
+composeStateEvents = { module = "com.github.leonard-palm:compose-state-events", version.ref = "composeStateEvents" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }

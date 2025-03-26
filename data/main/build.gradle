@@ -1,0 +1,16 @@
+plugins {
+    id "com.android.library"
+}
+
+apply from: "$rootDir/build.module.library.gradle"
+apply from: "$rootDir/build.dep.network.gradle"
+
+android {
+    namespace = "nl.q42.template.data.user"
+}
+
+dependencies {
+    implementation project(':domain:main')
+    implementation project(':core:network')
+    implementation project(':core:actionresult')
+}
