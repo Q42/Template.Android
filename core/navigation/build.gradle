@@ -1,6 +1,7 @@
 plugins {
     id "com.android.library"
     alias libs.plugins.compose.compiler
+    alias libs.plugins.kotlinSerialization
 }
 apply from: "$rootDir/build.module.library.gradle"
 apply from: "$rootDir/build.dep.compose.gradle"
@@ -8,4 +9,8 @@ apply from: "$rootDir/build.dep.navigation.gradle"
 
 android {
     namespace = "nl.q42.template.core.navigation"
+}
+
+dependencies {
+    implementation libs.retrofit2.kotlinx.serialization.converter
 }

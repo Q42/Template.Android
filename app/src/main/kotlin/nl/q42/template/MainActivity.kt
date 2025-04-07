@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import nl.q42.template.navigation.AppNavigation
-import nl.q42.template.navigation.NavGraphs
+import nl.q42.template.navigation.Destination
+import nl.q42.template.navigation.homeGraph
+import nl.q42.template.navigation.onboardingDestinations
 import nl.q42.template.ui.compose.composables.widgets.TemplateSurface
 import nl.q42.template.ui.theme.TemplateTheme
 
@@ -29,10 +31,14 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
 
-                TemplateSurface (
+                TemplateSurface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    AppNavigation(navController = navController, navGraph = NavGraphs.root)
+
+                    NavHost(navController = navController, startDestination = Destination.HomeGraph) {
+                        homeGraph(navController)
+                        onboardingDestinations(navController)
+                    }
                 }
             }
         }

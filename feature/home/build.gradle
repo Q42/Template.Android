@@ -9,12 +9,6 @@ android {
     def moduleName = "home"
 
     namespace = "nl.q42.template.feature.$moduleName"
-
-    ksp {
-        // to be able to navigate multi-module
-        arg("compose-destinations.mode", "destinations")
-        arg("compose-destinations.moduleName", "$moduleName")
-    }
 }
 dependencies {
     implementation project(':domain:main')

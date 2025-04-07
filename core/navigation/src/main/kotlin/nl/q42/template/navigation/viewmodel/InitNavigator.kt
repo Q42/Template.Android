@@ -4,8 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import nl.q42.template.navigation.AppGraphRoutes
+import androidx.navigation.NavHostController
 
 /**
  * Ensures that [routeNavigator] can navigate on this composition. [routeNavigator] will usually be a ViewModel.
@@ -13,11 +12,11 @@ import nl.q42.template.navigation.AppGraphRoutes
  * More info: https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde
  */
 @Composable
-fun InitNavigator(destinationsNavigator: DestinationsNavigator, routeNavigator: RouteNavigator) {
+fun InitNavigator(navController: NavHostController, routeNavigator: RouteNavigator) {
 
     val viewState by routeNavigator.navigationState.collectAsStateWithLifecycle()
     LaunchedEffect(viewState) {
-        updateNavigationState(destinationsNavigator, viewState, routeNavigator::onNavigated)
+        updateNavigationState(navController, viewState, routeNavigator::onNavigated)
     }
 }
 
@@ -25,7 +24,7 @@ fun InitNavigator(destinationsNavigator: DestinationsNavigator, routeNavigator: 
  * Navigates to [navigationState].
  */
 private fun updateNavigationState(
-    navigator: DestinationsNavigator,
+    navController: NavHostController,
     navigationState: NavigationState,
     onNavigated: (navState: NavigationState) -> Unit,
 ) {
@@ -36,24 +35,27 @@ private fun updateNavigationState(
                 }
 
                 BackstackBehavior.RemoveCurrent -> {
-                    navigator.popBackStack()
+                    navController.popBackStack()
                 }
 
                 BackstackBehavior.Clear -> {
-                    navigator.popBackStack(AppGraphRoutes.root, true)
+                    navController.popBackStack(
+                        navController.graph.id,
+                        false
+                    )
                 }
             }
-            navigator.navigate(navigationState.route)
+            navController.navigate(navigationState.destination)
             onNavigated(navigationState)
         }
 
-        is NavigationState.PopToRoute -> {
-            navigator.popBackStack(navigationState.staticRoute, false)
+        is NavigationState.PopToDestination -> {
+            navController.popBackStack(navigationState.destination, false)
             onNavigated(navigationState)
         }
 
         is NavigationState.NavigateUp -> {
-            navigator.navigateUp()
+            navController.navigateUp()
             onNavigated(navigationState)
         }
 

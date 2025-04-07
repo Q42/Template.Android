@@ -8,7 +8,6 @@ android {
 
 dependencies {
     implementation(platform(libs.composePlatform))
-    implementation(libs.composeDestinationsKps)
     implementation(libs.composeUIGraphics)
     debugImplementation(libs.composeUITooling)
     implementation(libs.composeUIToolingPreview)
