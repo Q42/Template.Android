@@ -8,7 +8,8 @@ A template for creating Android projects at Q42.
    this code template.
 1. Clone the new repo locally on your machine.
 1. Update dependencies and check whether everything still works. After that, create a PR to the
-   `main` branch of this template. This helps both your project and this template to stay up to date. 
+   `main` branch of this template. This helps both your project and this template to stay up to
+   date.
 1. Run `python ./scripts/rename-project.py` or `python3 ./scripts/rename-project.py` from the
    project root, to change the project name and the package names. The script will ask for your new
    project name and update all references.
@@ -19,11 +20,18 @@ A template for creating Android projects at Q42.
     - Crashlytics
 1. Setup your signing key secrets for usage in automated builds, . Steps are described
    in [CI / Automated Builds](#ci--automated-builds)
-1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as described
+1. You probably want to enable the self-hosted runner (our own, free and fast, mac-mini), as
+   described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
 1. Build your awesome project :-)
 1. Consider contributing to this template when you find something that could be improved.
+
+## Plug and play components
+
+Additional components, that you might or might not want to use, are added as branches.
+
+- [optional/bottom bar navigation](https://github.com/Q42/Template.Android/compare/feature/119/remove-compose-destinations...optional/bottom-bar-navigation)
 
 ## Contributing
 
@@ -50,7 +58,8 @@ Only basic features that almost all projects use, were added in this template:
 
 ## How to request new feature's in this template
 
-- Develop it yourself in a branch and create a PR explaining why it's needed in the template. (Discussing beforehand with others is recommended)
+- Develop it yourself in a branch and create a PR explaining why it's needed in the template. (
+  Discussing beforehand with others is recommended)
 - Or create a Github issue with the feature request / discussion topic.
 
 ## Project Setup
@@ -134,8 +143,10 @@ We use [Clean Architecture](#inspiration-material), to a very large extend. Our 
 
 ![Q42-CA](https://user-images.githubusercontent.com/2270625/216325003-8629f40a-c46c-43e6-ba1e-342dfb524ff9.png)
 
-Note that the image shows separate modules per feature for domain and data (ie. data:user and domain:user). It is recommended for larger projects
-to make this separation, but for smaller projects, it might be too much overhead. Therefore, this template starts with a single module for domain and data: domain:main 
+Note that the image shows separate modules per feature for domain and data (ie. data:user and
+domain:user). It is recommended for larger projects
+to make this separation, but for smaller projects, it might be too much overhead. Therefore, this
+template starts with a single module for domain and data: domain:main
 and data:main. Decide with your team whether you want to split these modules up.
 
 #### Clean Architecture layers
@@ -263,7 +274,8 @@ or replacement parameter logic.
 
 Use `@PreviewLightDark` to generate two previews from one function, one dark and one light. You
 probably also want to
-wrap your preview content with a `PreviewTemplateTheme{..}` so that your previews have the correct theme
+wrap your preview content with a `PreviewTemplateTheme{..}` so that your previews have the correct
+theme
 background.
 
 ### BuildConfig
