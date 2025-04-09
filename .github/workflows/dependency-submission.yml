@@ -1,0 +1,25 @@
+# https://docs.github.com/en/code-security/dependabot/ecosystems-supported-by-dependabot/supported-ecosystems-and-repositories#gradle
+name: Dependency Submission
+
+run-name: Running Dependency Submission
+
+on:
+    workflow_dispatch:
+    workflow_call:
+
+permissions:
+    contents: write
+
+jobs:
+    dependency-submission:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout sources
+              uses: actions/checkout@v4
+            - name: Setup Java
+              uses: actions/setup-java@v4
+              with:
+                  distribution: "temurin"
+                  java-version: 17
+            - name: Generate and submit dependency graph
+              uses: gradle/actions/dependency-submission@v4
