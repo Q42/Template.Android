@@ -29,4 +29,11 @@ sealed class BackstackBehavior {
      * the backstack will be A -> C.
      */
     data object RemoveCurrent : BackstackBehavior()
+
+    /**
+     * Clears the backstack and sets the target destination as the backstack's root.
+     *
+     * When navigating A -> B -> C. If B -> C is set to Clear, the backstack will be C.
+     */
+    data object Clear : BackstackBehavior()
 }
