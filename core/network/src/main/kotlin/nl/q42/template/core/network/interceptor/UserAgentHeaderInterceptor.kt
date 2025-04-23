@@ -1,5 +1,6 @@
 package nl.q42.template.core.network.interceptor
 
+import android.os.Build
 import nl.q42.template.core.network.di.ConfigAppVersionCode
 import nl.q42.template.core.network.di.ConfigAppVersionName
 import okhttp3.Interceptor
@@ -20,8 +21,8 @@ class UserAgentHeaderInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
             .apply {
-                val androidVersionRelease = android.os.Build.VERSION.RELEASE
-                val userAgentString = "Template/$appVersionName ($appVersionCode; Android $androidVersionRelease)"
+                val androidVersionRelease = Build.VERSION.RELEASE
+                val userAgentString = "Template/$appVersionName ($appVersionCode; Android/$androidVersionRelease; ${Build.BRAND} ${Build.MODEL})"
                 header("User-Agent", userAgentString)
             }
             .build()

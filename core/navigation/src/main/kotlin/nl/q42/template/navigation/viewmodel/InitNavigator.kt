@@ -37,6 +37,13 @@ private fun updateNavigationState(
                 BackstackBehavior.RemoveCurrent -> {
                     navController.popBackStack()
                 }
+
+                BackstackBehavior.Clear -> {
+                    navController.popBackStack(
+                        navController.graph.id,
+                        false
+                    )
+                }
             }
             navController.navigate(navigationState.destination)
             onNavigated(navigationState)
