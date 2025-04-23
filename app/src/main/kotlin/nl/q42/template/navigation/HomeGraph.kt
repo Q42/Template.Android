@@ -25,7 +25,7 @@ internal fun NavGraphBuilder.homeGraph(navController: NavHostController) {
         }
         composable<Destination.HomeSecond>(
             deepLinks = listOf(
-                navDeepLink<Destination.HomeSecond>(basePath = "$appDeepLinkScheme://home/second")
+                navDeepLink { uriPattern = "$appDeepLinkScheme://home/second/{title}" }
             )
         ) {
 
