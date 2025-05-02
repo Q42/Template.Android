@@ -62,7 +62,7 @@
       <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
       <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
     </Profilers>
-    <option name="DEEP_LINK" value="template://home/second" />
+    <option name="DEEP_LINK" value="template://home/second/deeplinkTitleArgument" />
     <option name="ACTIVITY" value="" />
     <option name="ACTIVITY_CLASS" value="" />
     <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />

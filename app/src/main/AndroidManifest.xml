@@ -31,8 +31,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="template" /> <!-- todo use manifest replacement string -->
-                <data android:host="home" />
+                <data android:scheme="${appScheme}" />
             </intent-filter>
         </activity>
     </application>

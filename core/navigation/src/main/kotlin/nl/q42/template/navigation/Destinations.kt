@@ -2,14 +2,11 @@ package nl.q42.template.navigation
 
 import kotlinx.serialization.Serializable
 
-val fullscreenDestinations = listOf(
-    Destination.Onboarding::class
-)
-
 /**
  * All destinations that can be navigated to. Use these in your ViewModel, whenever you
  * want to navigate. Note that you can only navigate to a destination from the correct graph,
- * see [com.aressfinancial.creditapp.navigation.graph].
+ * see [nl.q42.template.navigation.homeGraph].
+ * For deeplink support, add a deep link to the destination in the graph.
  */
 @Serializable
 sealed class Destination {
@@ -24,6 +21,7 @@ sealed class Destination {
     data object Home : Destination()
 
     @Serializable
+    // all parameters should be path parameters of a deeplink in HomeGraph.kt: composable<Destination.HomeSecond>(deeplinks = listOf(...))
     data class HomeSecond(val title: String) : Destination()
 
     @Serializable

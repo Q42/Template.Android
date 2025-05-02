@@ -12,9 +12,10 @@ import nl.q42.template.home.second.presentation.HomeSecondViewModel
 import nl.q42.template.home.second.ui.HomeSecondScreen
 import nl.q42.template.navigation.viewmodel.InitNavigator
 
-private const val appDeepLinkScheme = "template" // todo inject
-
-internal fun NavGraphBuilder.homeGraph(navController: NavHostController) {
+internal fun NavGraphBuilder.homeGraph(
+    navController: NavHostController,
+    appDeepLinkScheme: String,
+) {
     navigation<Destination.HomeGraph>(startDestination = Destination.Home) {
         composable<Destination.Home> {
 
@@ -25,6 +26,8 @@ internal fun NavGraphBuilder.homeGraph(navController: NavHostController) {
         }
         composable<Destination.HomeSecond>(
             deepLinks = listOf(
+                // keep in sync with Destinations.HomeSecond:
+                // title should be the name of a parameter of Destinations.HomeSecond
                 navDeepLink { uriPattern = "$appDeepLinkScheme://home/second/{title}" }
             )
         ) {
