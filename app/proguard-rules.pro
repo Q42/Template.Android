@@ -27,23 +27,3 @@
 }
 
 ## END enums
-
-## start OKHTTP for https://github.com/square/okhttp/issues/6258
-
--dontwarn org.bouncycastle.jsse.BCSSLSocket
--dontwarn org.bouncycastle.jsse.BCSSLParameters
--dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
--dontwarn org.conscrypt.*
--dontwarn org.openjsse.javax.net.ssl.SSLParameters
--dontwarn org.openjsse.javax.net.ssl.SSLSocket
--dontwarn org.openjsse.net.ssl.OpenJSSE
--dontwarn org.chromium.net.CronetEngine
--dontwarn org.chromium.net.UploadDataProvider
--dontwarn org.chromium.net.UploadDataProviders
--dontwarn org.chromium.net.UrlRequest$Builder
--dontwarn org.chromium.net.UrlRequest$Callback
--dontwarn org.chromium.net.UrlRequest
--dontwarn com.google.api.client.http.**
--dontwarn org.joda.time.Instant
-
-## end OKHTTP
