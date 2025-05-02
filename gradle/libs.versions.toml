@@ -22,7 +22,7 @@ composeLifecycle = "2.8.7"
 # Test dependencies
 kotlinxCoroutinesTest = "1.10.2"
 junit = "4.13.2"
-mockkAndroid = "1.13.17"
+mockkAndroid = "1.14.2"
 turbine = "1.2.0"
 composeStateEvents = "2.2.0"
 
