@@ -1,5 +1,6 @@
 package nl.q42.template.data.main.remote
 
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import nl.q42.template.actionresult.data.mapToActionResult
@@ -18,6 +19,16 @@ internal class UserRemoteDataSource @Inject constructor(
         val apiActionResult = mapToActionResult {
             userApi.getUsers("test@test.com")
         }
-        apiActionResult.map(UserDTO::mapToEntity)
+
+        when (apiActionResult) {
+            is ActionResult.Success -> {
+                apiActionResult.map(UserDTO::mapToEntity)
+            }
+
+            is ActionResult.Error -> {
+                Napier.e(apiActionResult.exception) { "getUser failed" }
+                apiActionResult
+            }
+        }
     }
 }

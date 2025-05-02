@@ -1,9 +1,9 @@
 package nl.q42.template.data.main
 
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import nl.q42.template.actionresult.domain.ActionResult
+import nl.q42.template.actionresult.domain.getDataOrNull
 import nl.q42.template.actionresult.domain.map
 import nl.q42.template.data.main.local.UserLocalDataSource
 import nl.q42.template.data.main.local.model.mapToUser
@@ -22,15 +22,11 @@ internal class UserRepositoryImpl @Inject constructor(
         // get remotely
         val userEntityActionResult = userRemoteDataSource.getUser()
         // store locally
-        when (userEntityActionResult) {
-            is ActionResult.Success -> {
-                userLocalDataSource.setUser(userEntityActionResult.data)
-            }
-
-            is ActionResult.Error -> {
-                Napier.e(userEntityActionResult.exception) { "fetchUser failed" }
-            }
+        userEntityActionResult.getDataOrNull()?.let { userEntity ->
+                userLocalDataSource.setUser(userEntity)
         }
+        // no need handle error case, we already do that in the remote data source
+
         // we send back unit, the user needs to be observed
         return userEntityActionResult.map { }
     }
