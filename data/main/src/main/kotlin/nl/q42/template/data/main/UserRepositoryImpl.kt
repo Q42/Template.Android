@@ -23,12 +23,14 @@ internal class UserRepositoryImpl @Inject constructor(
         val userEntityActionResult = userRemoteDataSource.getUser()
         // store locally
         userEntityActionResult.getDataOrNull()?.let { userEntity ->
-            userLocalDataSource.setUser(userEntity)
+                userLocalDataSource.setUser(userEntity)
         }
+        // no need handle error case, we already do that in the remote data source
 
         // we send back unit, the user needs to be observed
         return userEntityActionResult.map { }
     }
 
-    override fun getUserFlow(): Flow<User?> = userLocalDataSource.getUserFlow().map { it?.mapToUser() }
+    override fun getUserFlow(): Flow<User?> =
+        userLocalDataSource.getUserFlow().map { it?.mapToUser() }
 }
