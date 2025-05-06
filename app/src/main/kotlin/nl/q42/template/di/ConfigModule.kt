@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import nl.q42.template.BuildConfig
 import nl.q42.template.core.network.di.ConfigApiMainPath
+import nl.q42.template.core.network.di.ConfigAppScheme
 import nl.q42.template.core.network.di.ConfigAppVersionCode
 import nl.q42.template.core.network.di.ConfigAppVersionName
 import nl.q42.template.core.network.di.ConfigLogHttpCalls
@@ -28,6 +29,11 @@ class ConfigModule {
     @Singleton
     @ConfigLogHttpCalls
     fun configIsLoggingHttpCalls(): Boolean = BuildConfig.config_log_http_calls
+
+    @Provides
+    @Singleton
+    @ConfigAppScheme
+    fun providesAppScheme(): String = BuildConfig.config_app_scheme
 
     @Provides
     @Singleton
