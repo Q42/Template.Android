@@ -29,11 +29,11 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge() // must be called before super.onCreate
         super.onCreate(savedInstanceState)
 
         Napier.d { "onCreate received, ${intent.data}" }
 
-        enableEdgeToEdge()
 
         setContent {
 
