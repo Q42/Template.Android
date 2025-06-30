@@ -1,7 +1,6 @@
 package nl.q42.template.ui.compose.composables.window
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
@@ -13,10 +12,12 @@ import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -36,12 +37,13 @@ fun ScaffoldWithAppBar(
     onNavIconClicked: (() -> Unit)?,
     navIconDescription: String = stringResource(id = R.string.action_back),
     navIconPainter: Painter = painterResource(id = R.drawable.arrow_back_24),
-    contentScrollState: ScrollableState?, // no default value, non-scrolling screens are not accessible and should explicitly pass null
     actions: @Composable() (RowScope.() -> Unit) = {},
     floatingActionButton: @Composable () -> Unit = {},
     snackbarHost: @Composable (() -> Unit) = {},
     content: @Composable (paddingValues: PaddingValues) -> Unit,
 ) {
+
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
         containerColor = Color.Transparent,
@@ -54,7 +56,7 @@ fun ScaffoldWithAppBar(
                 onNavIconClicked = onNavIconClicked,
                 navIconPainter = navIconPainter,
                 navIconDescription = navIconDescription,
-                contentScrollState = contentScrollState,
+                scrollBehavior = scrollBehavior,
                 actions = actions,
                 titleContentDescription = titleDescription
             )
@@ -66,6 +68,8 @@ fun ScaffoldWithAppBar(
                 // other insets are provided by the scaffold (including TopAppBar and navigation bars)
                 WindowInsets.ime
             )
+            // listen for content scroll to adjust the TopAppBar appearance
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
             .fillMaxSize()
     ) { paddingValues ->
         content(paddingValues)
@@ -83,7 +87,6 @@ private fun ScaffoldWithAppBarPreview() {
             ScaffoldWithAppBar(
                 title = "Title",
                 onNavIconClicked = { },
-                contentScrollState = scrollState,
                 content = { paddingValues ->
                     ColumnScreenContent(
                         insetsPadding = paddingValues,

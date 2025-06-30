@@ -30,7 +30,6 @@ fun HomeScreen(
     ScaffoldWithAppBar(
         title = null, // home screen does not have a title
         onNavIconClicked = null, // home screen does not have a navigation icon
-        contentScrollState = contentScrollState,
         content = { insetsPadding ->
             HomeContent(
                 viewState = viewState,

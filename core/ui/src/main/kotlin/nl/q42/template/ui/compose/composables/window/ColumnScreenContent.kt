@@ -57,10 +57,11 @@ private fun ColumnScreenContentPreview() {
         contentPadding = PaddingValues(top = Dimens.screenPaddingVertical),
     ) {
         repeat(10) {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .background(Color.Red)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .background(Color.Red)
             )
             Spacer(modifier = Modifier.height(50.dp))
         }

@@ -20,7 +20,6 @@ fun HomeSecondScreen(
     ScaffoldWithAppBar(
         title = "HomeSecond",
         onNavIconClicked = viewModel::onBackClicked,
-        contentScrollState = contentScrollState,
     ) { insetsPadding ->
         HomeSecondContent(
             viewState = viewState,
