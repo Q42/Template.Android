@@ -36,14 +36,16 @@ fun ScaffoldWithAppBar(
     onNavIconClicked: (() -> Unit)?,
     navIconDescription: String = stringResource(id = R.string.action_back),
     navIconPainter: Painter = painterResource(id = R.drawable.arrow_back_24),
-    contentScrollState: ScrollableState? = null,
+    contentScrollState: ScrollableState?, // no default value, non-scrolling screens are not accessible and should explicitly pass null
     actions: @Composable() (RowScope.() -> Unit) = {},
     floatingActionButton: @Composable () -> Unit = {},
+    snackbarHost: @Composable (() -> Unit) = {},
     content: @Composable (paddingValues: PaddingValues) -> Unit,
 ) {
 
     Scaffold(
         containerColor = Color.Transparent,
+        snackbarHost = snackbarHost,
         topBar = {
             TopAppBar(
                 title = title ?: "",
@@ -101,7 +103,8 @@ private fun ScaffoldWithAppBarPreview() {
                         }
                     }
 
-                }
+                },
+                snackbarHost = { }
             )
         }
     }
