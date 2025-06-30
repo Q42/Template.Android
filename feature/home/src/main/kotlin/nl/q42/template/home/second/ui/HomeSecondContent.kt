@@ -28,7 +28,7 @@ fun HomeSecondContent(
     contentScrollState: ScrollState,
 ) {
     ColumnScreenContent(
-        horizontalAlignment = Alignment.Companion.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally,
         insetsPadding = insetsPadding,
         scrollState = contentScrollState,
     ) {
@@ -42,8 +42,10 @@ fun HomeSecondContent(
                 .background(Color.Gray),
             contentAlignment = Alignment.Center
         ) {
-            Text("A very high box to test scrolling. Tapping the TextField below show show the keyboard and scroll the content up." +
-                    "The AppBar should stay visible and the content should not be obscured by the keyboard.")
+            Text(
+                "A very high box to test scrolling. Tapping the TextField below show show the keyboard and scroll the content up." +
+                        "The AppBar should stay visible and the content should not be obscured by the keyboard."
+            )
         }
 
         TextField(
