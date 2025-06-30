@@ -1,6 +1,5 @@
 package nl.q42.template.ui.compose.composables.window
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,10 +33,11 @@ fun ColumnScreenContent(
     insetsPadding: PaddingValues,
     /** For full-width content (such as rows with full-width click areas), use [contentPadding] = PaddingValues(top = Dimens.screenContentPaddingVertical) */
     contentPadding: PaddingValues = Dimens.screenContentPadding,
-    scrollState: ScrollState,
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     content: @Composable() (ColumnScope.() -> Unit),
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -53,17 +54,17 @@ fun ColumnScreenContent(
 private fun ColumnScreenContentPreview() {
     ColumnScreenContent(
         insetsPadding = PaddingValues(),
-        scrollState = ScrollState(0),
         contentPadding = PaddingValues(top = Dimens.screenPaddingVertical),
-    ) {
-        repeat(10) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .background(Color.Red)
-            )
-            Spacer(modifier = Modifier.height(50.dp))
-        }
-    }
+        content = {
+            repeat(10) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .background(Color.Red)
+                )
+                Spacer(modifier = Modifier.height(50.dp))
+            }
+        },
+    )
 }

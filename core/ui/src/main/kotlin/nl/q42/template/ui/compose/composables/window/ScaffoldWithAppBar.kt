@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -80,7 +79,6 @@ fun ScaffoldWithAppBar(
 @PreviewAll
 private fun ScaffoldWithAppBarPreview() {
     TemplateTheme {
-        val scrollState = rememberScrollState()
         Box(
             modifier = Modifier.background(TemplateTheme.colors.surface)
         ) {
@@ -90,21 +88,21 @@ private fun ScaffoldWithAppBarPreview() {
                 content = { paddingValues ->
                     ColumnScreenContent(
                         insetsPadding = paddingValues,
-                        scrollState = scrollState
-                    ) {
-                        repeat(10) {
-                            Box(modifier = Modifier
-                                .fillMaxWidth()
-                                .height(50.dp)
-                                .background(Color.Red)
-                            )
-                            Box(modifier = Modifier
-                                .fillMaxWidth()
-                                .height(50.dp)
-                                .background(Color.Green)
-                            )
+                        content = {
+                            repeat(10) {
+                                Box(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(50.dp)
+                                    .background(Color.Red)
+                                )
+                                Box(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(50.dp)
+                                    .background(Color.Green)
+                                )
+                            }
                         }
-                    }
+                    )
 
                 },
                 snackbarHost = { }

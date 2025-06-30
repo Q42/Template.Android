@@ -1,6 +1,5 @@
 package nl.q42.template.home.main.ui
 
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -25,16 +24,12 @@ fun HomeScreen(
 
     val viewState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val contentScrollState = rememberScrollState()
-
-
     ScaffoldWithAppBar(
         title = null, // home screen does not have a title
         onNavIconClicked = null, // home screen does not have a navigation icon
         content = { insetsPadding ->
             HomeContent(
                 viewState = viewState,
-                contentScrollState = contentScrollState,
                 insetsPadding = insetsPadding,
                 onLoadClicked = viewModel::onLoadClicked,
                 onOpenSecondScreenClicked = viewModel::onOpenSecondScreenClicked,

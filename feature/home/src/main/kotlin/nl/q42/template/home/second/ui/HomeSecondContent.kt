@@ -1,6 +1,5 @@
 package nl.q42.template.home.second.ui
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,12 +24,10 @@ fun HomeSecondContent(
     viewState: HomeSecondViewState,
     onBackClicked: () -> Unit,
     insetsPadding: PaddingValues,
-    contentScrollState: ScrollState,
 ) {
     ColumnScreenContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         insetsPadding = insetsPadding,
-        scrollState = contentScrollState,
     ) {
 
         H1Text(text = viewState.title)
@@ -43,7 +40,7 @@ fun HomeSecondContent(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                "A very high box to test scrolling. Tapping the TextField below show show the keyboard and scroll the content up." +
+                "A very high box to test scrolling. Tapping the TextField below should show the keyboard and scroll the content up." +
                         "The AppBar should stay visible and the content should not be obscured by the keyboard."
             )
         }
@@ -67,7 +64,6 @@ private fun HomeSecondContentPreview() {
             viewState = HomeSecondViewState(title = "Home Second Screen"),
             onBackClicked = {},
             insetsPadding = PaddingValues(),
-            contentScrollState = ScrollState(0),
         )
     }
 }

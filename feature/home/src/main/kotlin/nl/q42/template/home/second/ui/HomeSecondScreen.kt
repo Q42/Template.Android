@@ -1,6 +1,5 @@
 package nl.q42.template.home.second.ui
 
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,8 +14,6 @@ fun HomeSecondScreen(
 
     val viewState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val contentScrollState = rememberScrollState()
-
     ScaffoldWithAppBar(
         title = "HomeSecond",
         onNavIconClicked = viewModel::onBackClicked,
@@ -25,7 +22,6 @@ fun HomeSecondScreen(
             viewState = viewState,
             onBackClicked = viewModel::onBackClicked,
             insetsPadding = insetsPadding,
-            contentScrollState = contentScrollState
         )
     }
 
