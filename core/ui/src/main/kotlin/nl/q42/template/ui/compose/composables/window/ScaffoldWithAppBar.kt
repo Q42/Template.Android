@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,6 +20,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
 import nl.q42.template.core.ui.R
 import nl.q42.template.ui.theme.PreviewAll
 import nl.q42.template.ui.theme.TemplateTheme
@@ -70,14 +74,33 @@ fun ScaffoldWithAppBar(
 @PreviewAll
 private fun ScaffoldWithAppBarPreview() {
     TemplateTheme {
+        val scrollState = rememberScrollState()
         Box(
             modifier = Modifier.background(TemplateTheme.colors.surface)
         ) {
             ScaffoldWithAppBar(
                 title = "Title",
                 onNavIconClicked = { },
+                contentScrollState = scrollState,
                 content = { paddingValues ->
-                    // Content goes here
+                    ColumnScreenContent(
+                        insetsPadding = paddingValues,
+                        scrollState = scrollState
+                    ) {
+                        repeat(10) {
+                            Box(modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp)
+                                .background(Color.Red)
+                            )
+                            Box(modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp)
+                                .background(Color.Green)
+                            )
+                        }
+                    }
+
                 }
             )
         }
