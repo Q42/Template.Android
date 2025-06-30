@@ -1,6 +1,7 @@
 package nl.q42.template.home.main.ui
 
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,7 +42,7 @@ fun HomeScreen(
                 onShowDummySnackBarClicked = viewModel::onShowDummySnackBarClicked
             )
         },
-        snackbarHost = { }
+        snackbarHost = { SnackbarHost(snackBarHostState) }
     )
 
 }
