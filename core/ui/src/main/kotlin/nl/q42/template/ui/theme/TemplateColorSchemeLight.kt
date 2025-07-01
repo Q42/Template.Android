@@ -6,7 +6,10 @@ object TemplateColorSchemeLight : TemplateColorScheme {
     override val buttonText: Color = White
     override val accent: Color = Purple40
     override val textPrimary = Black
+    override val textSecondary = White
     override val surface = White
+    override val surfaceSecondary= Black
     override val surfaceSelected = Gray10
-    override val error: Color = Red80
+    override val error = Red80
+    override val errorContent = White
 }

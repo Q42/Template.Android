@@ -38,7 +38,6 @@ fun ScaffoldWithAppBar(
     navIconPainter: Painter = painterResource(id = R.drawable.arrow_back_24),
     actions: @Composable() (RowScope.() -> Unit) = {},
     floatingActionButton: @Composable () -> Unit = {},
-    snackbarHost: @Composable (() -> Unit) = {},
     content: @Composable (paddingValues: PaddingValues) -> Unit,
 ) {
 
@@ -46,7 +45,9 @@ fun ScaffoldWithAppBar(
 
     Scaffold(
         containerColor = Color.Transparent,
-        snackbarHost = snackbarHost,
+        snackbarHost = {
+            SnackBarHost(LocalSnackbarHostState.current)
+        },
         topBar = {
             TopAppBar(
                 title = title ?: "",
@@ -105,7 +106,6 @@ private fun ScaffoldWithAppBarPreview() {
                     )
 
                 },
-                snackbarHost = { }
             )
         }
     }
