@@ -39,7 +39,6 @@ class HomeViewModelTest {
         val viewModel = HomeViewModel(
             fetchUserUseCase = fetchUserUseCaseMock,
             getUserFlowUseCase = getUserFlowUseCaseMock,
-            snackBarPresenter = mockk(),
             navigator = mockk(),
         )
 
@@ -62,7 +61,6 @@ class HomeViewModelTest {
         val viewModel = HomeViewModel(
             fetchUserUseCase = fetchUserUseCaseMock,
             getUserFlowUseCase = getUserFlowUseCaseMock,
-            snackBarPresenter = mockk(),
             navigator = mockk()
         )
 
