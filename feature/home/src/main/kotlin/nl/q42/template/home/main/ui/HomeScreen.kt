@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import nl.q42.template.home.main.presentation.HomeViewModel
 import nl.q42.template.ui.compose.OnLifecycleResume
 import nl.q42.template.ui.compose.composables.window.ScaffoldWithAppBar
+import nl.q42.template.ui.compose.dialog.InitDialogPresenter
 
 @Composable
 fun HomeScreen(
@@ -14,6 +15,7 @@ fun HomeScreen(
 ) {
 
     OnLifecycleResume(viewModel::onScreenResumed)
+    InitDialogPresenter(dialogPresenter = viewModel)
 
     val viewState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -27,7 +29,8 @@ fun HomeScreen(
                 onLoadClicked = viewModel::onLoadClicked,
                 onOpenSecondScreenClicked = viewModel::onOpenSecondScreenClicked,
                 onOpenOnboardingClicked = viewModel::onOpenOnboardingClicked,
-                onShowDummySnackBarClicked = viewModel::onShowDummySnackBarClicked
+                onShowDummySnackBarClicked = viewModel::onShowDummySnackBarClicked,
+                onShowDialogClicked = viewModel::onShowDialogClicked,
             )
         },
     )
