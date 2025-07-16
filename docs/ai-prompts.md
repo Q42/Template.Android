@@ -21,6 +21,6 @@ Migrate XFragment to jetpack compose.
 - Take YFragment, YScreen and subcomposables as an example, where this was already done. 
 - Create many subcomposables, use existing composables when possible, like NormalButton. Create many files. 
 - Send the ViewModel as parameter to the XScreen composable, not deeper. 
-- The view model’s viewState / uiState should be a mutablestateflow, like in the YModel. To adjust the upstate, use the .update {} function, not value =.
+- The view model’s viewState / uiState should be a mutablestateflow, like in the YModel. To adjust the upstate, use the `.update {}` function, not `value =.`
 - Add previews to XContent and other composable, not to XScreen.
 ```
