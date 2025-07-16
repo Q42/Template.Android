@@ -92,10 +92,9 @@ Run the below command to generate an encoded text representation
 of your keystore. If you don't have one, you
 can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
 
-    openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
+    openssl base64 < upload-keystore.jks | tr -d '\n' | pbcopy
 
-The above command will generate a new file called `keystore.base64.txt`. Open the file, copy the
-contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
+The above command will encode the file contents to base64 and copy it to your clipboard. Save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
 Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
 your projects 1Password vault as well:

@@ -12,6 +12,10 @@ annotation class ConfigLogHttpCalls
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
+annotation class ConfigAppScheme
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
 annotation class ConfigAppVersionName
 
 @Qualifier

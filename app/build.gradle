@@ -8,6 +8,8 @@ plugins {
 apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"
 
+def appScheme = "template"
+
 android {
 
     namespace = "nl.q42.template"
@@ -15,6 +17,9 @@ android {
     defaultConfig {
         versionCode = 1 // version code is set by CI
         versionName = "1.0"
+
+        buildConfigField 'String', 'config_app_scheme', "\"$appScheme\""
+        manifestPlaceholders["appScheme"] = appScheme
     }
 
     buildFeatures { // only app may have buildConfigFields

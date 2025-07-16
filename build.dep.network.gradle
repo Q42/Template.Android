@@ -1,3 +1,7 @@
+apply {
+    plugin(libs.plugins.kotlinSerialization.get().getPluginId())
+}
+
 dependencies {
     implementation libs.retrofit
     implementation(libs.kotlinx.serialization.json)
