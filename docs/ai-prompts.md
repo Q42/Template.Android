@@ -12,8 +12,6 @@ Let's collect some useful AI prompts for code generation or other tasks.
 
 ### Migrating a fragment from XML to compose.
 
-```
-
 X = ..
 Y = ..
 
@@ -23,4 +21,4 @@ Migrate XFragment to jetpack compose.
 - Send the ViewModel as parameter to the XScreen composable, not deeper. 
 - The view model’s viewState / uiState should be a mutablestateflow, like in the YModel. To adjust the upstate, use the `.update {}` function, not `value =.`
 - Add previews to XContent and other composable, not to XScreen.
-```
+
