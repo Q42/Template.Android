@@ -1,18 +1,16 @@
-## AI Prompts for Code Generation or other tasks
+## AI Prompts
 
 Let's collect some useful AI prompts for code generation or other tasks.
 
-### General Code Generation
-
-#### Creating a new module with presets
+### Creating a new module
 
 ... TODO
 
-#### Creating a new screen, adding it to the navigation and creating a XViewModel, XViewState, XScreen, XContent set for it.
+### Creating a new screen, adding it to the navigation graph and creating a XViewModel, XViewState, XScreen, XContent set for it.
 
 ... TODO
 
-#### Migrating a fragment from XML to compose.
+### Migrating a fragment from XML to compose.
 
 ```
 
