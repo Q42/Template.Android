@@ -42,6 +42,10 @@ note on changes:
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
 
+## AI prompts
+
+[Handy AI prompts to use with this template](/docs/ai-prompts.md).
+
 ## Features
 
 Only basic features that almost all projects use, were added in this template:
