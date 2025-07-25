@@ -6,8 +6,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import nl.q42.template.home.main.presentation.HomeViewModel
 import nl.q42.template.ui.compose.OnLifecycleResume
+import nl.q42.template.ui.compose.composables.dialog.InitDialogPresenter
 import nl.q42.template.ui.compose.composables.window.ScaffoldWithAppBar
-import nl.q42.template.ui.compose.dialog.InitDialogPresenter
 
 @Composable
 fun HomeScreen(

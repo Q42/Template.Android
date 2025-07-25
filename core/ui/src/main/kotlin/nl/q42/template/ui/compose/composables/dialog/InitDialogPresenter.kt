@@ -1,11 +1,10 @@
-package nl.q42.template.ui.compose.dialog
+package nl.q42.template.ui.compose.composables.dialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import nl.q42.template.presentation.dialog.DialogPresenter
-import nl.q42.template.ui.compose.composables.dialog.Dialog
-import nl.q42.widm.core.presentation.dialog.DialogViewState
+import nl.q42.template.ui.presentation.dialog.DialogPresenter
+import nl.q42.template.ui.presentation.dialog.DialogViewState
 
 @Composable
 fun InitDialogPresenter(

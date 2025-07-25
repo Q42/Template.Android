@@ -1,11 +1,9 @@
-package nl.q42.template.presentation.dialog
+package nl.q42.template.ui.presentation.dialog
 
 import androidx.annotation.CallSuper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import nl.q42.template.ui.presentation.dialog.DialogData
-import nl.q42.widm.core.presentation.dialog.DialogViewState
 import javax.inject.Inject
 
 /**

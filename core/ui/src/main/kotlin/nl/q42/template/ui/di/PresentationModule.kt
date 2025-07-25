@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import nl.q42.template.presentation.dialog.DialogPresenter
-import nl.q42.template.presentation.dialog.DialogPresenterImpl
+import nl.q42.template.ui.presentation.dialog.DialogPresenter
+import nl.q42.template.ui.presentation.dialog.DialogPresenterImpl
 import javax.inject.Singleton
 
 @Module

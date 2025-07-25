@@ -17,10 +17,10 @@ import nl.q42.template.domain.main.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import nl.q42.template.presentation.dialog.DialogPresenter
 import nl.q42.template.ui.presentation.SnackbarManager
 import nl.q42.template.ui.presentation.ViewStateString
 import nl.q42.template.ui.presentation.dialog.DialogData
+import nl.q42.template.ui.presentation.dialog.DialogPresenter
 import javax.inject.Inject
 import kotlin.random.Random
 
