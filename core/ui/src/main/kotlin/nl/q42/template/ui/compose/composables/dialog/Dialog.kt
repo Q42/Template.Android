@@ -17,8 +17,8 @@ import nl.q42.template.ui.theme.TemplateTheme
 @Composable
 fun Dialog(
     data: DialogData,
-    onDialogDismissed: (Any) -> Unit,
-    onDialogConfirmed: (Any) -> Unit,
+    onDismissed: (Any) -> Unit,
+    onConfirmed: (Any) -> Unit,
 ) {
 
     val contentColor: Color = TemplateTheme.colors.textPrimary
@@ -28,7 +28,7 @@ fun Dialog(
             // Dismiss the dialog when the user clicks outside the dialog or on the back
             // button. If you want to disable that functionality, simply use an empty
             // onDismissRequest.
-            onDialogDismissed(data.tag)
+            onDismissed(data.tag)
         },
         title = data.title?.let {
             {
@@ -47,7 +47,7 @@ fun Dialog(
         confirmButton = {
             TextButton(
                 onClick = {
-                    onDialogConfirmed(data.tag)
+                    onConfirmed(data.tag)
                 }
             ) {
                 Text(
@@ -60,7 +60,7 @@ fun Dialog(
         },
         dismissButton = data.dismissButtonTitle?.let { dismissButton ->
             {
-                TextButton(onClick = { onDialogDismissed(data.tag) }) {
+                TextButton(onClick = { onDismissed(data.tag) }) {
                     Text(
                         text = dismissButton.get(),
                         color = contentColor
@@ -82,8 +82,8 @@ private fun DialogPreview() {
                 confirmButtonTitle = ViewStateString.Basic("OK"),
                 dismissButtonTitle = ViewStateString.Basic("Cancel")
             ),
-            onDialogDismissed = {},
-            onDialogConfirmed = {}
+            onDismissed = {},
+            onConfirmed = {}
         )
     }
 }

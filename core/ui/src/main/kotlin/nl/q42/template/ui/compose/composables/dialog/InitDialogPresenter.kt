@@ -20,7 +20,7 @@ fun InitDialogPresenter(
     if (data != null)
         Dialog(
             data = data,
-            onDialogDismissed = onDialogDismissed,
-            onDialogConfirmed = onDialogConfirmed,
+            onDismissed = onDialogDismissed,
+            onConfirmed = onDialogConfirmed,
         )
 }
