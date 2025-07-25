@@ -19,6 +19,8 @@ import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 import nl.q42.template.ui.presentation.SnackbarManager
 import nl.q42.template.ui.presentation.ViewStateString
+import nl.q42.template.ui.presentation.dialog.DialogData
+import nl.q42.template.ui.presentation.dialog.DialogPresenter
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -27,8 +29,9 @@ class HomeViewModel @Inject constructor(
     private val fetchUserUseCase: FetchUserUseCase,
     private val getUserFlowUseCase: GetUserFlowUseCase,
     private val navigator: RouteNavigator,
-    private val snackbarManager: SnackbarManager
-) : ViewModel(), RouteNavigator by navigator {
+    private val snackbarManager: SnackbarManager,
+    private val dialogPresenter: DialogPresenter
+) : ViewModel(), RouteNavigator by navigator, DialogPresenter by dialogPresenter {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Loading)
     val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
@@ -36,6 +39,12 @@ class HomeViewModel @Inject constructor(
     init {
         startObservingUserChanges()
         fetchUser()
+    }
+
+    override fun onDialogConfirmed(tag: Any) {
+        dialogPresenter.onDialogConfirmed(tag)
+        // take action based on dialog tag
+        snackbarManager.showSnackbar(message = ViewStateString.Basic("Dialog confirmed with tag: $tag"))
     }
 
     fun onScreenResumed() {
@@ -58,6 +67,16 @@ class HomeViewModel @Inject constructor(
         snackbarManager.showSnackbar(
             message = ViewStateString.Basic("A SnackBar message. Random: " + Random.nextInt() % 100),
             isError = false
+        )
+    }
+
+    fun onShowDialogClicked() {
+        dialogPresenter.showDialog(
+            data = DialogData(
+                title = ViewStateString.Basic("Dialog Title"),
+                description = ViewStateString.Basic("This is a dialog message. It can be used to show more information or ask for confirmation."),
+                tag = "userId 1337",
+            )
         )
     }
 
