@@ -23,11 +23,11 @@ import nl.q42.template.core.network.di.ConfigAppScheme
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.homeGraph
 import nl.q42.template.navigation.onboardingDestinations
-import nl.q42.template.ui.compose.composables.widgets.TemplateSurface
+import nl.q42.template.ui.compose.composables.widgets.AppSurface
 import nl.q42.template.ui.compose.composables.window.LocalSnackbarHostState
 import nl.q42.template.ui.compose.composables.window.toSnackBarVisuals
 import nl.q42.template.ui.presentation.SnackbarManager
-import nl.q42.template.ui.theme.TemplateTheme
+import nl.q42.template.ui.theme.AppTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -56,11 +56,11 @@ class MainActivity : ComponentActivity() {
             CompositionLocalProvider(
                 LocalSnackbarHostState provides snackbarHostState
             ) {
-                TemplateTheme {
+                AppTheme {
 
                     val navController = rememberNavController()
 
-                    TemplateSurface(
+                    AppSurface(
                         modifier = Modifier.fillMaxSize(),
                     ) {
 

@@ -12,14 +12,14 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import nl.q42.template.home.main.presentation.HomeViewState
 import nl.q42.template.ui.compose.composables.text.BodyText
-import nl.q42.template.ui.compose.composables.widgets.TemplateButton
+import nl.q42.template.ui.compose.composables.widgets.AppButton
 import nl.q42.template.ui.compose.composables.window.ColumnScreenContent
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.toViewStateString
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.Dimens
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.PreviewTemplateTheme
-import nl.q42.template.ui.theme.TemplateTheme
+import nl.q42.template.ui.theme.PreviewAppTheme
 
 @Composable
 internal fun HomeContent(
@@ -47,7 +47,7 @@ internal fun HomeContent(
                 }
 
                 is HomeViewState.Loading -> CircularProgressIndicator()
-                is HomeViewState.Error -> BodyText("Error", TemplateTheme.colors.error)
+                is HomeViewState.Error -> BodyText("Error", AppTheme.colors.error)
             }
 
             Spacer(Modifier.height(Dimens.componentSpacingVertical))
@@ -56,15 +56,15 @@ internal fun HomeContent(
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = spacedBy(Dimens.buttonSpacingVertical)
             ) {
-                TemplateButton("Refresh", onClick = onLoadClicked)
+                AppButton("Refresh", onClick = onLoadClicked)
 
-                TemplateButton("Open second screen", onClick = onOpenSecondScreenClicked)
+                AppButton("Open second screen", onClick = onOpenSecondScreenClicked)
 
-                TemplateButton("Open Onboarding", onClick = onOpenOnboardingClicked)
+                AppButton("Open Onboarding", onClick = onOpenOnboardingClicked)
 
-                TemplateButton("Disabled button", enabled = false) {}
+                AppButton("Disabled button", enabled = false) {}
 
-                TemplateButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
+                AppButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
             }
 
         }
@@ -74,7 +74,7 @@ internal fun HomeContent(
 @PreviewAll
 @Composable
 private fun HomeContentErrorPreview() {
-    PreviewTemplateTheme {
+    PreviewAppTheme {
         HomeContent(
             viewState = HomeViewState.Error,
             insetsPadding = PaddingValues(),
@@ -89,7 +89,7 @@ private fun HomeContentErrorPreview() {
 @PreviewAll
 @Composable
 private fun HomeContentLoadingPreview() {
-    PreviewTemplateTheme {
+    PreviewAppTheme {
         HomeContent(
             HomeViewState.Loading,
             insetsPadding = PaddingValues(),
@@ -104,7 +104,7 @@ private fun HomeContentLoadingPreview() {
 @PreviewAll
 @Composable
 private fun HomeContentEmptyPreview() {
-    PreviewTemplateTheme {
+    PreviewAppTheme {
         HomeContent(
             HomeViewState.Content(userEmailTitle = "preview@preview.com".toViewStateString()),
             insetsPadding = PaddingValues(),

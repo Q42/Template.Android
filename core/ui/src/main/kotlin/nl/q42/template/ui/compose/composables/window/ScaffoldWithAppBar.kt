@@ -22,8 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import nl.q42.template.core.ui.R
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.TemplateTheme
 
 
 @Composable
@@ -32,7 +32,7 @@ fun ScaffoldWithAppBar(
     title: String?,
     titleDescription: String = title ?: "",
     titleMaxLines: Int = 1,
-    titleStyle: TextStyle = TemplateTheme.typography.h1,
+    titleStyle: TextStyle = AppTheme.typography.h1,
     onNavIconClicked: (() -> Unit)?,
     navIconDescription: String = stringResource(id = R.string.action_back),
     navIconPainter: Painter = painterResource(id = R.drawable.arrow_back_24),
@@ -79,9 +79,9 @@ fun ScaffoldWithAppBar(
 @Composable
 @PreviewAll
 private fun ScaffoldWithAppBarPreview() {
-    TemplateTheme {
+    AppTheme {
         Box(
-            modifier = Modifier.background(TemplateTheme.colors.surface)
+            modifier = Modifier.background(AppTheme.colors.surface)
         ) {
             ScaffoldWithAppBar(
                 title = "Title",

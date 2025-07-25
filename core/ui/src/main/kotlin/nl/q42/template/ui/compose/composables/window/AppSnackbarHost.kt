@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.SnackBarSpec
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.Dimens
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.TemplateTheme
 import java.util.UUID
 
 @Composable
@@ -32,7 +32,7 @@ private fun SnackBar(
     data: SnackbarData
 ) {
     val isError = (data.visuals as? TemplateSnackBarVisuals)?.isError ?: false
-    val appColors = TemplateTheme.colors
+    val appColors = AppTheme.colors
     val contentColor = if (isError) appColors.errorContent else appColors.textSecondary
     val buttonColors = ButtonDefaults.textButtonColors(contentColor = contentColor)
 
@@ -47,14 +47,14 @@ private fun SnackBar(
             ) {
                 Text(
                     text = data.visuals.actionLabel ?: "",
-                    style = TemplateTheme.typography.body,
+                    style = AppTheme.typography.body,
                 )
             }
         }
     ) {
         Text(
             text = data.visuals.message,
-            style = TemplateTheme.typography.label,
+            style = AppTheme.typography.label,
         )
     }
 }
@@ -80,7 +80,7 @@ private fun SnackBarPreview() {
         override fun performAction() {}
     }
 
-    TemplateTheme {
+    AppTheme {
         SnackBar(data = data)
     }
 }
@@ -100,7 +100,7 @@ fun SnackBarPreviewError() {
         override fun performAction() {}
     }
 
-    TemplateTheme {
+    AppTheme {
         SnackBar(data = data)
     }
 }
