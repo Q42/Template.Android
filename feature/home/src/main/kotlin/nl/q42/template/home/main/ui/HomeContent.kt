@@ -67,7 +67,7 @@ internal fun HomeContent(
 
                 AppButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
 
-                TemplateButton("Show Dialog for userid 1337", onClick = onShowDialogClicked)
+                AppButton("Show Dialog for userid 1337", onClick = onShowDialogClicked)
             }
 
         }

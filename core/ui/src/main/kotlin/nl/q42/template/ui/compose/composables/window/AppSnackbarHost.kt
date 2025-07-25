@@ -31,7 +31,7 @@ fun AppSnackbarHost(snackbarHostState: SnackbarHostState) {
 private fun SnackBar(
     data: SnackbarData
 ) {
-    val isError = (data.visuals as? TemplateSnackBarVisuals)?.isError ?: false
+    val isError = (data.visuals as? AppSnackBarVisuals)?.isError ?: false
     val appColors = AppTheme.colors
     val contentColor = if (isError) appColors.errorContent else appColors.textSecondary
     val buttonColors = ButtonDefaults.textButtonColors(contentColor = contentColor)
@@ -60,7 +60,7 @@ private fun SnackBar(
 }
 
 @Composable
-fun SnackBarSpec.toSnackBarVisuals() = TemplateSnackBarVisuals(
+fun SnackBarSpec.toSnackBarVisuals() = AppSnackBarVisuals(
     message = message.get(),
     actionLabel = actionLabel ?: "",
     withDismissAction = withDismissAction,
@@ -73,7 +73,7 @@ fun SnackBarSpec.toSnackBarVisuals() = TemplateSnackBarVisuals(
 private fun SnackBarPreview() {
     val data = object : SnackbarData {
         override val visuals: SnackbarVisuals
-            get() = TemplateSnackBarVisuals("This is a snackbar", "Action", isError = false)
+            get() = AppSnackBarVisuals("This is a snackbar", "Action", isError = false)
 
         override fun dismiss() {}
 
@@ -90,7 +90,7 @@ private fun SnackBarPreview() {
 fun SnackBarPreviewError() {
     val data = object : SnackbarData {
         override val visuals: SnackbarVisuals
-            get() = TemplateSnackBarVisuals(
+            get() = AppSnackBarVisuals(
                 "This is an error snackbar with very long text",
                 isError = true
             )
@@ -105,7 +105,7 @@ fun SnackBarPreviewError() {
     }
 }
 
-class TemplateSnackBarVisuals(
+class AppSnackBarVisuals(
     override val message: String,
     override val actionLabel: String? = "",
     override val duration: SnackbarDuration = SnackbarDuration.Indefinite,
