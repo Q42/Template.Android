@@ -7,7 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +24,9 @@ import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.homeGraph
 import nl.q42.template.navigation.onboardingDestinations
 import nl.q42.template.ui.compose.composables.widgets.TemplateSurface
+import nl.q42.template.ui.compose.composables.window.LocalSnackbarHostState
+import nl.q42.template.ui.compose.composables.window.toSnackBarVisuals
+import nl.q42.template.ui.presentation.SnackbarManager
 import nl.q42.template.ui.theme.TemplateTheme
 import javax.inject.Inject
 
@@ -26,6 +36,9 @@ class MainActivity : ComponentActivity() {
     @Inject
     @ConfigAppScheme
     lateinit var appDeepLinkScheme: String
+
+    @Inject
+    lateinit var snackbarManager: SnackbarManager
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,20 +50,30 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            TemplateTheme {
+            val snackbarHostState = remember { SnackbarHostState() }
+            SnackbarChangedEffect(snackbarHostState)
 
-                val navController = rememberNavController()
+            CompositionLocalProvider(
+                LocalSnackbarHostState provides snackbarHostState
+            ) {
+                TemplateTheme {
 
-                TemplateSurface(
-                    modifier = Modifier.fillMaxSize(),
-                ) {
+                    val navController = rememberNavController()
 
-                    NavHost(navController = navController, startDestination = Destination.HomeGraph) {
-                        homeGraph(
+                    TemplateSurface(
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
+
+                        NavHost(
                             navController = navController,
-                            appDeepLinkScheme = appDeepLinkScheme
-                        )
-                        onboardingDestinations(navController)
+                            startDestination = Destination.HomeGraph
+                        ) {
+                            homeGraph(
+                                navController = navController,
+                                appDeepLinkScheme = appDeepLinkScheme
+                            )
+                            onboardingDestinations(navController)
+                        }
                     }
                 }
             }
@@ -62,5 +85,24 @@ class MainActivity : ComponentActivity() {
 
         Napier.d { "onNewIntent received, ${intent.data}" }
 
+    }
+
+    /**
+     * May set a Snackbar on the [snackbarHostState] if the [SnackbarManager] has a snackbar available.
+     * To actually show the snackbar, snackbarHostState has to be used in a Scaffold, such as ScaffoldWithAppBar.
+     */
+    @Composable
+    private fun SnackbarChangedEffect(snackbarHostState: SnackbarHostState) {
+        val snackbarSpec by snackbarManager.uiState.collectAsStateWithLifecycle(
+            initialValue = null
+        )
+        val snackbarVisuals = snackbarSpec?.toSnackBarVisuals()
+
+        LaunchedEffect(snackbarVisuals) {
+            snackbarHostState.currentSnackbarData?.dismiss()
+            if (snackbarVisuals != null) {
+                snackbarHostState.showSnackbar(snackbarVisuals)
+            }
+        }
     }
 }

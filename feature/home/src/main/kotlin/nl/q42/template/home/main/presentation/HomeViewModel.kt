@@ -17,8 +17,7 @@ import nl.q42.template.domain.main.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import nl.q42.template.ui.presentation.SnackBarMessageViewState
-import nl.q42.template.ui.presentation.SnackBarPresenter
+import nl.q42.template.ui.presentation.SnackbarManager
 import nl.q42.template.ui.presentation.ViewStateString
 import javax.inject.Inject
 import kotlin.random.Random
@@ -27,9 +26,9 @@ import kotlin.random.Random
 class HomeViewModel @Inject constructor(
     private val fetchUserUseCase: FetchUserUseCase,
     private val getUserFlowUseCase: GetUserFlowUseCase,
-    private val snackBarPresenter: SnackBarPresenter,
     private val navigator: RouteNavigator,
-) : ViewModel(), SnackBarPresenter by snackBarPresenter, RouteNavigator by navigator {
+    private val snackbarManager: SnackbarManager
+) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow<HomeViewState>(HomeViewState.Loading)
     val uiState: StateFlow<HomeViewState> = _uiState.asStateFlow()
@@ -56,7 +55,10 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onShowDummySnackBarClicked() {
-        showSnackBarMessage(SnackBarMessageViewState(title = ViewStateString.Basic("A SnackBar message. Random: " + Random.nextInt() % 100)))
+        snackbarManager.showSnackbar(
+            message = ViewStateString.Basic("A SnackBar message. Random: " + Random.nextInt() % 100),
+            isError = false
+        )
     }
 
     private fun fetchUser() {

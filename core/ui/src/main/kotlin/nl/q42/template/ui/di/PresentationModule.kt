@@ -1,18 +1,22 @@
 package nl.q42.template.ui.di
 
+import android.app.Application
+import android.view.accessibility.AccessibilityManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
-import nl.q42.template.ui.presentation.SnackBarPresenter
-import nl.q42.template.ui.presentation.SnackBarPresenterImpl
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 class PresentationModule {
 
+    @Singleton
     @Provides
-    @ViewModelScoped
-    fun bindSnackBarPresenter(): SnackBarPresenter = SnackBarPresenterImpl()
+    fun provideAccessibilityManager(application: Application): AccessibilityManager =
+        application.getSystemService(
+            Application.ACCESSIBILITY_SERVICE
+        ) as AccessibilityManager
+
 }
