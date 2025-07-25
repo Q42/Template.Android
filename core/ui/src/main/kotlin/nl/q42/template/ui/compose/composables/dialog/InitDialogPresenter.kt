@@ -16,10 +16,10 @@ fun InitDialogPresenter(
         initialValue = DialogViewState.None
     )
 
-    val dialogData = (viewState as? DialogViewState.ShowDialog)?.dialogData
-    if (dialogData != null)
+    val data = (viewState as? DialogViewState.ShowDialog)?.data
+    if (data != null)
         Dialog(
-            dialog = dialogData,
+            data = data,
             onDialogDismissed = onDialogDismissed,
             onDialogConfirmed = onDialogConfirmed,
         )

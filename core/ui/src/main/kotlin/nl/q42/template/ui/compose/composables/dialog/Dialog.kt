@@ -16,7 +16,7 @@ import nl.q42.template.ui.theme.TemplateTheme
 
 @Composable
 fun Dialog(
-    dialog: DialogData,
+    data: DialogData,
     onDialogDismissed: (Any) -> Unit,
     onDialogConfirmed: (Any) -> Unit,
 ) {
@@ -28,9 +28,9 @@ fun Dialog(
             // Dismiss the dialog when the user clicks outside the dialog or on the back
             // button. If you want to disable that functionality, simply use an empty
             // onDismissRequest.
-            onDialogDismissed(dialog.tag)
+            onDialogDismissed(data.tag)
         },
-        title = dialog.title?.let {
+        title = data.title?.let {
             {
                 Text(
                     text = it.get(),
@@ -40,27 +40,27 @@ fun Dialog(
         },
         text = {
             Text(
-                text = dialog.description.get(),
+                text = data.description.get(),
                 color = contentColor
             )
         },
         confirmButton = {
             TextButton(
                 onClick = {
-                    onDialogConfirmed(dialog.tag)
+                    onDialogConfirmed(data.tag)
                 }
             ) {
                 Text(
-                    text = dialog
+                    text = data
                         .confirmButtonTitle?.get()
                         ?: stringResource(id = R.string.generic_ok),
                     color = contentColor
                 )
             }
         },
-        dismissButton = dialog.dismissButtonTitle?.let { dismissButton ->
+        dismissButton = data.dismissButtonTitle?.let { dismissButton ->
             {
-                TextButton(onClick = { onDialogDismissed(dialog.tag) }) {
+                TextButton(onClick = { onDialogDismissed(data.tag) }) {
                     Text(
                         text = dismissButton.get(),
                         color = contentColor
@@ -76,7 +76,7 @@ fun Dialog(
 private fun DialogPreview() {
     PreviewTemplateTheme {
         Dialog(
-            dialog = DialogData(
+            data = DialogData(
                 title = ViewStateString.Basic("Title"),
                 description = ViewStateString.Basic("Multiline description\nwith new line"),
                 confirmButtonTitle = ViewStateString.Basic("OK"),

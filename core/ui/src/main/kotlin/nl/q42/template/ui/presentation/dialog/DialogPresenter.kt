@@ -42,7 +42,7 @@ interface DialogPresenter {
 
     fun onDialogConfirmed(tag: Any)
 
-    fun showDialog(dialogData: DialogData)
+    fun showDialog(data: DialogData)
 
     val dialogUIState: Flow<DialogViewState>
 }
@@ -62,7 +62,7 @@ internal class DialogPresenterImpl @Inject constructor() : DialogPresenter {
         _dialogUIState.update { DialogViewState.None }
     }
 
-    override fun showDialog(dialogData: DialogData) {
-        _dialogUIState.update { DialogViewState.ShowDialog(dialogData) }
+    override fun showDialog(data: DialogData) {
+        _dialogUIState.update { DialogViewState.ShowDialog(data) }
     }
 }

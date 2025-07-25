@@ -72,7 +72,7 @@ class HomeViewModel @Inject constructor(
 
     fun onShowDialogClicked() {
         dialogPresenter.showDialog(
-            dialogData = DialogData(
+            data = DialogData(
                 title = ViewStateString.Basic("Dialog Title"),
                 description = ViewStateString.Basic("This is a dialog message. It can be used to show more information or ask for confirmation."),
                 tag = "userId 1337",
