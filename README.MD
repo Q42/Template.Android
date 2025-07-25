@@ -42,6 +42,10 @@ note on changes:
 - Additions should only be added if 90%+ of our projects use it.
 - In your PR description, please include a section: "Why is this important".
 
+## AI prompts
+
+[Handy AI prompts to use with this template](/docs/ai-prompts.md).
+
 ## Features
 
 Only basic features that almost all projects use, were added in this template:
@@ -92,10 +96,9 @@ Run the below command to generate an encoded text representation
 of your keystore. If you don't have one, you
 can [generate a new keystore](https://developer.android.com/studio/publish/app-signing#generate-key).
 
-    openssl base64 < upload-keystore.jks | tr -d '\n' | tee keystore.base64.txt
+    openssl base64 < upload-keystore.jks | tr -d '\n' | pbcopy
 
-The above command will generate a new file called `keystore.base64.txt`. Open the file, copy the
-contents and save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
+The above command will encode the file contents to base64 and copy it to your clipboard. Save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
 Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
 your projects 1Password vault as well:

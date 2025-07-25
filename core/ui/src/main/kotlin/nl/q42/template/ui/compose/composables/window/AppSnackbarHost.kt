@@ -21,7 +21,7 @@ import nl.q42.template.ui.theme.TemplateTheme
 import java.util.UUID
 
 @Composable
-fun SnackBarHost(snackbarHostState: SnackbarHostState) {
+fun AppSnackbarHost(snackbarHostState: SnackbarHostState) {
     SnackbarHost(snackbarHostState) { data ->
         SnackBar(data)
     }
