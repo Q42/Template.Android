@@ -40,6 +40,7 @@ class HomeViewModelTest {
             fetchUserUseCase = fetchUserUseCaseMock,
             getUserFlowUseCase = getUserFlowUseCaseMock,
             snackbarManager = mockk(),
+            dialogPresenter = mockk(),
             navigator = mockk(),
         )
 
@@ -63,6 +64,7 @@ class HomeViewModelTest {
             fetchUserUseCase = fetchUserUseCaseMock,
             getUserFlowUseCase = getUserFlowUseCaseMock,
             snackbarManager = mockk(),
+            dialogPresenter = mockk(),
             navigator = mockk()
         )
 

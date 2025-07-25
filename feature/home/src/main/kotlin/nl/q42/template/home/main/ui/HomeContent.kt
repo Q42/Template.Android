@@ -29,7 +29,8 @@ internal fun HomeContent(
     onOpenSecondScreenClicked: () -> Unit,
     onOpenOnboardingClicked: () -> Unit,
     onShowDummySnackBarClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onShowDialogClicked: () -> Unit
 ) {
 
     ColumnScreenContent(
@@ -65,6 +66,8 @@ internal fun HomeContent(
                 TemplateButton("Disabled button", enabled = false) {}
 
                 TemplateButton("Show dummy SnackBar", onClick = onShowDummySnackBarClicked)
+
+                TemplateButton("Show Dialog for userid 1337", onClick = onShowDialogClicked)
             }
 
         }
@@ -82,6 +85,7 @@ private fun HomeContentErrorPreview() {
             onOpenSecondScreenClicked = {},
             onOpenOnboardingClicked = {},
             onShowDummySnackBarClicked = {},
+            onShowDialogClicked = { },
         )
     }
 }
@@ -97,6 +101,7 @@ private fun HomeContentLoadingPreview() {
             onOpenSecondScreenClicked = {},
             onOpenOnboardingClicked = {},
             onShowDummySnackBarClicked = {},
+            onShowDialogClicked = { },
         )
     }
 }
@@ -111,7 +116,8 @@ private fun HomeContentEmptyPreview() {
             onLoadClicked = {},
             onOpenSecondScreenClicked = {},
             onOpenOnboardingClicked = {},
-            onShowDummySnackBarClicked = {}
+            onShowDummySnackBarClicked = {},
+            onShowDialogClicked = { }
         )
     }
 }

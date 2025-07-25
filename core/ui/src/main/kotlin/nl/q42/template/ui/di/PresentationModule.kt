@@ -6,11 +6,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import nl.q42.template.ui.presentation.dialog.DialogPresenter
+import nl.q42.template.ui.presentation.dialog.DialogPresenterImpl
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class PresentationModule {
+internal class PresentationModule {
 
     @Singleton
     @Provides
@@ -18,5 +20,9 @@ class PresentationModule {
         application.getSystemService(
             Application.ACCESSIBILITY_SERVICE
         ) as AccessibilityManager
+
+    @Provides
+    fun providesDialogPresenter(dialogPresenter: DialogPresenterImpl): DialogPresenter =
+        dialogPresenter
 
 }
