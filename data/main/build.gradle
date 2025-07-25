@@ -6,7 +6,7 @@ apply from: "$rootDir/build.module.library.gradle"
 apply from: "$rootDir/build.dep.network.gradle"
 
 android {
-    namespace = "nl.q42.template.data.user"
+    namespace = "nl.q42.template.data.main"
 }
 
 dependencies {
