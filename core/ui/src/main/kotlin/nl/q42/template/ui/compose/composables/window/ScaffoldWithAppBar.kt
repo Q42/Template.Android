@@ -46,7 +46,7 @@ fun ScaffoldWithAppBar(
     Scaffold(
         containerColor = Color.Transparent,
         snackbarHost = {
-            SnackBarHost(LocalSnackbarHostState.current)
+            AppSnackbarHost(LocalSnackbarHostState.current)
         },
         topBar = {
             TopAppBar(
