@@ -86,3 +86,23 @@ dependencies {
     api platform(libs.firebaseBoM)
     implementation(libs.firebaseCrashlytics)
 }
+
+tasks.register("checkSigningConfig") {
+    doFirst {
+        def cfg = android.signingConfigs.upload
+        if(!cfg.storeFile?.exists()) {
+            throw new GradleException("Keystore file for Signing config 'upload' is not found.")
+        }
+        if (!cfg.storeFile?.exists() ||
+                !cfg.storePassword ||
+                !cfg.keyAlias ||
+                !cfg.keyPassword) {
+            throw new GradleException("Signing config 'upload' is missing values for release build.")
+        }
+    }
+}
+
+// Attach checkSigningConfig to all release variant preBuild tasks
+tasks.matching { it.name =~ /assemble.*Release/ }.configureEach { task ->
+    task.dependsOn("checkSigningConfig")
+}
