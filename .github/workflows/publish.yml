@@ -48,10 +48,6 @@ jobs:
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
 
       - name: Build Prod Release Bundle
-        env:
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew bundleProdRelease --stacktrace
 
       - name: Upload Release Bundle to Artifacts
