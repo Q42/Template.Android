@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 
-val TemplateRippleConfiguration: RippleConfiguration
+val AppRippleConfiguration: RippleConfiguration
     @Composable
     @ReadOnlyComposable
     get() = RippleConfiguration(
-        color = TemplateTheme.colors.surfaceSelected
+        color = AppTheme.colors.surfaceSelected
     )
 
 val NoRippleConfiguration: RippleConfiguration
@@ -23,9 +23,9 @@ val NoRippleConfiguration: RippleConfiguration
         rippleAlpha = RippleAlpha(0.0f, 0.0f, 0.0f, 0.0f)
     )
 
-val TemplateRipple: Indication
+val AppRipple: Indication
     @Composable
     @ReadOnlyComposable
     get() = ripple(
-        color = TemplateTheme.colors.surfaceSelected
+        color = AppTheme.colors.surfaceSelected
     )

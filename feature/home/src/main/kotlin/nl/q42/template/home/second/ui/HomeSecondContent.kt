@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import nl.q42.template.home.second.presentation.HomeSecondViewState
 import nl.q42.template.ui.compose.composables.text.H1Text
-import nl.q42.template.ui.compose.composables.widgets.TemplateButton
+import nl.q42.template.ui.compose.composables.widgets.AppButton
 import nl.q42.template.ui.compose.composables.window.ColumnScreenContent
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.TemplateTheme
 
 @Composable
 fun HomeSecondContent(
@@ -52,14 +52,14 @@ fun HomeSecondContent(
             modifier = Modifier.height(56.dp)
         )
 
-        TemplateButton("Close", onClick = onBackClicked)
+        AppButton("Close", onClick = onBackClicked)
     }
 }
 
 @Composable
 @PreviewAll
 private fun HomeSecondContentPreview() {
-    TemplateTheme {
+    AppTheme {
         HomeSecondContent(
             viewState = HomeSecondViewState(title = "Home Second Screen"),
             onBackClicked = {},
