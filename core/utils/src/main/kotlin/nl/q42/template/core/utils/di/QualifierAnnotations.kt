@@ -1,4 +1,4 @@
-package nl.q42.template.core.network.di
+package nl.q42.template.core.utils.di
 
 import javax.inject.Qualifier
 

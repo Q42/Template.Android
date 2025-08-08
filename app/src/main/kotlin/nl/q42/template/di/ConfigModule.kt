@@ -5,11 +5,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import nl.q42.template.BuildConfig
-import nl.q42.template.core.network.di.ConfigApiMainPath
-import nl.q42.template.core.network.di.ConfigAppScheme
-import nl.q42.template.core.network.di.ConfigAppVersionCode
-import nl.q42.template.core.network.di.ConfigAppVersionName
-import nl.q42.template.core.network.di.ConfigLogHttpCalls
+import nl.q42.template.core.utils.di.ConfigApiMainPath
+import nl.q42.template.core.utils.di.ConfigAppScheme
+import nl.q42.template.core.utils.di.ConfigAppVersionCode
+import nl.q42.template.core.utils.di.ConfigAppVersionName
+import nl.q42.template.core.utils.di.ConfigLogHttpCalls
 import javax.inject.Singleton
 
 /**
