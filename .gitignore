@@ -17,5 +17,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-
-fastlane/report.xml
+secrets.gradle
+upload.keystore.jks
