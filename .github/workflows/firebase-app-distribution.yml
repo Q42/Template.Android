@@ -43,7 +43,8 @@ jobs:
           file: ${{ github.workspace }}/app/build/outputs/apk/prod/release/app-prod-release.apk
           app: ${{ secrets.FIREBASE_PROD_APP_ID }}
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
-          groups: "beta-testers"
+          # groups: "beta-testers" // add this line if you want to specify a group of testers which will be invited to test this build. Make sure to create the group in Firebase Console first.
+          releaseNotes: Release build for ${{ github.ref_name }} branch - Run ${{ github.run_number }} - ${{ github.sha }}
 
       - name: Build Prod Release Bundle
         env:
