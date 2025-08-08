@@ -1,6 +1,6 @@
 package nl.q42.template.ui.theme
 
-object TemplateColorSchemeDark: TemplateColorScheme {
+object AppColorSchemeDark: AppColorScheme {
     override val buttonText = White
     override val accent =  PurpleGrey80
     override val textPrimary = White

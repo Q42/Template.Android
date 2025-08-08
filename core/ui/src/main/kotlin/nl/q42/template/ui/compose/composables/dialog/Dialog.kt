@@ -11,8 +11,8 @@ import nl.q42.template.core.ui.R
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.ViewStateString
 import nl.q42.template.ui.presentation.dialog.DialogData
-import nl.q42.template.ui.theme.PreviewTemplateTheme
-import nl.q42.template.ui.theme.TemplateTheme
+import nl.q42.template.ui.theme.AppTheme
+import nl.q42.template.ui.theme.PreviewAppTheme
 
 @Composable
 fun Dialog(
@@ -21,7 +21,7 @@ fun Dialog(
     onConfirmed: (Any) -> Unit,
 ) {
 
-    val contentColor: Color = TemplateTheme.colors.textPrimary
+    val contentColor: Color = AppTheme.colors.textPrimary
 
     AlertDialog(
         onDismissRequest = {
@@ -74,7 +74,7 @@ fun Dialog(
 @PreviewLightDark
 @Composable
 private fun DialogPreview() {
-    PreviewTemplateTheme {
+    PreviewAppTheme {
         Dialog(
             data = DialogData(
                 title = ViewStateString.Basic("Title"),

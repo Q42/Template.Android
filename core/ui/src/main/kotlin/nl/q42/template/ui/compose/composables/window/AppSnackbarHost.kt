@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import nl.q42.template.ui.compose.get
 import nl.q42.template.ui.presentation.SnackBarSpec
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.Dimens
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.TemplateTheme
 import java.util.UUID
 
 @Composable
@@ -31,8 +31,8 @@ fun AppSnackbarHost(snackbarHostState: SnackbarHostState) {
 private fun SnackBar(
     data: SnackbarData
 ) {
-    val isError = (data.visuals as? TemplateSnackBarVisuals)?.isError ?: false
-    val appColors = TemplateTheme.colors
+    val isError = (data.visuals as? AppSnackBarVisuals)?.isError ?: false
+    val appColors = AppTheme.colors
     val contentColor = if (isError) appColors.errorContent else appColors.textSecondary
     val buttonColors = ButtonDefaults.textButtonColors(contentColor = contentColor)
 
@@ -47,20 +47,20 @@ private fun SnackBar(
             ) {
                 Text(
                     text = data.visuals.actionLabel ?: "",
-                    style = TemplateTheme.typography.body,
+                    style = AppTheme.typography.body,
                 )
             }
         }
     ) {
         Text(
             text = data.visuals.message,
-            style = TemplateTheme.typography.label,
+            style = AppTheme.typography.label,
         )
     }
 }
 
 @Composable
-fun SnackBarSpec.toSnackBarVisuals() = TemplateSnackBarVisuals(
+fun SnackBarSpec.toSnackBarVisuals() = AppSnackBarVisuals(
     message = message.get(),
     actionLabel = actionLabel ?: "",
     withDismissAction = withDismissAction,
@@ -73,14 +73,14 @@ fun SnackBarSpec.toSnackBarVisuals() = TemplateSnackBarVisuals(
 private fun SnackBarPreview() {
     val data = object : SnackbarData {
         override val visuals: SnackbarVisuals
-            get() = TemplateSnackBarVisuals("This is a snackbar", "Action", isError = false)
+            get() = AppSnackBarVisuals("This is a snackbar", "Action", isError = false)
 
         override fun dismiss() {}
 
         override fun performAction() {}
     }
 
-    TemplateTheme {
+    AppTheme {
         SnackBar(data = data)
     }
 }
@@ -90,7 +90,7 @@ private fun SnackBarPreview() {
 fun SnackBarPreviewError() {
     val data = object : SnackbarData {
         override val visuals: SnackbarVisuals
-            get() = TemplateSnackBarVisuals(
+            get() = AppSnackBarVisuals(
                 "This is an error snackbar with very long text",
                 isError = true
             )
@@ -100,12 +100,12 @@ fun SnackBarPreviewError() {
         override fun performAction() {}
     }
 
-    TemplateTheme {
+    AppTheme {
         SnackBar(data = data)
     }
 }
 
-class TemplateSnackBarVisuals(
+class AppSnackBarVisuals(
     override val message: String,
     override val actionLabel: String? = "",
     override val duration: SnackbarDuration = SnackbarDuration.Indefinite,

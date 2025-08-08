@@ -4,23 +4,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import nl.q42.template.ui.theme.AppTheme
 import nl.q42.template.ui.theme.PreviewAll
-import nl.q42.template.ui.theme.TemplateTheme
 
 @Composable
-fun TemplateSurface(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+fun AppSurface(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Surface(
         modifier = modifier,
-        color = TemplateTheme.colors.surface,
-        contentColor = TemplateTheme.colors.textPrimary,
+        color = AppTheme.colors.surface,
+        contentColor = AppTheme.colors.textPrimary,
         content = content
     )
 }
 
 @Composable
 @PreviewAll
-private fun TemplateSurfacePreview() {
-    TemplateTheme {
-        TemplateSurface(Modifier.fillMaxSize()) {}
+private fun AppSurfacePreview() {
+    AppTheme {
+        AppSurface(Modifier.fillMaxSize()) {}
     }
 }

@@ -31,12 +31,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nl.q42.template.core.ui.R
-import nl.q42.template.ui.theme.TemplateTheme
+import nl.q42.template.ui.theme.AppTheme
 
 @Composable
 fun TopAppBar(
     title: String,
-    titleStyle: TextStyle = TemplateTheme.typography.h1,
+    titleStyle: TextStyle = AppTheme.typography.h1,
     titleMaxLines: Int = 1,
     onNavIconClicked: (() -> Unit)?,
     navIconPainter: Painter = painterResource(id = R.drawable.arrow_back_24),
@@ -45,8 +45,8 @@ fun TopAppBar(
     titleContentDescription: String = title,
     scrollBehavior: TopAppBarScrollBehavior,
 ) {
-    val textPrimaryColor = TemplateTheme.colors.textPrimary
-    val scrolledContainerColor = TemplateTheme.colors.surface.copy(alpha = 0.8f)
+    val textPrimaryColor = AppTheme.colors.textPrimary
+    val scrolledContainerColor = AppTheme.colors.surface.copy(alpha = 0.8f)
     val containerColor = scrolledContainerColor.copy(alpha = 0.0f)
 
     CenterAlignedTopAppBar(
@@ -116,7 +116,7 @@ fun TopAppBarPlaceholderSpacingPreview() {
 @Composable
 @Preview
 private fun TopAppBarPreview() {
-    TemplateTheme {
+    AppTheme {
         TopAppBar(
             "Test",
             onNavIconClicked = {},
@@ -134,7 +134,7 @@ private fun TopAppBarPreview() {
 @Composable
 @Preview
 private fun TopAppBarLongTitlePreview() {
-    TemplateTheme {
+    AppTheme {
         TopAppBar(
             title = "Test with a long title, what does material design do now?",
             onNavIconClicked = {},
