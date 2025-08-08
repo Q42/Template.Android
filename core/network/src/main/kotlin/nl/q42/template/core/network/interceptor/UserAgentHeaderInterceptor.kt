@@ -14,8 +14,8 @@ import javax.inject.Singleton
   */
 @Singleton
 class UserAgentHeaderInterceptor @Inject constructor(
-    @ConfigAppVersionName private val appVersionName: String,
-    @ConfigAppVersionCode private val appVersionCode: Int,
+    @param:ConfigAppVersionName private val appVersionName: String,
+    @param:ConfigAppVersionCode private val appVersionCode: Int,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
