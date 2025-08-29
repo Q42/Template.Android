@@ -119,6 +119,10 @@ To change this to your own firebase project, you need to set two secrets:
 - `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found
   in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
 
+With the default configuration, all commits on develop will be pushed to Firebase App Distribution
+and users in the test group "beta-testers" will receive an email with a link to download the
+app.
+
 #### Self-hosted runner
 
 You can run the worlkflows on our self-hosted runner (a mac mini). This is:
