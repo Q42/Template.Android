@@ -19,7 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.aakira.napier.Napier
-import nl.q42.template.core.network.di.ConfigAppScheme
+import nl.q42.template.core.utils.di.ConfigAppScheme
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.homeGraph
 import nl.q42.template.navigation.onboardingDestinations
