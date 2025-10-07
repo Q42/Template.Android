@@ -6,7 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import nl.q42.template.data.main.local.model.UserEntity
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class UserLocalDataSource @Inject constructor() {
 
     private val userFlow = MutableSharedFlow<UserEntity?>() // this is dummy code, replace it with your own local storage implementation.
