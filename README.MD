@@ -100,12 +100,12 @@ can [generate a new keystore](https://developer.android.com/studio/publish/app-s
 
 The above command will encode the file contents to base64 and copy it to your clipboard. Save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
-Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
-your projects 1Password vault as well:
+Copy the file `./dummy_secrets.gradle` to `secrets.gradle` and fill in your own keystore details.
 
-- RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
-- RELEASE_KEYSTORE_ALIAS ('template' for this template)
-- RELEASE_KEY_PASSWORD ('secondpass' for this template)
+Add the content of secrets.gradle to your Github repository secrets as well, as
+`SECRETS_GRADLE`. You can simply copy the content of the file to the github secret, no encoding needed.
+
+Also add the `upload-keystore.jks` file and `secrets.gradle` to 1pw. This is important because the secrets cannot be read by any user in github, only by the CI system.
 
 #### Firebase app distribution
 
