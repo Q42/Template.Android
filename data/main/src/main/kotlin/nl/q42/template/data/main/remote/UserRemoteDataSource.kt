@@ -10,7 +10,9 @@ import nl.q42.template.data.main.local.model.UserEntity
 import nl.q42.template.data.main.mapper.mapToEntity
 import nl.q42.template.data.main.remote.model.UserDTO
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class UserRemoteDataSource @Inject constructor(
     private val userApi: UserApi
 ) {

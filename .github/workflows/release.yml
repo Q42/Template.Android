@@ -6,10 +6,6 @@ on:
     branches: [ '*' ] # run on all pull requests
 
 jobs:
-  prepare-all:
-    uses: ./.github/workflows/_prepare-all.yml
-  prepare-release:
-    uses: ./.github/workflows/_prepare-release.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:

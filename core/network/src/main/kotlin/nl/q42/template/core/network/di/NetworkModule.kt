@@ -9,6 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import nl.q42.template.core.network.interceptor.UserAgentHeaderInterceptor
 import nl.q42.template.core.network.logger.JsonFormattedHttpLogger
+import nl.q42.template.core.utils.di.ConfigApiMainPath
+import nl.q42.template.core.utils.di.ConfigLogHttpCalls
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,8 +34,9 @@ internal class NetworkModule {
                     .readTimeout(1, TimeUnit.MINUTES)
                     .writeTimeout(1, TimeUnit.MINUTES)
 
-                if (logHttpCalls) addInterceptor(HttpLoggingInterceptor(JsonFormattedHttpLogger())
-                    .apply { level = HttpLoggingInterceptor.Level.BODY })
+                if (logHttpCalls) addInterceptor(
+                    HttpLoggingInterceptor(JsonFormattedHttpLogger())
+                        .apply { level = HttpLoggingInterceptor.Level.BODY })
 
                 addInterceptor(userAgentHeaderInterceptor)
             }.build()

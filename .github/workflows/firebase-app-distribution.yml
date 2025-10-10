@@ -6,14 +6,12 @@ on:
     branches: [ 'develop' ]
 
 jobs:
-  prepare-all:
-    uses: ./.github/workflows/_prepare-all.yml
-  prepare-release:
-    uses: ./.github/workflows/_prepare-release.yml
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare Release
+        uses: ./.github/actions/prepare-release
 
       # This will decode the keystore from base 64 text representation that we have stored in secrets
       # and generates and keystore file and gets stored in /android-app path
@@ -46,6 +44,8 @@ jobs:
           file: ${{ github.workspace }}/app/build/outputs/apk/prod/release/app-prod-release.apk
           app: ${{ secrets.FIREBASE_PROD_APP_ID }}
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          # groups: "beta-testers" // add this line if you want to specify a group of testers which will be invited to test this build. Make sure to create the group in Firebase Console first.
+          releaseNotes: Release build for ${{ github.ref_name }} branch - Run ${{ github.run_number }} - ${{ github.sha }}
 
       - name: Build Prod Release Bundle
         run: ./gradlew bundleProdRelease --stacktrace

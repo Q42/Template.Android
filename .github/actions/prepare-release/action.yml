@@ -1,0 +1,11 @@
+name: 'Prepare Release'
+description: 'Updates the Android version code in build.gradle'
+runs:
+  using: "composite"
+  steps:
+    - name: Update Version Code
+      uses: chkfung/android-version-actions@v1.2.3
+      with:
+        gradlePath: app/build.gradle
+        versionCode: ${{ github.run_number }}
+
