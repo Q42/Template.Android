@@ -105,7 +105,7 @@ Copy the file `./dummy_secrets.gradle` to `secrets.gradle` and fill in your own 
 Add the content of secrets.gradle to your Github repository secrets as well, as
 `SECRETS_GRADLE`. You can simply copy the content of the file to the github secret, no encoding needed.
 
-Also add the `upload-keystore.jks` file and `secrets.gradle` to 1pw. This is important because the secrets cannot be read by any user in github, only by the CI system.
+Also add the `upload-keystore.jks` file and `secrets.gradle` to 1password. This is important because the secrets cannot be read by any user in github, only by the CI system.
 
 #### Firebase app distribution
 
