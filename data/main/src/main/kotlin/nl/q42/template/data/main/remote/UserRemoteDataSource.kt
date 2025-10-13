@@ -9,17 +9,14 @@ import nl.q42.template.actionresult.domain.map
 import nl.q42.template.data.main.local.model.UserEntity
 import nl.q42.template.data.main.mapper.mapToEntity
 import nl.q42.template.data.main.remote.model.UserDTO
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-internal class UserRemoteDataSource @Inject constructor(
-    private val userApi: UserApi
+internal class UserRemoteDataSource(
+    private val mainApi: MainApi
 ) {
 
     suspend fun getUser(): ActionResult<UserEntity> = withContext(Dispatchers.IO) {
         val apiActionResult = mapToActionResult {
-            userApi.getUsers("test@test.com")
+            mainApi.getUsers("test@test.com")
         }
 
         when (apiActionResult) {

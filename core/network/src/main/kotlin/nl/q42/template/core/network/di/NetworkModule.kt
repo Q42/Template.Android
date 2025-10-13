@@ -2,62 +2,65 @@ package nl.q42.template.core.network.di
 
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import nl.q42.template.core.network.interceptor.UserAgentHeaderInterceptor
 import nl.q42.template.core.network.logger.JsonFormattedHttpLogger
-import nl.q42.template.core.utils.di.ConfigApiMainPath
-import nl.q42.template.core.utils.di.ConfigLogHttpCalls
+import nl.q42.template.core.utils.config.ApiMainPath
+import nl.q42.template.core.utils.config.IsLogHttpCalls
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal class NetworkModule {
+val networkModule = module {
+    singleOf(::UserAgentHeaderInterceptor)
 
-    @Provides
-    @Singleton
-    fun providesOkhttpClient(
-        @ConfigLogHttpCalls logHttpCalls: Boolean,
-        userAgentHeaderInterceptor: UserAgentHeaderInterceptor,
-    ) =
-        OkHttpClient.Builder()
-            .apply {
-                connectTimeout(1, TimeUnit.MINUTES)
-                    .readTimeout(1, TimeUnit.MINUTES)
-                    .writeTimeout(1, TimeUnit.MINUTES)
-
-                if (logHttpCalls) addInterceptor(
-                    HttpLoggingInterceptor(JsonFormattedHttpLogger())
-                        .apply { level = HttpLoggingInterceptor.Level.BODY })
-
-                addInterceptor(userAgentHeaderInterceptor)
-            }.build()
-
-    @Singleton
-    @Provides
-    fun provideRetrofit(
-        httpClient: OkHttpClient,
-        @ConfigApiMainPath apiMainPath: String,
-    ): Retrofit {
-        val contentType = "application/json".toMediaType()
-
-        // When the server adds new fields to the response, we don't want to crash
-        val json = Json { ignoreUnknownKeys = true }
-
-        return Retrofit.Builder()
-            .baseUrl(apiMainPath)
-            .addConverterFactory(json.asConverterFactory(contentType))
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
-            .client(httpClient)
-            .build()
+    single<OkHttpClient> {
+        provideOkHttpClient(get(), get())
     }
 
+    single<Retrofit> {
+        provideRetrofit(get(), get())
+    }
+}
+
+internal fun provideOkHttpClient(
+    logHttpCalls: IsLogHttpCalls,
+    userAgentHeaderInterceptor: UserAgentHeaderInterceptor,
+): OkHttpClient {
+    return OkHttpClient.Builder()
+        .apply {
+            connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
+                .writeTimeout(1, TimeUnit.MINUTES)
+
+            if (logHttpCalls.value) {
+                addInterceptor(
+                    HttpLoggingInterceptor(JsonFormattedHttpLogger())
+                        .apply { level = HttpLoggingInterceptor.Level.BODY }
+                )
+            }
+
+            addInterceptor(userAgentHeaderInterceptor)
+        }.build()
+}
+
+internal fun provideRetrofit(
+    httpClient: OkHttpClient,
+    apiMainPath: ApiMainPath,
+): Retrofit {
+    val contentType = "application/json".toMediaType()
+
+    // When the server adds new fields to the response, we don't want to crash
+    val json = Json { ignoreUnknownKeys = true }
+
+    return Retrofit.Builder()
+        .baseUrl(apiMainPath.value)
+        .addConverterFactory(json.asConverterFactory(contentType))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .client(httpClient)
+        .build()
 }

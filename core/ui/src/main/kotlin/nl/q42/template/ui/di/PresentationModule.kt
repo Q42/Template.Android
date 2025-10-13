@@ -1,28 +1,29 @@
 package nl.q42.template.ui.di
 
 import android.app.Application
+import android.content.Context
 import android.view.accessibility.AccessibilityManager
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.MainScope
+import nl.q42.template.ui.compose.MainCoroutineScope
+import nl.q42.template.ui.presentation.SnackbarPresenter
 import nl.q42.template.ui.presentation.dialog.DialogPresenter
 import nl.q42.template.ui.presentation.dialog.DialogPresenterImpl
-import javax.inject.Singleton
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal class PresentationModule {
+val presentationModule = module {
+    single<AccessibilityManager> {
+        provideAccessibilityManager(get())
+    }
 
-    @Singleton
-    @Provides
-    fun provideAccessibilityManager(application: Application): AccessibilityManager =
-        application.getSystemService(
-            Application.ACCESSIBILITY_SERVICE
-        ) as AccessibilityManager
+    factory { MainCoroutineScope(MainScope()) }
 
-    @Provides
-    fun providesDialogPresenter(dialogPresenter: DialogPresenterImpl): DialogPresenter =
-        dialogPresenter
-
+    singleOf(::DialogPresenterImpl) { bind<DialogPresenter>() }
+    singleOf(::SnackbarPresenter)
 }
+
+internal fun provideAccessibilityManager(applicationContext: Context): AccessibilityManager =
+    applicationContext.getSystemService(
+        Application.ACCESSIBILITY_SERVICE
+    ) as AccessibilityManager

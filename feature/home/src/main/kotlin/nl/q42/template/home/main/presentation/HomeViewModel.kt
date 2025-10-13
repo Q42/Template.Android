@@ -2,7 +2,6 @@ package nl.q42.template.home.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,19 +16,17 @@ import nl.q42.template.domain.main.usecase.GetUserFlowUseCase
 import nl.q42.template.feature.home.R
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import nl.q42.template.ui.presentation.SnackbarManager
+import nl.q42.template.ui.presentation.SnackbarPresenter
 import nl.q42.template.ui.presentation.ViewStateString
 import nl.q42.template.ui.presentation.dialog.DialogData
 import nl.q42.template.ui.presentation.dialog.DialogPresenter
-import javax.inject.Inject
 import kotlin.random.Random
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+class HomeViewModel(
     private val fetchUserUseCase: FetchUserUseCase,
     private val getUserFlowUseCase: GetUserFlowUseCase,
     private val navigator: RouteNavigator,
-    private val snackbarManager: SnackbarManager,
+    private val snackbarPresenter: SnackbarPresenter,
     private val dialogPresenter: DialogPresenter
 ) : ViewModel(), RouteNavigator by navigator, DialogPresenter by dialogPresenter {
 
@@ -44,7 +41,7 @@ class HomeViewModel @Inject constructor(
     override fun onDialogConfirmed(tag: Any) {
         dialogPresenter.onDialogConfirmed(tag)
         // take action based on dialog tag
-        snackbarManager.showSnackbar(message = ViewStateString.Basic("Dialog confirmed with tag: $tag"))
+        snackbarPresenter.showSnackbar(message = ViewStateString.Basic("Dialog confirmed with tag: $tag"))
     }
 
     fun onScreenResumed() {
@@ -64,7 +61,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onShowDummySnackBarClicked() {
-        snackbarManager.showSnackbar(
+        snackbarPresenter.showSnackbar(
             message = ViewStateString.Basic("A SnackBar message. Random: " + Random.nextInt() % 100),
             isError = false
         )

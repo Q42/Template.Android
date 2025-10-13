@@ -5,9 +5,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import nl.q42.template.domain.main.model.User
 import nl.q42.template.domain.main.repo.UserRepository
-import javax.inject.Inject
 
-class GetUserFlowUseCase @Inject constructor(private val userRepository: UserRepository) {
+class GetUserFlowUseCase(private val userRepository: UserRepository) {
 
     operator fun invoke(): Flow<User?> =
         userRepository

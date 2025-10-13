@@ -1,48 +1,21 @@
 package nl.q42.template.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import nl.q42.template.BuildConfig
-import nl.q42.template.core.utils.di.ConfigApiMainPath
-import nl.q42.template.core.utils.di.ConfigAppScheme
-import nl.q42.template.core.utils.di.ConfigAppVersionCode
-import nl.q42.template.core.utils.di.ConfigAppVersionName
-import nl.q42.template.core.utils.di.ConfigLogHttpCalls
-import javax.inject.Singleton
+import nl.q42.template.core.utils.config.ApiMainPath
+import nl.q42.template.core.utils.config.AppScheme
+import nl.q42.template.core.utils.config.AppVersionCode
+import nl.q42.template.core.utils.config.AppVersionName
+import nl.q42.template.core.utils.config.IsLogHttpCalls
+import org.koin.dsl.module
 
 /**
  * All application wide config can go in here. Used so that other modules don't need to access the BuildConfig, which has drawbacks and can cause bugs:
  * https://blog.dipien.com/stop-generating-the-buildconfig-on-your-android-modules-7d82dd7f20f1
  */
-@Module
-@InstallIn(SingletonComponent::class)
-class ConfigModule {
-
-    @Provides
-    @Singleton
-    @ConfigApiMainPath
-    fun providesApiMainPath(): String = BuildConfig.config_api_main_url
-
-    @Provides
-    @Singleton
-    @ConfigLogHttpCalls
-    fun configIsLoggingHttpCalls(): Boolean = BuildConfig.config_log_http_calls
-
-    @Provides
-    @Singleton
-    @ConfigAppScheme
-    fun providesAppScheme(): String = BuildConfig.config_app_scheme
-
-    @Provides
-    @Singleton
-    @ConfigAppVersionName
-    fun providesAppVersionName(): String = BuildConfig.VERSION_NAME
-
-    @Provides
-    @Singleton
-    @ConfigAppVersionCode
-    fun providesAppVersionCode(): Int = BuildConfig.VERSION_CODE
-
+val configModule = module {
+    single { ApiMainPath(BuildConfig.config_api_main_url) }
+    single { IsLogHttpCalls(BuildConfig.config_log_http_calls) }
+    single { AppScheme(BuildConfig.config_app_scheme) }
+    single { AppVersionName(BuildConfig.VERSION_NAME) }
+    single { AppVersionCode(BuildConfig.VERSION_CODE) }
 }

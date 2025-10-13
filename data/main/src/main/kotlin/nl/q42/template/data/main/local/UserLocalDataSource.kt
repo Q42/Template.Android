@@ -2,16 +2,12 @@ package nl.q42.template.data.main.local
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import nl.q42.template.data.main.local.model.UserEntity
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-internal class UserLocalDataSource @Inject constructor() {
+internal class UserLocalDataSource() {
 
-    private val userFlow = MutableSharedFlow<UserEntity?>() // this is dummy code, replace it with your own local storage implementation.
+    private val userFlow =
+        MutableSharedFlow<UserEntity?>() // this is dummy code, replace it with your own local storage implementation.
 
     suspend fun setUser(userEntity: UserEntity) {
 

@@ -1,18 +1,13 @@
 package nl.q42.template.onboarding.start.presentation
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import javax.inject.Inject
 
-@HiltViewModel
-class OnboardingStartViewModel @Inject constructor(
+class OnboardingStartViewModel(
     private val navigator: RouteNavigator,
-    savedStateHandle: SavedStateHandle,
 ) : ViewModel(), RouteNavigator by navigator {
 
     private val _uiState = MutableStateFlow(OnboardingStartViewState("Onboarding start"))
