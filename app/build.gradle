@@ -5,6 +5,13 @@ plugins {
     alias libs.plugins.compose.compiler
 }
 
+if (file("$rootDir/secrets.gradle").exists()) {
+    apply from: "$rootDir/secrets.gradle"
+} else {
+    // Dummy secrets file for local development
+    println "[WARNING] Using dummy secrets file. You will only be able to create debug builds. Please create a secrets.gradle file in the project root with your signing secrets if you want to create release builds."
+    apply from:  "$rootDir/dummy_secrets.gradle"
+}
 apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"
 
@@ -29,9 +36,9 @@ android {
     signingConfigs {
         upload {
             storeFile file("../upload-keystore.jks")
-            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            storePassword signingSecrets.upload.storePassword
+            keyAlias signingSecrets.upload.keyAlias
+            keyPassword signingSecrets.upload.keyPassword
         }
     }
 
