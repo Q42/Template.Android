@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -122,7 +119,7 @@ private fun TopAppBarPreview() {
             onNavIconClicked = {},
             actions = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.Share, null)
+                    Icon(painter = painterResource(R.drawable.ic_share), null)
                 }
             },
             titleContentDescription = "Title Description",
@@ -140,10 +137,10 @@ private fun TopAppBarLongTitlePreview() {
             onNavIconClicked = {},
             actions = {
                 IconButton(onClick = {/* Do Something*/ }) {
-                    Icon(Icons.Filled.Share, null)
+                    Icon(painter = painterResource(R.drawable.ic_share), null)
                 }
                 IconButton(onClick = {/* Do Something*/ }) {
-                    Icon(Icons.Filled.Settings, null)
+                    Icon(painter = painterResource(R.drawable.ic_share), null)
                 }
             },
             titleContentDescription = "titleContentDescription",

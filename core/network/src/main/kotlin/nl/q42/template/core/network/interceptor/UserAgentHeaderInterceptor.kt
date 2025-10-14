@@ -1,8 +1,8 @@
 package nl.q42.template.core.network.interceptor
 
 import android.os.Build
-import nl.q42.template.core.network.di.ConfigAppVersionCode
-import nl.q42.template.core.network.di.ConfigAppVersionName
+import nl.q42.template.core.utils.di.ConfigAppVersionCode
+import nl.q42.template.core.utils.di.ConfigAppVersionName
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -14,8 +14,8 @@ import javax.inject.Singleton
   */
 @Singleton
 class UserAgentHeaderInterceptor @Inject constructor(
-    @ConfigAppVersionName private val appVersionName: String,
-    @ConfigAppVersionCode private val appVersionCode: Int,
+    @param:ConfigAppVersionName private val appVersionName: String,
+    @param:ConfigAppVersionCode private val appVersionCode: Int,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
