@@ -142,6 +142,11 @@ Using Bitrise or another CI tool instead? Then you can skip the above and delete
 
 - `./.github/workflows`
 
+### Colors import from Figma
+
+This project contains a script to convert color tokens from Figma to Compose format.
+You can find the script and instructions in the `./scripts/colorparser/README.md` file.
+
 ## Setup decisions
 
 ### Clean architecture
