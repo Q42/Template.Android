@@ -43,4 +43,4 @@ translations are empty/missing.
     - Converts iOS-style parameters (`%@`) to Android format (`%s`)
     - Removes server-specific and iOS-specific strings
     - Cleans up formatting and comments
-3. Writes the translations to `libraries/coreui/src/main/res/values[-xx]/strings.xml`
+3. Writes the translations to `/core/ui/src/main/res/values[-xx]/strings.xml`
