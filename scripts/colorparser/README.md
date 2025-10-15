@@ -3,6 +3,8 @@
 This script converts color tokens from Figma to Compose format. It is designed to be used with the
 figma 'Color2Code' plugin, which exports the Color Tokens.
 
+Note: the script probably needs a few adjustments per project, based on the figma setup.
+
 ## Requirements
 
 - Android Studio
