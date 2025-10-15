@@ -6,11 +6,14 @@ import java.io.FileWriter
 /**
  * Check README.md for info about this script.
  *
- * This script probably needs a few adjustments per project, based on the figma setup.
+ * This script might need a few adjustments per project, based on the figma setup. At
+ * the very least, update the app name below.
  */
 
-val themePackage = "nl.q42.template.ui.theme"
-val outputPath = "./core/ui/src/main/kotlin/nl/q42/template/ui/theme"
+val appName = "template"
+
+val themePackage = "nl.q42.$appName.ui.theme"
+val outputPath = "./core/ui/src/main/kotlin/nl/q42/$appName/ui/theme"
 val inputFile = File("scripts/colorparser/color_parser_input.kt")
 
 data class ThemeWriter(
