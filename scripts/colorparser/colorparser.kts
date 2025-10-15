@@ -13,8 +13,8 @@ import java.io.FileWriter
 val appName = "template"
 
 val themePackage = "nl.q42.$appName.ui.theme"
-val outputPath = "./core/ui/src/main/kotlin/nl/q42/$appName/ui/theme"
-val inputFile = File("scripts/colorparser/color_parser_input.kt")
+val outputPath = "../../core/ui/src/main/kotlin/nl/q42/$appName/ui/theme"
+val inputFile = File("color_parser_input.kt")
 
 data class ThemeWriter(
     val classSuffix: String,
