@@ -21,15 +21,15 @@ figma 'Color2Code' plugin, which exports the Color Tokens.
    `Camel case naming` select `Android` and `Semantics`.
    ![Color 2 Code settings](color_parser_color_2_code.png)
 3. Copy the output of the plugin and paste it into the `color_parser_input.txt` file.
-4. Run the `ColorParser.kt` script by clicking the play button in the file or running
+4. Run the `ColorParser.kts` script by clicking the play button in the file or running
 
-   `./scripts/colorparser/colorparser.kts`
+   `./scripts/colorparser/ColorParser.kts`
 
 5. The script will update the `AppColorScheme.kt` file and the corresponding files for both the
    light and dark themes.
 
 ## File Structure
 
-- `color_parser_input.txt`: Paste the output of the 'Color2Code' plugin here.
-- `colorparser.kt`: Script to parse the color tokens and generate the Compose code.
+- `color_parser_input.kt`: Paste the output of the 'Color2Code' plugin here.
+- `ColorParser.kts`: Script to parse the color tokens and generate the Compose code.
   `
