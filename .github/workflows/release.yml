@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ '*' ] # run on all pull requests
 
-# Cancel any in-progress runs of this workflow if a new run is triggered in scope of the same branch or PR
+# Cancel any in-progress runs of this workflow if a new run is triggered within the same branch or PR
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
