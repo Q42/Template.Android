@@ -10,7 +10,7 @@ from pathlib import Path
 folder = Path(os.path.abspath(os.path.dirname(__file__))).parent.as_posix()
 
 oldPackageName = "template"
-oldProjectName = "TemplateAndroid"
+oldProjectName = "Template"
 
 print("Enter new project name:")
 newProjectName = input()
