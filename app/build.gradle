@@ -101,7 +101,7 @@ tasks.register("checkSigningConfig") {
         if(!cfg.storeFile?.exists()) {
             throw new GradleException("Keystore file for Signing config 'upload' is not found.")
         }
-        if (!cfg.storeFile?.exists() ||
+        else if (
                 !cfg.storePassword ||
                 !cfg.keyAlias ||
                 !cfg.keyPassword) {
