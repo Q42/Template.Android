@@ -28,7 +28,7 @@ internal class UserRemoteDataSource @Inject constructor(
             }
 
             is ActionResult.Error -> {
-                Napier.e(apiActionResult.exception) { "getUser failed" }
+                Napier.e(apiActionResult.throwable) { "getUser failed" }
                 apiActionResult
             }
         }
