@@ -25,8 +25,8 @@ private fun isTooManyRequests(httpStatusCode: Int?) = httpStatusCode == TOO_MANY
 suspend fun <T : Any> mapToActionResult(request: suspend () -> NetworkResponse<T, ApiErrorResponse>): ActionResult<T> =
     try {
         request().networkResponseToActionResult()
-    } catch (e: Exception) {
-        if (e is CancellationException) ActionResult.Error.Cancelled(e) else ActionResult.Error.Other(e)
+    } catch (t: Throwable) {
+        if (t is CancellationException) ActionResult.Error.Cancelled(t) else ActionResult.Error.Other(t)
     }
 
 private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActionResult(): ActionResult<T> =
