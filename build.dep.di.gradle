@@ -1,7 +1,3 @@
-apply {
-    plugin(libs.plugins.ksp.get().getPluginId())
-}
-
 dependencies {
     implementation(libs.koin)
 }
