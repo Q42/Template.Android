@@ -5,6 +5,13 @@ plugins {
     alias libs.plugins.compose.compiler
 }
 
+if (file("$rootDir/secrets.gradle").exists()) {
+    apply from: "$rootDir/secrets.gradle"
+} else {
+    // Dummy secrets file for local development
+    println "[WARNING] Using dummy secrets file. You will only be able to create debug builds. Please create a secrets.gradle file in the project root with your signing secrets if you want to create release builds."
+    apply from:  "$rootDir/dummy_secrets.gradle"
+}
 apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"
 
@@ -26,12 +33,20 @@ android {
         buildConfig = true
     }
 
+    packaging {
+        resources {
+            // Exclude duplicate META-INF files from dependencies to avoid build conflicts
+            // okhttp3:logging-interceptor and jspecify both contain META-INF/versions/9/OSGI-INF/MANIFEST.MF
+            excludes += '/META-INF/versions/9/OSGI-INF/MANIFEST.MF'
+        }
+    }
+
     signingConfigs {
         upload {
             storeFile file("../upload-keystore.jks")
-            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            storePassword signingSecrets.upload.storePassword
+            keyAlias signingSecrets.upload.keyAlias
+            keyPassword signingSecrets.upload.keyPassword
         }
     }
 
@@ -78,4 +93,24 @@ dependencies {
 
     api platform(libs.firebaseBoM)
     implementation(libs.firebaseCrashlytics)
+}
+
+tasks.register("checkSigningConfig") {
+    doFirst {
+        def cfg = android.signingConfigs.upload
+        if(!cfg.storeFile?.exists()) {
+            throw new GradleException("Keystore file for Signing config 'upload' is not found.")
+        }
+        else if (
+                !cfg.storePassword ||
+                !cfg.keyAlias ||
+                !cfg.keyPassword) {
+            throw new GradleException("Signing config 'upload' is missing values for release build.")
+        }
+    }
+}
+
+// Attach checkSigningConfig to all release variant preBuild tasks
+tasks.matching { it.name =~ /assemble.*Release/ }.configureEach { task ->
+    task.dependsOn("checkSigningConfig")
 }

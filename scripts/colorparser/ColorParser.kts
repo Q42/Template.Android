@@ -19,31 +19,24 @@ val inputFile = File("color_parser_input.kt")
 data class ThemeWriter(
     val classSuffix: String,
     val inputColorNameSuffix: String,
-    val writer: FileWriter
+    val writer: FileWriter = FileWriter(File("$outputPath/AppColorScheme$classSuffix.kt"))
 )
 
 val themeWriters = listOf(
     ThemeWriter(
         classSuffix = "Light",
         inputColorNameSuffix = "_light",
-        writer = FileWriter(File("$outputPath/AppColorSchemeLight.kt"))
     ),
     ThemeWriter(
         classSuffix = "Dark",
         inputColorNameSuffix = "_dark",
-        writer = FileWriter(File("$outputPath/AppColorSchemeDark.kt"))
     )
 )
-
-fun FileWriter.appendColorLine(inputColorLine: String, inputColorNameSuffix: String) {
-    append("  ") // Indentation
-    appendLine(inputColorLine.replace(inputColorNameSuffix, ""))
-}
 
 val colorAssignmentPattern = " = Color\\(0x[0-9a-fA-F]{8}\\)".toRegex()
 
 fun FileWriter.appendInterfaceFieldLineIfMatches(inputLine: String, inputColorNameSuffix: String) {
-    if (inputLine.contains(inputColorNameSuffix)) {
+    if (inputLine.trim().endsWith(inputColorNameSuffix)) {
         appendLine(
             "    " + inputLine.replace(inputColorNameSuffix, "")
                 .replace(colorAssignmentPattern, ": Color")
@@ -52,7 +45,7 @@ fun FileWriter.appendInterfaceFieldLineIfMatches(inputLine: String, inputColorNa
 }
 
 fun ThemeWriter.appendLineIfMatches(line: String) {
-    if (line.contains(inputColorNameSuffix)) {
+    if (line.trim().endsWith(inputColorNameSuffix)) {
         writer.append("  override ") // Indentation + override keyword
         writer.appendLine(line.replace(inputColorNameSuffix, ""))
     }
