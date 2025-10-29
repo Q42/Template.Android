@@ -10,7 +10,7 @@ if (file("$rootDir/secrets.gradle").exists()) {
 } else {
     // Dummy secrets file for local development
     println "[WARNING] Using dummy secrets file. You will only be able to create debug builds. Please create a secrets.gradle file in the project root with your signing secrets if you want to create release builds."
-    apply from:  "$rootDir/dummy_secrets.gradle"
+    apply from: "$rootDir/dummy_secrets.gradle"
 }
 apply from: "$rootDir/build.module.feature-and-app.gradle"
 apply from: "$rootDir/build.dep.navigation.gradle"
@@ -37,7 +37,7 @@ android {
         resources {
             // Exclude duplicate META-INF files from dependencies to avoid build conflicts
             // okhttp3:logging-interceptor and jspecify both contain META-INF/versions/9/OSGI-INF/MANIFEST.MF
-            excludes += '/META-INF/versions/9/OSGI-INF/MANIFEST.MF'
+            excludes += '**/META-INF/versions/*/OSGI-INF/MANIFEST.MF'
         }
     }
 

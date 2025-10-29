@@ -17,8 +17,7 @@ val presentationModule = module {
         provideAccessibilityManager(get())
     }
 
-    factory { MainCoroutineScope(MainScope()) }
-
+    single { MainCoroutineScope(MainScope()) }
     singleOf(::DialogPresenterImpl) { bind<DialogPresenter>() }
     singleOf(::SnackbarPresenter)
 }

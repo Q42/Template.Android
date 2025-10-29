@@ -13,6 +13,11 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
 
+
+/**
+ * Initializes the Koin dependency injection framework, setting up the complete
+ * dependency graph for the application. Call on Application start.
+ */
 fun initDependencyInjection(application: MainApplication) {
     startKoin {
         androidLogger()

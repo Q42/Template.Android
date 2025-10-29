@@ -9,6 +9,12 @@ import org.koin.test.verify.verify
 
 class KoinCheckModulesTest : KoinTest {
 
+    /**
+     * Note: this checks that all the dependencies in the DI configuration work well among them,
+     * but it doesn't prevent crashes at runtime if the consumer code of the DI dependencies misses
+     * a required parameter. This will happen for example with a ViewModel(val myID: String) where
+     * the caller of koinViewModel() forgets to pass the myID parameter or the parameter's type doesn't match.
+     */
     @OptIn(KoinExperimentalAPI::class)
     @Test
     fun `Check all Koin modules and their dependencies`() {
