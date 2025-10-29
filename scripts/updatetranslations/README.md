@@ -8,7 +8,7 @@ Fetches and updates translation files from PO Editor.
 
 ## Usage
 
-1. Set the `POEDITOR_API_KEY` in the scrip to your PoEditor API key.
+1. Set the `POEDITOR_API_KEY` in the script to your PoEditor API key.
 2. Set the `POEDITOR_PROJECT_ID` in the script to your PoEditor Project Id.
 2. Modify the `languages` list in the script to include the desired language codes.
 3. Run the script from the root of the project:
