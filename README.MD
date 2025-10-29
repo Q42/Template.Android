@@ -100,12 +100,12 @@ can [generate a new keystore](https://developer.android.com/studio/publish/app-s
 
 The above command will encode the file contents to base64 and copy it to your clipboard. Save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
 
-Also [add these repository secrets](./settings/secrets/actions/new) in github, and store them in
-your projects 1Password vault as well:
+Copy the file `./dummy_secrets.gradle` to `secrets.gradle` and fill in your own keystore details.
 
-- RELEASE_KEYSTORE_PASSWORD ('firstpass' for this template)
-- RELEASE_KEYSTORE_ALIAS ('template' for this template)
-- RELEASE_KEY_PASSWORD ('secondpass' for this template)
+Add the content of secrets.gradle to your Github repository secrets as well, as
+`SECRETS_GRADLE`. You can simply copy the content of the file to the github secret, no encoding needed.
+
+Also add the `upload-keystore.jks` file and `secrets.gradle` to 1password. This is important because the secrets cannot be read by any user in github, only by the CI system.
 
 #### Firebase app distribution
 
@@ -119,9 +119,9 @@ To change this to your own firebase project, you need to set two secrets:
 - `FIREBASE_CREDENTIALS` from your firebase project. More info how to obtain it can be found
   in [creating a service account](https://github.com/nickwph/firebase-app-distribution-action?tab=readme-ov-file#download-credentials-from-firebase).
 
-With the default configuration, all commits on develop will be pushed to Firebase App Distribution
-and users in the test group "beta-testers" will receive an email with a link to download the
-app.
+With the default configuration, all commits on develop will be pushed to Firebase App Distribution.
+To also make these available to a test group, you can enable the `groups` parameter in the
+[firebase yml](.github/workflows/firebase-app-distribution.yml) file.
 
 #### Self-hosted runner
 

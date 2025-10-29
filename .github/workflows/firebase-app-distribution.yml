@@ -5,6 +5,11 @@ on:
   pull_request:
     branches: [ 'develop' ]
 
+# Cancel any in-progress runs of this workflow if a new run is triggered within the same branch or PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
@@ -22,12 +27,13 @@ jobs:
         run: |
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d <keystore-b64.txt >upload-keystore.jks
+      # The secrets.gradle file that is stored as text, does not need to be decoded
+      # and can be directly written to a file
+      # This file is used by the gradle build to sign the APK
+      - name: Create secrets.gradle
+        run: echo "${{ secrets.SECRETS_GRADLE }}" > secrets.gradle
 
       - name: Build Prod Release APK
-        env:
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew assembleProdRelease --stacktrace
 
       - name: Upload Release APK to Artifacts
@@ -44,13 +50,9 @@ jobs:
           app: ${{ secrets.FIREBASE_PROD_APP_ID }}
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
           # groups: "beta-testers" // add this line if you want to specify a group of testers which will be invited to test this build. Make sure to create the group in Firebase Console first.
-          releaseNotes: Release build for ${{ github.ref_name }} branch - Run ${{ github.run_number }} - ${{ github.sha }}
+          release-notes: Release build for ${{ github.ref_name }} branch - Run ${{ github.run_number }} - ${{ github.sha }}
 
       - name: Build Prod Release Bundle
-        env:
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          RELEASE_KEYSTORE_ALIAS: ${{ secrets.RELEASE_KEYSTORE_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew bundleProdRelease --stacktrace
 
       - name: Upload Release Bundle to Artifacts
