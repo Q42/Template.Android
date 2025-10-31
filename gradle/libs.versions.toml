@@ -2,7 +2,7 @@
 jvmTarget = "21"
 kotlin = "2.2.20"
 # should match kotlin https://github.com/google/ksp/releases
-ksp = "2.2.20-2.0.4"
+ksp = "2.3.0"
 gradlePlugin = "8.11.2"
 googleServices = "4.4.4"
 crashlyticsPlugin = "3.0.6"
