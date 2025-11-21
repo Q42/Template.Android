@@ -33,7 +33,7 @@ dependencies {
     implementation project(':core:utils')
     implementation(libs.napier)
     implementation(libs.activityCompose)
-    implementation(libs.hiltNavigationCompose)
+    implementation(libs.koin)
 
     testImplementation libs.junit
     testImplementation libs.kotlinx.coroutines.test

@@ -4,14 +4,13 @@ import androidx.annotation.CallSuper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import javax.inject.Inject
 
 /**
  * Usage:
  *
  * * ViewModel:
  * ```
- * @inject constructor (
+ * constructor (
  *   private val dialogPresenter: DialogPresenter
  * ) : ViewModel(), DialogPresenter by dialogPresenter {
  *   override fun onDialogConfirmed(tag: Any) {
@@ -47,7 +46,7 @@ interface DialogPresenter {
     val dialogUIState: Flow<DialogViewState>
 }
 
-internal class DialogPresenterImpl @Inject constructor() : DialogPresenter {
+internal class DialogPresenterImpl : DialogPresenter {
 
     private val _dialogUIState = MutableStateFlow<DialogViewState>(DialogViewState.None)
     override val dialogUIState: Flow<DialogViewState> = _dialogUIState

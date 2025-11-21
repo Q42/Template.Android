@@ -6,7 +6,7 @@ import nl.q42.template.data.main.remote.model.UserDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface UserApi {
+internal interface MainApi {
 
     /**
      * note: [dummyEmailForResponse] is set because this test server mirrors the request as response.
