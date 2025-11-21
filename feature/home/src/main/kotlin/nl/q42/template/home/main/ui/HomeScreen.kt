@@ -2,16 +2,16 @@ package nl.q42.template.home.main.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import nl.q42.template.home.main.presentation.HomeViewModel
 import nl.q42.template.ui.compose.OnLifecycleResume
 import nl.q42.template.ui.compose.composables.dialog.InitDialogPresenter
 import nl.q42.template.ui.compose.composables.window.ScaffoldWithAppBar
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = koinViewModel()
 ) {
 
     OnLifecycleResume(viewModel::onScreenResumed)

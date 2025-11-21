@@ -3,19 +3,18 @@ package nl.q42.template
 import android.app.Application
 import android.os.StrictMode
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import dagger.hilt.android.HiltAndroidApp
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
+import nl.q42.template.di.initDependencyInjection
 import nl.q42.template.logging.CrashlyticsLogger
 
-@HiltAndroidApp
 class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
+            FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = false
             Napier.base(DebugAntilog())
 
             StrictMode.setThreadPolicy(
@@ -27,8 +26,10 @@ class MainApplication : Application() {
                     .build()
             )
         } else {
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+            FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = true
             Napier.base(CrashlyticsLogger())
         }
+
+        initDependencyInjection(this)
     }
 }

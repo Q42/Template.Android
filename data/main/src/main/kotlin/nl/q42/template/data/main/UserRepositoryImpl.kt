@@ -10,9 +10,8 @@ import nl.q42.template.data.main.local.model.mapToUser
 import nl.q42.template.data.main.remote.UserRemoteDataSource
 import nl.q42.template.domain.main.model.User
 import nl.q42.template.domain.main.repo.UserRepository
-import javax.inject.Inject
 
-internal class UserRepositoryImpl @Inject constructor(
+internal class UserRepositoryImpl(
     private val userRemoteDataSource: UserRemoteDataSource,
     private val userLocalDataSource: UserLocalDataSource,
 ) : UserRepository {

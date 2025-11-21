@@ -1,9 +1,3 @@
-apply {
-    plugin(libs.plugins.hilt.get().getPluginId())
-    plugin(libs.plugins.ksp.get().getPluginId())
-}
-
 dependencies {
-    implementation(libs.hilt)
-    ksp(libs.hilt.ksp)
+    implementation(libs.koin)
 }

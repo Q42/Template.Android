@@ -3,16 +3,13 @@ package nl.q42.template.home.second.presentation
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeSecondViewModel @Inject constructor(
+class HomeSecondViewModel(
     private val navigator: RouteNavigator,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel(), RouteNavigator by navigator {
