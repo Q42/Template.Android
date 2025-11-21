@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import nl.q42.template.onboarding.start.presentation.OnboardingStartViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun OnboardingStartScreen(
-    viewModel: OnboardingStartViewModel = hiltViewModel(),
+    viewModel: OnboardingStartViewModel = koinViewModel(),
 ) {
 
     val viewState by viewModel.uiState.collectAsStateWithLifecycle()

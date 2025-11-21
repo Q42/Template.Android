@@ -98,7 +98,8 @@ can [generate a new keystore](https://developer.android.com/studio/publish/app-s
 
     openssl base64 < upload-keystore.jks | tr -d '\n' | pbcopy
 
-The above command will encode the file contents to base64 and copy it to your clipboard. Save it to your repo's github secrets in the variable KEYSTORE_BASE_64.
+The above command will encode the file contents to base64 and copy it to your clipboard. Save it to
+your repo's github secrets in the variable KEYSTORE_BASE_64.
 
 Copy the file `./dummy_secrets.gradle` to `secrets.gradle` and fill in your own keystore details.
 
@@ -141,6 +142,17 @@ For security reasons, using the mac mini is not possible on a public repo (like 
 Using Bitrise or another CI tool instead? Then you can skip the above and delete this folder:
 
 - `./.github/workflows`
+
+### Translations import from PO Editor
+
+We often use PO editor in our projects as a string management tool. You can find the script
+and instructions to auto-fetch and update strings in the `./scripts/updatetranslations/README.md`
+file.
+
+### Colors import from Figma
+
+This project contains a script to convert color tokens from Figma to Compose format.
+You can find the script and instructions in the `./scripts/colorparser/README.md` file.
 
 ## Setup decisions
 

@@ -8,7 +8,7 @@ Let's collect some useful AI prompts for code generation or other tasks.
 
 ### Creating a new screen, adding it to the navigation graph and creating a XViewModel, XViewState, XScreen, XContent set for it.
 
-... TODO
+X is HelpCategories here. Duplicate XScreen, XContent, XViewState, XViewModel etc. Name it HelpQuestionsOverview in package “questions”
 
 ### Migrating a fragment from XML to compose.
 

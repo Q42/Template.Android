@@ -5,6 +5,11 @@ on:
   pull_request:
     branches: [ 'develop' ]
 
+# Cancel any in-progress runs of this workflow if a new run is triggered within the same branch or PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.

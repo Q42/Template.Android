@@ -17,28 +17,23 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import dagger.hilt.android.AndroidEntryPoint
 import io.github.aakira.napier.Napier
-import nl.q42.template.core.utils.di.ConfigAppScheme
+import nl.q42.template.core.utils.config.AppScheme
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.homeGraph
 import nl.q42.template.navigation.onboardingDestinations
 import nl.q42.template.ui.compose.composables.widgets.AppSurface
 import nl.q42.template.ui.compose.composables.window.LocalSnackbarHostState
 import nl.q42.template.ui.compose.composables.window.toSnackBarVisuals
-import nl.q42.template.ui.presentation.SnackbarManager
+import nl.q42.template.ui.presentation.SnackbarPresenter
 import nl.q42.template.ui.theme.AppTheme
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    @ConfigAppScheme
-    lateinit var appDeepLinkScheme: String
+    private val appDeepLinkScheme: AppScheme by inject()
 
-    @Inject
-    lateinit var snackbarManager: SnackbarManager
+    private val snackbarPresenter: SnackbarPresenter by inject()
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +41,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         Napier.d { "onCreate received, ${intent.data}" }
-
 
         setContent {
 
@@ -88,12 +82,12 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * May set a Snackbar on the [snackbarHostState] if the [SnackbarManager] has a snackbar available.
+     * May set a Snackbar on the [snackbarHostState] if the [SnackbarPresenter] has a snackbar available.
      * To actually show the snackbar, snackbarHostState has to be used in a Scaffold, such as ScaffoldWithAppBar.
      */
     @Composable
     private fun SnackbarChangedEffect(snackbarHostState: SnackbarHostState) {
-        val snackbarSpec by snackbarManager.uiState.collectAsStateWithLifecycle(
+        val snackbarSpec by snackbarPresenter.uiState.collectAsStateWithLifecycle(
             initialValue = null
         )
         val snackbarVisuals = snackbarSpec?.toSnackBarVisuals()
