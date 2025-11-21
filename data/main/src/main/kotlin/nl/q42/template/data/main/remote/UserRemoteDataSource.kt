@@ -25,7 +25,7 @@ internal class UserRemoteDataSource(
             }
 
             is ActionResult.Error -> {
-                Napier.e(apiActionResult.exception) { "getUser failed" }
+                Napier.e(apiActionResult.throwable) { "getUser failed" }
                 apiActionResult
             }
         }
