@@ -128,8 +128,7 @@ To also make these available to a test group, you can enable the `groups` parame
 
 #### Play Store deployment
 
-We use the [upload-google-play github action](https://github.com/r0adkll/upload-google-play) (
-in our github actions setup) to automatically upload release builds to the Play Store Internal Test track.
+We use the [upload-google-play github action](https://github.com/r0adkll/upload-google-play) in our github actions setup to automatically upload release builds to the Play Store Internal Test track.
 
 To enable this for your own app, you need to:
 
