@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: macos-latest # use [ self-hosted, macOS ] to host on our own mac mini, which is twice as fast and cheaper than hosting on a github runner. See README for more info.
