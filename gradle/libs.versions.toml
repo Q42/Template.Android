@@ -15,7 +15,7 @@ composeNavigation = "2.9.5"
 okhttp = "5.2.1"
 composePlatform = "2025.10.00"
 activityCompose = "1.11.0"
-composeLifecycle = "2.9.4"
+composeLifecycle = "2.10.0"
 # Test dependencies
 kotlinxCoroutinesTest = "1.10.2"
 junit = "4.13.2"
