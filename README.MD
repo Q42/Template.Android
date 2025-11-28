@@ -82,7 +82,7 @@ This project uses Github Actions for CI. We have added these workflows for now:
 - _debug.yml_: any commit on any branch triggers a `devDebug` apk and a `prodDebug` apk build
 - _release.yml_: any PR triggers signed release builds (`prodRelease` bundle and `prodRelease` apk)
 - _firebase-app-distribution.yml_: any PR to develop triggers a release build that is uploaded to Firebase App Distribution
-- _playstore-internal.yml_: any push to the release branch triggers a release build that is uploaded to Play Store Internal Test track
+- _playstore-internal.yml_: any push to release branches (release/*) triggers a release build that is uploaded to Play Store Internal Test track
 
 #### Adding your own keystore's details on Github Actions
 
@@ -139,7 +139,7 @@ To enable this for your own app, you need to:
 
 More details on creating a service account can be found in the [Google Play Android Developer API documentation](https://developers.google.com/android-publisher/getting_started).
 
-With the default configuration, all commits to the release branch will be pushed to the Play Store Internal Test track.
+With the default configuration, all commits to release branches (release/*) will be pushed to the Play Store Internal Test track.
 
 #### Self-hosted runner
 
