@@ -7,10 +7,11 @@ import nl.q42.template.navigation.viewmodel.Navigator
 import nl.q42.template.onboarding.start.presentation.OnboardingStartViewModel
 import nl.q42.template.onboarding.start.ui.OnboardingStartScreen
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 internal fun EntryProviderScope<NavKey>.onboardingEntry(navigator: Navigator) {
-    entry<Destination.Onboarding> {
-        val viewModel: OnboardingStartViewModel = koinViewModel()
+    entry<Destination.Onboarding> { key ->
+        val viewModel: OnboardingStartViewModel = koinViewModel(parameters = { parametersOf(key) })
         InitNavigator(navigator = navigator, viewModel)
 
         OnboardingStartScreen(viewModel = viewModel)
