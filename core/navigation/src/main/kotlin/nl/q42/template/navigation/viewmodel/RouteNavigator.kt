@@ -9,12 +9,12 @@ import nl.q42.template.navigation.Destination
  * Navigator to use when initiating navigation from a ViewModel.
  */
 interface RouteNavigator {
-    fun onNavigated(state: NavigationState)
+    fun onNavigated(state: AppNavigationState)
     fun navigateUp()
     fun popToRoute(destination: Destination)
     fun navigateTo(destination: Destination, backstackBehavior: BackstackBehavior = BackstackBehavior.Default)
 
-    val navigationState: StateFlow<NavigationState>
+    val appNavigationState: StateFlow<AppNavigationState>
 }
 
 class MyRouteNavigator : RouteNavigator {
@@ -24,23 +24,23 @@ class MyRouteNavigator : RouteNavigator {
      * update the state multiple times, the view will only receive and handle the latest state,
      * which is fine for my use case.
      */
-    override val navigationState: MutableStateFlow<NavigationState> =
-        MutableStateFlow(NavigationState.Idle)
+    override val appNavigationState: MutableStateFlow<AppNavigationState> =
+        MutableStateFlow(AppNavigationState.Idle)
 
-    override fun onNavigated(state: NavigationState) {
+    override fun onNavigated(state: AppNavigationState) {
         // clear navigation state, if state is the current state:
-        navigationState.compareAndSet(state, NavigationState.Idle)
+        appNavigationState.compareAndSet(state, AppNavigationState.Idle)
     }
 
-    override fun popToRoute(destination: Destination) = navigate(NavigationState.PopToDestination(destination))
+    override fun popToRoute(destination: Destination) = navigate(AppNavigationState.PopToDestination(destination))
 
-    override fun navigateUp() = navigate(NavigationState.NavigateUp())
+    override fun navigateUp() = navigate(AppNavigationState.NavigateUp())
 
     override fun navigateTo(destination: Destination, backstackBehavior: BackstackBehavior) =
-        navigate(NavigationState.NavigateToRoute(destination = destination, backstackBehavior = backstackBehavior))
+        navigate(AppNavigationState.NavigateToRoute(destination = destination, backstackBehavior = backstackBehavior))
 
     @VisibleForTesting
-    fun navigate(state: NavigationState) {
-        navigationState.value = state
+    fun navigate(state: AppNavigationState) {
+        appNavigationState.value = state
     }
 }

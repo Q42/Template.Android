@@ -1,3 +1,8 @@
 dependencies {
     implementation libs.composeNavigation
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
+
+    // If using the ViewModel add-on library
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 }

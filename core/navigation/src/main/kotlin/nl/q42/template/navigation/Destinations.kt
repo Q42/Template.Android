@@ -1,5 +1,6 @@
 package nl.q42.template.navigation
 
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 /**
@@ -15,15 +16,15 @@ sealed class Destination {
      * Main destination. If you add a bottom navigation component, make a graph per bottom tab.
      */
     @Serializable
-    data object HomeGraph : Destination()
+    data object HomeGraph : Destination(), NavKey
 
     @Serializable
-    data object Home : Destination()
+    data object Home : Destination(), NavKey
 
     @Serializable
     // all parameters should be path parameters of a deeplink in HomeGraph.kt: composable<Destination.HomeSecond>(deeplinks = listOf(...))
-    data class HomeSecond(val title: String) : Destination()
+    data class HomeSecond(val title: String) : Destination(), NavKey
 
     @Serializable
-    data object Onboarding : Destination()
+    data object Onboarding : Destination(), NavKey
 }

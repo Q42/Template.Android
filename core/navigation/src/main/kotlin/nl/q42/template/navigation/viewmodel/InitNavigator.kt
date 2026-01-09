@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
+import androidx.navigation3.runtime.NavKey
 
 /**
  * Ensures that [routeNavigator] can navigate on this composition. [routeNavigator] will usually be a ViewModel.
@@ -12,54 +12,50 @@ import androidx.navigation.NavHostController
  * More info: https://medium.com/@ffvanderlaan/navigation-in-jetpack-compose-using-viewmodel-state-3b2517c24dde
  */
 @Composable
-fun InitNavigator(navController: NavHostController, routeNavigator: RouteNavigator) {
+fun InitNavigator(navigator: Navigator, routeNavigator: RouteNavigator) {
 
-    val viewState by routeNavigator.navigationState.collectAsStateWithLifecycle()
+    val viewState by routeNavigator.appNavigationState.collectAsStateWithLifecycle()
     LaunchedEffect(viewState) {
-        updateNavigationState(navController, viewState, routeNavigator::onNavigated)
+        updateNavigationState(navigator, viewState, routeNavigator::onNavigated)
     }
 }
 
 /**
- * Navigates to [navigationState].
+ * Navigates to [appNavigationState].
  */
 private fun updateNavigationState(
-    navController: NavHostController,
-    navigationState: NavigationState,
-    onNavigated: (navState: NavigationState) -> Unit,
+    navigator: Navigator,
+    appNavigationState: AppNavigationState,
+    onNavigated: (navState: AppNavigationState) -> Unit,
 ) {
-    when (navigationState) {
-        is NavigationState.NavigateToRoute -> {
-            when (navigationState.backstackBehavior) {
+    when (appNavigationState) {
+        is AppNavigationState.NavigateToRoute -> {
+            when (appNavigationState.backstackBehavior) {
                 BackstackBehavior.Default -> {
                 }
 
                 BackstackBehavior.RemoveCurrent -> {
-                    navController.popBackStack()
+                    navigator.goBack()
                 }
 
                 BackstackBehavior.Clear -> {
-                    navController.popBackStack(
-                        navController.graph.id,
-                        false
-                    )
+                    navigator.clearBackStack()
                 }
             }
-            navController.navigate(navigationState.destination)
-            onNavigated(navigationState)
+            navigator.navigate(appNavigationState.destination as NavKey)
+            onNavigated(appNavigationState)
         }
 
-        is NavigationState.PopToDestination -> {
-            navController.popBackStack(navigationState.destination, false)
-            onNavigated(navigationState)
+        is AppNavigationState.PopToDestination -> {
+            navigator.popToRoute(appNavigationState.destination as NavKey)
+            onNavigated(appNavigationState)
         }
 
-        is NavigationState.NavigateUp -> {
-            navController.navigateUp()
-            onNavigated(navigationState)
+        is AppNavigationState.NavigateUp -> {
+            navigator.goBack()
         }
 
-        is NavigationState.Idle -> {
+        is AppNavigationState.Idle -> {
         }
     }
 }

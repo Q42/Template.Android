@@ -1,18 +1,17 @@
 package nl.q42.template.navigation
 
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
 import nl.q42.template.navigation.viewmodel.InitNavigator
+import nl.q42.template.navigation.viewmodel.Navigator
 import nl.q42.template.onboarding.start.presentation.OnboardingStartViewModel
 import nl.q42.template.onboarding.start.ui.OnboardingStartScreen
 import org.koin.androidx.compose.koinViewModel
 
-internal fun NavGraphBuilder.onboardingDestinations(navController: NavHostController) {
-    composable<Destination.Onboarding> {
-
+internal fun EntryProviderScope<NavKey>.onboardingEntry(navigator: Navigator) {
+    entry<Destination.Onboarding> {
         val viewModel: OnboardingStartViewModel = koinViewModel()
-        InitNavigator(navController = navController, viewModel)
+        InitNavigator(navigator = navigator, viewModel)
 
         OnboardingStartScreen(viewModel = viewModel)
     }
