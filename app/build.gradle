@@ -3,6 +3,7 @@ plugins {
     alias libs.plugins.googleServices
     alias libs.plugins.firebaseCrashlyticsPlugin
     alias libs.plugins.compose.compiler
+    id("app.cash.licensee")
 }
 
 if (file("$rootDir/secrets.gradle").exists()) {
@@ -118,4 +119,14 @@ tasks.register("checkSigningConfig") {
 // Attach checkSigningConfig to all release variant preBuild tasks
 tasks.matching { it.name =~ /assemble.*Release/ }.configureEach { task ->
     task.dependsOn("checkSigningConfig")
+}
+
+licensee { // A gradle task "./gradlew licensee" checks the licenses of your dependencies and fails when a disallowed license is found.
+    allow("Apache-2.0")
+    allow("BSD-3-Clause")
+    allow("MIT")
+    allowUrl("https://developer.android.com/studio/terms.html")
+    allowDependency('com.github.leonard-palm', 'compose-state-events', '2.2.0') {
+        because 'Apache-2.0, but license in this version of the lib is not recognized by Licensee'
+    }
 }

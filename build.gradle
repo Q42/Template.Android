@@ -6,6 +6,9 @@ buildscript {
         targetSdkVersion = 36
         compileSdkVersion = 36
     }
+    dependencies {
+        classpath(libs.plugin.licensee)
+    }
 }
 
 plugins { // sets class paths only (because of 'apply false')
