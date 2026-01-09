@@ -18,7 +18,7 @@ internal fun EntryProviderScope<NavKey>.homeEntry(navigator: Navigator) {
         HomeScreen(viewModel = viewModel)
     }
     entry<Destination.HomeSecond> { key ->
-        val viewModel: HomeSecondViewModel = koinViewModel(parameters = { parametersOf(key) } ) // todo this does not work
+        val viewModel: HomeSecondViewModel = koinViewModel(parameters = { parametersOf(key) } )
         InitNavigator(navigator = navigator, routeNavigator = viewModel)
         HomeSecondScreen(viewModel = viewModel)
     }
