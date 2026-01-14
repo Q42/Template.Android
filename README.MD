@@ -24,6 +24,7 @@ A template for creating Android projects at Q42.
    described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
+1. If using Play Store deployment, update the `packageName` in [playstore-internal.yml](.github/workflows/playstore-internal.yml) to match your package name (the rename-project.py script does not update workflow files).
 1. Build your awesome project :-)
 1. Consider contributing to this template when you find something that could be improved.
 
