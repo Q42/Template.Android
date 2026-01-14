@@ -3,7 +3,7 @@ name: Publish to Play Store Internal Track
 on:
   workflow_dispatch:
   push:
-    branches: [ 'release/**', 'copilot/add-github-action-playstore' ]
+    branches: [ 'release/**' ]
 
 # Cancel any in-progress runs of this workflow if a new run is triggered within the same branch or PR
 concurrency:
