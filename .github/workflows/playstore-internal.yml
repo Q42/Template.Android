@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/prepare-release
 
       # This will decode the keystore from base 64 text representation that we have stored in secrets
-      # and generates and keystore file and gets stored in /android-app path
+      # and generates a keystore file and gets stored in /android-app path
       - name: Decode Keystore
         env:
           ENCODED_STRING: ${{ secrets.KEYSTORE_BASE_64 }}
@@ -32,7 +32,7 @@ jobs:
           base64 -d <keystore-b64.txt >upload-keystore.jks
       # The secrets.gradle file that is stored as text, does not need to be decoded
       # and can be directly written to a file
-      # This file is used by the gradle build to sign the APK
+      # This file is used by the gradle build to sign the AAB
       - name: Create secrets.gradle
         run: echo "${{ secrets.SECRETS_GRADLE }}" > secrets.gradle
 
