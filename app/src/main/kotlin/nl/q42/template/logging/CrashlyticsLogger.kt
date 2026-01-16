@@ -1,11 +1,12 @@
 package nl.q42.template.logging
 
+import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.crashlytics
 import io.github.aakira.napier.Antilog
-import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.LogLevel
 import nl.q42.template.BuildConfig
+import io.github.aakira.napier.Napier
 
 /** A value suitable for Crashlytics
  * This value is used to truncate the user-defined message and the exception message
@@ -17,9 +18,6 @@ private const val MAX_CHARS_IN_LOG = 1200
  * this is not a stub
  */
 class CrashlyticsLogger : Antilog() {
-
-    private val logcatLogger = DebugAntilog()
-
     override fun performLog(
         priority: LogLevel,
         tag: String?,
@@ -30,10 +28,19 @@ class CrashlyticsLogger : Antilog() {
 
         if (BuildConfig.DEBUG || priority > LogLevel.DEBUG) {
             // also send to logcat
-            logcatLogger.log(priority, tag, throwable, message)
+            val logLevel = priority.toAndroidLogLevel()
+            val logMessage = buildString {
+                if (message != null) append(message)
+                if (throwable != null) {
+                    if (message != null) append("\n")
+                    append(Log.getStackTraceString(throwable))
+                }
+            }
+
+            Log.println(logLevel, tag ?: "AppLogger", logMessage)
         }
 
-        val limitedMessage = message?.take(MAX_CHARS_IN_LOG)  ?: "(no message)" // to avoid OutOfMemoryError's
+        val limitedMessage = message?.take(MAX_CHARS_IN_LOG) ?: "(no message)" // to avoid OutOfMemoryError's
 
         // at least one of message or throwable is not null
         if (priority < LogLevel.ERROR) {
@@ -58,25 +65,37 @@ class CrashlyticsLogger : Antilog() {
         val numToRemove = 9
         val lastToRemove = stackTrace.getOrNull(numToRemove - 1)
         if (lastToRemove == null) {
-            logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
-                    message = "Got unexpected stacktrace while logging a message: ${stackTrace.contentToString()}"
+            Log.e(
+                null,
+                "Got unexpected stacktrace while logging a message: ${stackTrace.contentToString()}"
             )
             return SyntheticException(message, stackTrace)
         }
-        if (lastToRemove.className != io.github.aakira.napier.Napier::class.java.name || lastToRemove.methodName != "e\$default"){
-            logcatLogger.log(priority = LogLevel.ERROR, tag = null, throwable = null,
-                    message = "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
+        if (lastToRemove.className != Napier::class.java.name || lastToRemove.methodName != "e\$default") {
+            Log.e(
+                null,
+                "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
             )
         }
         val abbreviatedStackTrace = stackTrace.takeLast(stackTrace.size - numToRemove).toTypedArray()
         return SyntheticException(message, abbreviatedStackTrace)
     }
 
+    private fun LogLevel.toAndroidLogLevel(): Int {
+        return when (this) {
+            LogLevel.VERBOSE -> Log.VERBOSE
+            LogLevel.DEBUG -> Log.DEBUG
+            LogLevel.INFO -> Log.INFO
+            LogLevel.WARNING -> Log.WARN
+            LogLevel.ERROR -> Log.ERROR
+            LogLevel.ASSERT -> Log.ASSERT
+        }
+    }
 }
 
 class SyntheticException(
-        message: String,
-        private val abbreviatedStackTrace: Array<StackTraceElement>
+    message: String,
+    private val abbreviatedStackTrace: Array<StackTraceElement>
 ) : Exception(message) {
     override fun getStackTrace(): Array<StackTraceElement> {
         return abbreviatedStackTrace
