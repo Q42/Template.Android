@@ -29,6 +29,6 @@
 ## END enums
 
 ## START napier
--keep class io.github.aakira.napier.* {
+-keep class io.github.aakira.napier.** {
     *;
 }
