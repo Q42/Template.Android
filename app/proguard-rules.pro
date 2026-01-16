@@ -27,3 +27,8 @@
 }
 
 ## END enums
+
+## START napier
+-keep class io.github.aakira.napier.* {
+    *;
+}
