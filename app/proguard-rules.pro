@@ -32,3 +32,4 @@
 -keep class io.github.aakira.napier.** {
     *;
 }
+## END napier
