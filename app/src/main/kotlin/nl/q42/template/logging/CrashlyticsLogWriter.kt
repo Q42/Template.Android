@@ -1,11 +1,10 @@
 package nl.q42.template.logging
 
 import android.util.Log
+import co.touchlab.kermit.LogWriter
+import co.touchlab.kermit.Severity
 import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.crashlytics
-import io.github.aakira.napier.Antilog
-import io.github.aakira.napier.LogLevel
-import nl.q42.template.BuildConfig
 import io.github.aakira.napier.Napier
 
 /** A value suitable for Crashlytics
@@ -13,30 +12,23 @@ import io.github.aakira.napier.Napier
  * In theory, the message sent to Crashlytics could therefore be 2x this value
  */
 private const val MAX_CHARS_IN_LOG = 1200
-private const val DEFAULT_TAG = "AppLogger"
 
-/** A Crashlytics logger. The name Antilog might be an unfortunate choice by the Napier library;
- * this is not a stub
+/**
+ * A Crashlytics logger. Logs Severity.Error as Non-Fatal and less severe messages will be added
+ * to the next crashlytics event (crash, non-fatal or ANR) as breadcrumbs
  */
-class CrashlyticsLogger : Antilog() {
-    override fun performLog(
-        priority: LogLevel,
-        tag: String?,
-        throwable: Throwable?,
-        message: String?
+class CrashlyticsLogWriter : LogWriter() {
+    override fun log(
+        severity: Severity,
+        message: String,
+        tag: String,
+        throwable: Throwable?
     ) {
-        if (message == null && throwable == null) return
 
-        val safeTag = tag ?: DEFAULT_TAG
+        val limitedMessage =
+            message.take(MAX_CHARS_IN_LOG) // to avoid OutOfMemoryError's
 
-        if (BuildConfig.DEBUG || priority > LogLevel.DEBUG) {
-            logToLogcat(priority, safeTag, message, throwable)
-        }
-
-        val limitedMessage = message?.take(MAX_CHARS_IN_LOG) ?: "(no message)" // to avoid OutOfMemoryError's
-
-        // at least one of message or throwable is not null
-        if (priority < LogLevel.ERROR) {
+        if (severity < Severity.Error) {
             val errorMessage = throwable?.let {
                 " with error: ${throwable}: ${throwable.message}".take(MAX_CHARS_IN_LOG)
             } ?: ""
@@ -46,26 +38,9 @@ class CrashlyticsLogger : Antilog() {
             Firebase.crashlytics.recordException(
                 throwable ?: buildCrashlyticsSyntheticException(
                     limitedMessage,
-                    safeTag
+                    tag
                 )
             )
-        }
-    }
-
-    private fun logToLogcat(
-        priority: LogLevel,
-        tag: String,
-        message: String?,
-        throwable: Throwable?
-    ) {
-        val msg = message ?: ""
-        when (priority) {
-            LogLevel.VERBOSE -> Log.v(tag, msg, throwable)
-            LogLevel.DEBUG -> Log.d(tag, msg, throwable)
-            LogLevel.INFO -> Log.i(tag, msg, throwable)
-            LogLevel.WARNING -> Log.w(tag, msg, throwable)
-            LogLevel.ERROR -> Log.e(tag, msg, throwable)
-            LogLevel.ASSERT -> Log.wtf(tag, msg, throwable)
         }
     }
 
@@ -80,7 +55,10 @@ class CrashlyticsLogger : Antilog() {
         val numToRemove = 9
         val lastToRemove = stackTrace.getOrNull(numToRemove - 1)
         if (lastToRemove == null) {
-            Log.e(tag, "Got unexpected stacktrace while logging a message: ${stackTrace.contentToString()}")
+            Log.e(
+                tag,
+                "Got unexpected stacktrace while logging a message: ${stackTrace.contentToString()}"
+            )
             return SyntheticException(message, stackTrace)
         }
         if (lastToRemove.className != Napier::class.java.name || lastToRemove.methodName != "e\$default") {
@@ -89,7 +67,8 @@ class CrashlyticsLogger : Antilog() {
                 "Got unexpected stacktrace: class: ${lastToRemove.className}, method: ${lastToRemove.methodName}"
             )
         }
-        val abbreviatedStackTrace = stackTrace.takeLast(stackTrace.size - numToRemove).toTypedArray()
+        val abbreviatedStackTrace =
+            stackTrace.takeLast(stackTrace.size - numToRemove).toTypedArray()
         return SyntheticException(message, abbreviatedStackTrace)
     }
 }

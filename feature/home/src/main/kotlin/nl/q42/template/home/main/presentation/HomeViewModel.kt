@@ -2,6 +2,7 @@ package nl.q42.template.home.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,6 +49,7 @@ class HomeViewModel(
     }
 
     fun onLoadClicked() {
+        Logger.i { "onLoadClicked" }
         fetchUser()
     }
 
