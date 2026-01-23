@@ -1,5 +1,6 @@
 [versions]
 jvmTarget = "21"
+kermit = "2.0.8"
 kotlin = "2.2.20"
 # should match kotlin https://github.com/google/ksp/releases
 gradlePlugin = "8.11.2"
@@ -27,6 +28,7 @@ licensee = "1.14.1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }

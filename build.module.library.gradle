@@ -13,5 +13,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.napier)
+    implementation(libs.napier) // todo remove
+    implementation(libs.kermit) // todo libs should not use Kermit directly, create abstraction AppLogger, probably in a new module
 }
