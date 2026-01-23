@@ -1,7 +1,7 @@
 package nl.q42.template.actionresult.data
 
+import co.touchlab.kermit.Logger
 import com.haroldadmin.cnradapter.NetworkResponse
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.SerializationException
 import nl.q42.template.actionresult.domain.ActionResult
@@ -66,7 +66,7 @@ private fun <T : Any> NetworkResponse<T, ApiErrorResponse>.networkResponseToActi
             val errorMessage = "Received NetworkResponse.UnknownError with response code $statusCode and header ${this.headers}"
             val error = this.error
             val exception = IOException(errorMessage, error)
-            Napier.w(error) { "NetworkResponse.UnknownError" }
+            Logger.w(error) { "NetworkResponse.UnknownError" }
             when {
                 error is SerializationException -> { // (usually json) parsing error
                     ActionResult.Error.InvalidErrorResponse(error)
