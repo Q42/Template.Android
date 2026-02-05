@@ -1,6 +1,6 @@
-# Template.Android
+# Kickstarter.Android
 
-This kickstarter for creating Android projects at Q42. It gives our projects a flying start and ensures everything we’ve learned from earlier work can be easily reused in new projects.
+A kickstarter for creating Android projects at Q42. It gives our projects a flying start and ensures everything we’ve learned from earlier work can be easily reused in new projects.
 
 ## Using this template
 
