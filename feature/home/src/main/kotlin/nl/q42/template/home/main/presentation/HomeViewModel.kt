@@ -2,7 +2,7 @@ package nl.q42.template.home.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -48,11 +48,12 @@ class HomeViewModel(
     }
 
     fun onLoadClicked() {
+        Logger.i { "onLoadClicked" }
         fetchUser()
     }
 
     fun onOpenSecondScreenClicked() {
-        Napier.e { "Open Second Screen tapped. This will be shown In LogCat and on prod builds also as as the title of a Non-Fatal event" }
+        Logger.e { "Open Second Screen tapped. This will be shown In LogCat and on prod builds also as as the title of a Non-Fatal event" }
         navigateTo(Destination.HomeSecond(title = "Hello world!"))
     }
 

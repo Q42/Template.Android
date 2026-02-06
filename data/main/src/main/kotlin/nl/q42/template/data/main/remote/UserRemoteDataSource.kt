@@ -1,6 +1,6 @@
 package nl.q42.template.data.main.remote
 
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import nl.q42.template.actionresult.data.mapToActionResult
@@ -25,7 +25,7 @@ internal class UserRemoteDataSource(
             }
 
             is ActionResult.Error -> {
-                Napier.e(apiActionResult.throwable) { "getUser failed" }
+                Logger.e(apiActionResult.throwable) { "getUser failed" }
                 apiActionResult
             }
         }

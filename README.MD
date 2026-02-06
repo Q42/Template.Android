@@ -328,7 +328,7 @@ because it is fast, modern and has IDE integration (which warns you when you for
 @Serializable annotations).
 It also has multiplatform support, so we can use it in our KMP projects as well.
 
-We use Napier because it's usage is close to Timber/Tolbaaken, but Napier supports KMM.
+We use Kermit because it's usage is close to Timber/Tolbaaken, but Kermit supports KMM.
 
 We use Crashlytics for crash reporting. Note that Google Analytics is not added. Google [recommends]
 (https://firebase.google.com/docs/crashlytics/get-started?platform=android#before-you-begin)

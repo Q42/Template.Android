@@ -13,5 +13,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.napier)
+    implementation(libs.kermit)
 }

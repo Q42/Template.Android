@@ -31,7 +31,7 @@ android {
 
 dependencies {
     implementation project(':core:utils')
-    implementation(libs.napier)
+    implementation(libs.kermit)
     implementation(libs.activityCompose)
     implementation(libs.koin)
 
