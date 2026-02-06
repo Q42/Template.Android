@@ -13,6 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check licenses of dependencies are valid
+        run: ./gradlew licensee
+
       - name: Build Debug APK
         run: ./gradlew assembleDevDebug --stacktrace
 

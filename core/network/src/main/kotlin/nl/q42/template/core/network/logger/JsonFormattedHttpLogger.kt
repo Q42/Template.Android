@@ -1,6 +1,6 @@
 package nl.q42.template.core.network.logger
 
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONException
 import org.json.JSONObject
@@ -11,10 +11,10 @@ import org.json.JSONObject
 class JsonFormattedHttpLogger : HttpLoggingInterceptor.Logger {
     override fun log(message: String) {
         if (message.startsWith("{") || message.startsWith("[")) try {
-            Napier.d { JSONObject(message).toString(4) }
+            Logger.d { JSONObject(message).toString(4) }
         } catch (e: JSONException) {
-            Napier.d { message }
+            Logger.d { message }
         }
-        else Napier.d { message }
+        else Logger.d { message }
     }
 }
