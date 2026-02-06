@@ -33,7 +33,7 @@ class MainApplication : Application() {
         } else {
             FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = true
 
-            Logger.setMinSeverity(Severity.Warn)
+            Logger.setMinSeverity(Severity.Info)
             Logger.setLogWriters(
                 LogcatWriter(),
                 CrashlyticsLogWriter()
