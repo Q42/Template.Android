@@ -11,16 +11,12 @@ retrofit = "3.0.0"
 kotlinx-serialization = "1.9.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 networkResponseAdapter = "5.0.0"
-composeNavigation = "2.9.5"
 okhttp = "5.2.1"
 composePlatform = "2025.10.00"
 activityCompose = "1.11.0"
 composeLifecycle = "2.9.4"
 
-# todo remove old nav deps and versions
 nav3Core = "1.0.0"
-# If your screens depend on ViewModels, add the Nav3 Lifecycle ViewModel add-on library
-lifecycleViewmodelNav3 = "2.10.0-rc01"
 
 # Test dependencies
 kotlinxCoroutinesTest = "1.10.2"
@@ -57,16 +53,9 @@ composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", ve
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 composeStateEvents = { module = "com.github.leonard-palm:compose-state-events", version.ref = "composeStateEvents" }
 
-
-composeNavigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
-
 # Core Navigation 3 libraries
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-
-# Add-on libraries (only add if you need them)
-androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
-
 
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }

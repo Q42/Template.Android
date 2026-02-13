@@ -90,7 +90,6 @@ dependencies {
     implementation(project(":domain:main"))  // needed for di
     implementation(project(":data:main"))  // needed for di
     implementation(project(":core:network")) // needed for di
-    implementation(libs.composeNavigation)
 
     api platform(libs.firebaseBoM)
     implementation(libs.firebaseCrashlytics)
