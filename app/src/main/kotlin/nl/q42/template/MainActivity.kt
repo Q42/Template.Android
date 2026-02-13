@@ -21,7 +21,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.NavDisplay
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 import nl.q42.template.core.utils.config.AppScheme
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.homeEntry
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge() // must be called before super.onCreate
         super.onCreate(savedInstanceState)
 
-        Napier.d { "onCreate received, ${intent.data}" }
+        Logger.d { "onCreate received, ${intent.data}" }
 
         setContent {
 
@@ -97,7 +97,7 @@ class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        Napier.d { "onNewIntent received, ${intent.data}" }
+        Logger.d { "onNewIntent received, ${intent.data}" }
 
     }
 

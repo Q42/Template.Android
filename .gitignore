@@ -11,6 +11,9 @@
 /.idea/assetWizardSettings.xml
 /.idea/AndroidProjectSystem.xml
 /.idea/kotlinc.xml
+/.idea/appInsightsSettings.xml
+/.idea/copilot.data.migration.ask2agent.xml
+/.idea/material_theme_project_new.xml
 .DS_Store
 /build
 /captures
