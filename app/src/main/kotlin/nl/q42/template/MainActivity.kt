@@ -23,6 +23,7 @@ import androidx.navigation3.ui.NavDisplay
 import co.touchlab.kermit.Logger
 import nl.q42.template.core.utils.config.AppScheme
 import nl.q42.template.navigation.Destination
+import nl.q42.template.navigation.deeplink.DeeplinkParser
 import nl.q42.template.navigation.homeEntry
 import nl.q42.template.navigation.onboardingEntry
 import nl.q42.template.navigation.viewmodel.Navigator
@@ -41,6 +42,8 @@ class MainActivity : ComponentActivity() {
 
     private val snackbarPresenter: SnackbarPresenter by inject()
 
+    private val deeplinkParser: DeeplinkParser by inject()
+
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // must be called before super.onCreate
@@ -48,10 +51,13 @@ class MainActivity : ComponentActivity() {
 
         Logger.d { "onCreate received, ${intent.data}" }
 
+        val startDestination: Destination = deeplinkParser.parseIntent(intent) ?: Destination.Home
+        Logger.i { "Start destination: $startDestination" }
+
         setContent {
 
             val navigationState = rememberNavigationState(
-                startRoute = Destination.Home,
+                startRoute = startDestination,
                 topLevelRoutes = setOf<NavKey>(
                     // the destinations that can be used to enter the app
                     Destination.Home,

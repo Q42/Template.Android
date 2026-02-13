@@ -5,6 +5,7 @@ import nl.q42.template.core.network.di.networkModule
 import nl.q42.template.data.main.di.dataModule
 import nl.q42.template.domain.main.di.domainModule
 import nl.q42.template.home.di.homeModule
+import nl.q42.template.navigation.deeplink.DeeplinkParser
 import nl.q42.template.navigation.di.navigationModule
 import nl.q42.template.onboarding.di.onboardingModule
 import nl.q42.template.ui.di.presentationModule
@@ -27,6 +28,8 @@ fun initDependencyInjection(application: MainApplication) {
 }
 
 val appModule = module {
+    single { DeeplinkParser() }
+
     includes(
         configModule,
 
