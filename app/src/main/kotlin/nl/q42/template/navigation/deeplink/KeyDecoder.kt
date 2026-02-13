@@ -1,5 +1,9 @@
 package nl.q42.template.navigation.deeplink
 
+/**
+ * Source: https://github.com/android/nav3-recipes/blob/main/app/src/main/java/com/example/nav3recipes/deeplink/basic/util/DeepLinkRequest.kt
+ */
+
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.AbstractDecoder

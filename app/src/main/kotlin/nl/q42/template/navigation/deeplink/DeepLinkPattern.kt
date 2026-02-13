@@ -33,6 +33,8 @@ import java.io.Serializable
  * 1. all path arguments are required/non-nullable - partial path matches will be considered a non-match
  * 2. all query arguments are optional by way of nullable/has default value
  *
+ * Source: https://github.com/android/nav3-recipes/blob/main/app/src/main/java/com/example/nav3recipes/deeplink/basic/util/DeepLinkPattern.kt
+ *
  * @param T the backstack key type that supports the deeplinking of [uriPattern]
  * @param serializer the serializer of [T]
  * @param uriPattern the supported deeplink's uri pattern, i.e. "abc.com/home/{pathArg}"

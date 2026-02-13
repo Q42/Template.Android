@@ -23,6 +23,4 @@ internal class DeepLinkRequest(
             this[argName] = uri.getQueryParameter(argName)!!
         }
     }
-
-    // TODO add parsing for other Uri components, i.e. fragments, mimeType, action
 }

@@ -21,7 +21,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.NavDisplay
 import co.touchlab.kermit.Logger
-import nl.q42.template.core.utils.config.AppScheme
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.deeplink.DeeplinkParser
 import nl.q42.template.navigation.homeEntry
@@ -37,8 +36,6 @@ import nl.q42.template.ui.theme.AppTheme
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
-
-    private val appDeepLinkScheme: AppScheme by inject()
 
     private val snackbarPresenter: SnackbarPresenter by inject()
 
@@ -59,7 +56,7 @@ class MainActivity : ComponentActivity() {
             val navigationState = rememberNavigationState(
                 startRoute = startDestination,
                 topLevelRoutes = setOf<NavKey>(
-                    // the destinations that can be used to enter the app
+                    // the destinations that can be used to enter the app, typically the tabs in the bottom navigation bar.
                     Destination.Home,
                     Destination.Onboarding
                 )
@@ -70,8 +67,6 @@ class MainActivity : ComponentActivity() {
                 homeEntry(navigator = navigator)
                 onboardingEntry(navigator = navigator)
             }
-
-
 
             val snackbarHostState = remember { SnackbarHostState() }
             SnackbarChangedEffect(snackbarHostState)
