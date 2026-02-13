@@ -24,7 +24,7 @@ A kickstarter for creating Android projects at Q42. It gives our projects a flyi
    described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
-1. If using Play Store deployment, update the `packageName` in [playstore-internal.yml](.github/workflows/playstore-internal.yml) to match your package name (the rename-project.py script does not update workflow files).
+1. If using Play Store deployment, check the `packageName` in [playstore-internal.yml](.github/workflows/playstore-internal.yml) which should match your package name (the rename-project.py should have done this for you).
 1. Build your awesome project :-)
 1. Consider contributing to this template when you find something that could be improved.
 
