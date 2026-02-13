@@ -24,6 +24,7 @@ A kickstarter for creating Android projects at Q42. It gives our projects a flyi
    described
    in [self hosted runner](#self-hosted-runner), when using Github Actions.
 1. Setup/adjust uploads to [Firebase app distribution](#firebase-app-distribution).
+1. If using Play Store deployment, check the `packageName` in [playstore-internal.yml](.github/workflows/playstore-internal.yml) which should match your package name (the rename-project.py should have done this for you).
 1. Build your awesome project :-)
 1. Consider contributing to this template when you find something that could be improved.
 
@@ -81,6 +82,8 @@ This project uses Github Actions for CI. We have added these workflows for now:
 
 - _debug.yml_: any commit on any branch triggers a `devDebug` apk and a `prodDebug` apk build
 - _release.yml_: any PR triggers signed release builds (`prodRelease` bundle and `prodRelease` apk)
+- _firebase-app-distribution.yml_: any PR to develop triggers a release build that is uploaded to Firebase App Distribution
+- _playstore-internal.yml_: any push to a release branch triggers a release build that is uploaded to Play Store Internal Test track
 
 #### Adding your own keystore's details on Github Actions
 
@@ -123,6 +126,21 @@ To change this to your own firebase project, you need to set two secrets:
 With the default configuration, all commits on develop will be pushed to Firebase App Distribution.
 To also make these available to a test group, you can enable the `groups` parameter in the
 [firebase yml](.github/workflows/firebase-app-distribution.yml) file.
+
+#### Play Store deployment
+
+We use the [upload-google-play github action](https://github.com/r0adkll/upload-google-play) in our github actions setup to automatically upload release builds to the Play Store Internal Test track.
+
+To enable this for your own app, you need to:
+
+1. Create a service account in Google Cloud Console with access to the Google Play Developer API
+2. Download the service account JSON key file
+3. Add the content of the JSON file to your Github repository secrets as `PLAYSTORE_SERVICE_ACCOUNT_JSON`
+4. Update the `packageName` in the [playstore-internal.yml](.github/workflows/playstore-internal.yml) file to match your app's package name
+
+More details on creating a service account can be found in the [upload-google-play documentation](https://github.com/r0adkll/upload-google-play?tab=readme-ov-file#configure-access-via-service-account).
+
+With the default configuration, all commits to release branches (release/*) will be pushed to the Play Store Internal Test track.
 
 #### Self-hosted runner
 
