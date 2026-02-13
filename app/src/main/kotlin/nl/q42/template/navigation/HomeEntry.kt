@@ -13,12 +13,12 @@ import org.koin.core.parameter.parametersOf
 
 internal fun EntryProviderScope<NavKey>.homeEntry(navigator: Navigator) {
     entry<Destination.Home> { key ->
-        val viewModel: HomeViewModel = koinViewModel(parameters = { parametersOf(key) })
+        val viewModel: HomeViewModel = koinViewModel { parametersOf(key) }
         InitNavigator(navigator = navigator, routeNavigator = viewModel)
         HomeScreen(viewModel = viewModel)
     }
     entry<Destination.HomeSecond> { key ->
-        val viewModel: HomeSecondViewModel = koinViewModel(parameters = { parametersOf(key) })
+        val viewModel: HomeSecondViewModel = koinViewModel { parametersOf(key) }
         InitNavigator(navigator = navigator, routeNavigator = viewModel)
         HomeSecondScreen(viewModel = viewModel)
     }

@@ -11,7 +11,7 @@ import org.koin.core.parameter.parametersOf
 
 internal fun EntryProviderScope<NavKey>.onboardingEntry(navigator: Navigator) {
     entry<Destination.Onboarding> { key ->
-        val viewModel: OnboardingStartViewModel = koinViewModel(parameters = { parametersOf(key) })
+        val viewModel: OnboardingStartViewModel = koinViewModel { parametersOf(key) }
         InitNavigator(navigator = navigator, viewModel)
 
         OnboardingStartScreen(viewModel = viewModel)
