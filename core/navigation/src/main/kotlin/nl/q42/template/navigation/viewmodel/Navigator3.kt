@@ -6,17 +6,20 @@ import co.touchlab.kermit.Logger
 /**
  * Handles navigation events (forward and back) by updating the navigation state.
  */
-class Navigator(val state: NavigationState){
-    fun navigate(route: NavKey){
-        if (route in state.backStacks.keys){
-            // This is a top level route, just switch to it.
+class Navigator(val state: NavigationState) {
+    fun navigate(route: NavKey) {
+        if (route in state.backStacks.keys) {
+            // This is a top level route: switch, and make sure it is not empty
             state.topLevelRoute = route
+            if (state.backStacks[route]?.isEmpty() == true) {
+                state.backStacks[route]?.add(route)
+            }
         } else {
             state.backStacks[state.topLevelRoute]?.add(route)
         }
     }
 
-    fun popToRoute(route: NavKey){
+    fun popToRoute(route: NavKey) {
         val currentStack = state.backStacks[state.topLevelRoute]
         if (currentStack != null) {
             val destinationIndex = currentStack.lastIndexOf(route)
@@ -31,13 +34,13 @@ class Navigator(val state: NavigationState){
         }
     }
 
-    fun clearBackStack(){
+    fun clearBackStack() {
         state.backStacks[state.topLevelRoute]?.clear()
         // todo keep top level route?
     }
 
 
-    fun goBack(){
+    fun goBack() {
         val currentStack = state.backStacks[state.topLevelRoute] ?: run {
             Logger.e { "Stack for ${state.topLevelRoute} not found" }
             null
@@ -48,7 +51,7 @@ class Navigator(val state: NavigationState){
         val currentRoute = currentStack.last()
 
         // If we're at the base of the current route, go back to the start route stack.
-        if (currentRoute == state.topLevelRoute){
+        if (currentRoute == state.topLevelRoute) {
             state.topLevelRoute = state.startRoute
         } else {
             currentStack.removeLastOrNull()
