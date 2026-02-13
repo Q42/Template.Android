@@ -1,3 +1,4 @@
 dependencies {
     implementation(libs.koin)
+    implementation(libs.koin.annotations)
 }

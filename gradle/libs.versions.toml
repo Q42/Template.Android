@@ -28,10 +28,11 @@ junit = "4.13.2"
 mockkAndroid = "1.14.6"
 turbine = "1.2.1"
 composeStateEvents = "2.2.0"
-koin = "4.1.1"
+koin = "4.2.0-RC1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }

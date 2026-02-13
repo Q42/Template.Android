@@ -6,10 +6,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import nl.q42.template.navigation.Destination
 import nl.q42.template.navigation.viewmodel.RouteNavigator
+import org.koin.core.annotation.Provided
 
 class HomeSecondViewModel(
     private val navigator: RouteNavigator,
-    params: Destination.HomeSecond,
+    @Provided params: Destination.HomeSecond,
 ) : ViewModel(), RouteNavigator by navigator {
 
 
