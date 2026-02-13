@@ -1,7 +1,7 @@
 package nl.q42.template.navigation.viewmodel
 
 import androidx.navigation3.runtime.NavKey
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 
 /**
  * Handles navigation events (forward and back) by updating the navigation state.
@@ -26,7 +26,7 @@ class Navigator(val state: NavigationState){
                     currentStack.removeLastOrNull()
                 }
             } else {
-                Napier.e { "Route $route not found in the current stack" }
+                Logger.e { "Route $route not found in the current stack" }
             }
         }
     }
@@ -39,7 +39,7 @@ class Navigator(val state: NavigationState){
 
     fun goBack(){
         val currentStack = state.backStacks[state.topLevelRoute] ?: run {
-            Napier.e { "Stack for ${state.topLevelRoute} not found" }
+            Logger.e { "Stack for ${state.topLevelRoute} not found" }
             null
         }
 
