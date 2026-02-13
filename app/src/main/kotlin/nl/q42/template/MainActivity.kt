@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
@@ -75,8 +74,6 @@ class MainActivity : ComponentActivity() {
                 LocalSnackbarHostState provides snackbarHostState
             ) {
                 AppTheme {
-
-                    val navController = rememberNavController()
 
                     AppSurface(
                         modifier = Modifier.fillMaxSize(),
