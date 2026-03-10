@@ -119,7 +119,7 @@ private fun getTypeParser(kind: SerialKind): TypeParser {
         PrimitiveKind.INT -> String::toInt
         PrimitiveKind.BOOLEAN -> String::toBoolean
         PrimitiveKind.BYTE -> String::toByte
-        PrimitiveKind.CHAR -> { it.single() }
+        PrimitiveKind.CHAR -> String::single
         PrimitiveKind.DOUBLE -> String::toDouble
         PrimitiveKind.FLOAT -> String::toFloat
         PrimitiveKind.LONG -> String::toLong
