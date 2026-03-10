@@ -53,6 +53,7 @@ private fun updateNavigationState(
 
         is AppNavigationState.NavigateUp -> {
             navigator.goBack()
+            onNavigated(appNavigationState)
         }
 
         is AppNavigationState.Idle -> {
