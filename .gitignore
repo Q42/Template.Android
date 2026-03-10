@@ -4,6 +4,7 @@
 /local.properties
 /.idea/caches
 /.idea/libraries
+/.idea/copilotDiffState.xml
 /.idea/modules.xml
 /.idea/deploymentTargetSelector.xml
 /.idea/workspace.xml
