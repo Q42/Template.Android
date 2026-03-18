@@ -21,7 +21,7 @@ figma 'Color2Code' plugin, which exports the Color Tokens.
 4. Copy the output of the plugin and paste it into the `color_parser_input.txt` file.
 5. Run the `ColorParser.kts` script by clicking the play button in the file or running
 
-   `./scripts/colorparser/ColorParser.kts`
+   `(cd ./scripts/colorparser && ./ColorParser.kts)`
 
 6. The script will update the `AppColorScheme.kt` file and the corresponding files for both the
    light and dark themes.
