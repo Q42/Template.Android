@@ -36,7 +36,7 @@ val themeWriters = listOf(
 val colorAssignmentPattern = " = Color\\(0x[0-9a-fA-F]{8}\\)".toRegex()
 
 fun FileWriter.appendInterfaceFieldLineIfMatches(inputLine: String, inputColorNameSuffix: String) {
-    if (inputLine.trim().endsWith(inputColorNameSuffix)) {
+    if (inputLine.contains(inputColorNameSuffix)) {
         appendLine(
             "    " + inputLine.replace(inputColorNameSuffix, "")
                 .replace(colorAssignmentPattern, ": Color")
@@ -45,7 +45,7 @@ fun FileWriter.appendInterfaceFieldLineIfMatches(inputLine: String, inputColorNa
 }
 
 fun ThemeWriter.appendLineIfMatches(line: String) {
-    if (line.trim().endsWith(inputColorNameSuffix)) {
+    if (line.contains(inputColorNameSuffix)) {
         writer.append("  override ") // Indentation + override keyword
         writer.appendLine(line.replace(inputColorNameSuffix, ""))
     }
