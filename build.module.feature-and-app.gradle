@@ -1,5 +1,3 @@
-apply plugin: 'kotlin-android'
-
 apply from: "$rootDir/build.config.jvm.gradle"
 apply from: "$rootDir/build.dep.di.gradle"
 apply from: "$rootDir/build.dep.compose.gradle"

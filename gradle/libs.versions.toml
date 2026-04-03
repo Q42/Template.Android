@@ -58,7 +58,6 @@ plugin-licensee = { module = "app.cash.licensee:licensee-gradle-plugin", version
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "gradlePlugin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 firebaseCrashlyticsPlugin = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
