@@ -10,17 +10,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 rootProject.name = "Template.Android"
-include ":app"
-include ':data:main'
-include ':domain:main'
-include ":feature:home"
-include ":feature:onboarding"
-include ":core:network"
-include ':core:actionresult'
-include ':core:ui'
-include ':core:utils'
-include ':core:navigation'
+include(":app")
+include(":data:main")
+include(":domain:main")
+include(":feature:home")
+include(":feature:onboarding")
+include(":core:network")
+include(":core:actionresult")
+include(":core:ui")
+include(":core:utils")
+include(":core:navigation")
