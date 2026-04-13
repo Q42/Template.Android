@@ -1,28 +1,26 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    ext {
-        minSdkVersion = 29
-        targetSdkVersion = 36
-        compileSdkVersion = 36
-    }
+    extra["minSdkVersion"] = 29
+    extra["targetSdkVersion"] = 36
+    extra["compileSdkVersion"] = 36
     dependencies {
         classpath(libs.plugin.licensee)
     }
 }
 
 plugins { // sets class paths only (because of 'apply false')
-    alias libs.plugins.androidApplication apply false
-    alias libs.plugins.androidLibrary apply false
-    alias libs.plugins.jetbrainsKotlinAndroid apply false
-    alias libs.plugins.kotlinSerialization apply false
-    alias libs.plugins.googleServices apply false
-    alias libs.plugins.firebaseCrashlyticsPlugin apply false
-    alias libs.plugins.compose.compiler apply false
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.jetbrainsKotlinAndroid) apply false
+    alias(libs.plugins.kotlinSerialization) apply false
+    alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.firebaseCrashlyticsPlugin) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }
 
 allprojects {
-    tasks.withType(KotlinCompile).configureEach {
+    tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
             freeCompilerArgs.add("-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi")
             freeCompilerArgs.add("-opt-in=androidx.compose.foundation.ExperimentalFoundationApi")
