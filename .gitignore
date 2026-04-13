@@ -24,3 +24,4 @@ local.properties
 secrets.gradle
 upload.keystore.jks
 .kotlin
+buildSrc/build/
