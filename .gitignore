@@ -21,7 +21,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-secrets.gradle
+secrets.gradle.kts
 upload.keystore.jks
 .kotlin
 buildSrc/build/

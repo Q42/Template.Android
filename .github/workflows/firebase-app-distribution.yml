@@ -27,11 +27,11 @@ jobs:
         run: |
           echo $ENCODED_STRING > keystore-b64.txt
           base64 -d <keystore-b64.txt >upload-keystore.jks
-      # The secrets.gradle file that is stored as text, does not need to be decoded
+      # The secrets.gradle.kts file that is stored as text, does not need to be decoded
       # and can be directly written to a file
       # This file is used by the gradle build to sign the APK
-      - name: Create secrets.gradle
-        run: echo "${{ secrets.SECRETS_GRADLE }}" > secrets.gradle
+      - name: Create secrets.gradle.kts
+        run: echo "${{ secrets.SECRETS_GRADLE }}" > secrets.gradle.kts
 
       - name: Build Prod Release APK
         run: ./gradlew assembleProdRelease --stacktrace

@@ -104,12 +104,12 @@ can [generate a new keystore](https://developer.android.com/studio/publish/app-s
 The above command will encode the file contents to base64 and copy it to your clipboard. Save it to
 your repo's github secrets in the variable KEYSTORE_BASE_64.
 
-Copy the file `./dummy_secrets.gradle` to `secrets.gradle` and fill in your own keystore details.
+Copy the file `./dummy_secrets.gradle.kts` to `secrets.gradle.kts` and fill in your own keystore details.
 
-Add the content of secrets.gradle to your Github repository secrets as well, as
+Add the content of secrets.gradle.kts to your Github repository secrets as well, as
 `SECRETS_GRADLE`. You can simply copy the content of the file to the github secret, no encoding needed.
 
-Also add the `upload-keystore.jks` file and `secrets.gradle` to 1password. This is important because the secrets cannot be read by any user in github, only by the CI system.
+Also add the `upload-keystore.jks` file and `secrets.gradle.kts` to 1password. This is important because the secrets cannot be read by any user in github, only by the CI system.
 
 #### Firebase app distribution
 
@@ -252,21 +252,20 @@ Examples of logic that can live in _core:utils_:
 - Single responsibility principle
 - Separation of concerns
 
-### Groovy instead of kotlin script build files
+### Kotlin Script build files
 
-In January 2023: We wrote gradle files in KTS. But many things are cumbersome using KTS, like
-sharing gradle files between modules in a includeBuild: adds more steps to take per shared file.
-We rolled it back to Groovy, let's try again in a year?
+We use Kotlin Script (KTS) for all Gradle build files. This provides type safety,
+better IDE support with autocompletion, and compile-time error checking.
 
 ### Feature gradle files
 
 To share gradle config over modules and make adding more modules as simple as possible, we have 2
 base files:
 
-- `build.module.feature-and-app.gradle` for all feature modules and the app module
-- `build.module.library.gradle` for all other modules (library modules)
+- `buildSrc/src/main/kotlin/module.feature-and-app.gradle.kts` for all feature modules and the app module
+- `buildSrc/src/main/kotlin/module.library.gradle.kts` for all other modules (library modules)
 
-Also, feature-specific gradle files are set up, like `build.dep.compose.gradle`.
+Also, feature-specific gradle files are set up, like `buildSrc/src/main/kotlin/dep.compose.gradle.kts`.
 When a feature encompasses adding multiple dependencies and/or config and you might re-use it,
 please add a separate gradle file for it.
 

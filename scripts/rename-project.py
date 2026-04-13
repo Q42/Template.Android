@@ -62,7 +62,7 @@ def replace_package_name_occurences_in_file(filename):
 
 for root, dirs, files in os.walk(folder, topdown=False):
     for name in files:
-        if name.endswith(".kt") | name.endswith(".xml") | name.endswith(".gradle") | name.endswith(".yml"):
+        if name.endswith(".kt") | name.endswith(".xml") | name.endswith(".gradle") | name.endswith(".gradle.kts") | name.endswith(".yml"):
             file_name = os.path.join(root, name)
             replace_package_name_occurences_in_file(file_name)
 
