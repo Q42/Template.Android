@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlinSerialization)
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("module.library")
     id("dep.compose")
     id("dep.navigation")

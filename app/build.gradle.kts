@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     alias(libs.plugins.googleServices)
     alias(libs.plugins.firebaseCrashlyticsPlugin)
-    alias(libs.plugins.compose.compiler)
+    id("org.jetbrains.kotlin.plugin.compose")
     id("app.cash.licensee")
     id("module.feature-and-app")
     id("dep.navigation")
