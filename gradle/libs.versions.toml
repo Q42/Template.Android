@@ -1,9 +1,8 @@
 [versions]
 jvmTarget = "21"
 kermit = "2.0.8"
-kotlin = "2.2.20"
-# should match kotlin https://github.com/google/ksp/releases
-gradlePlugin = "8.11.2"
+kotlin = "2.3.20"
+gradlePlugin = "9.1.0"
 googleServices = "4.4.4"
 crashlyticsPlugin = "3.0.6"
 firebaseBOM = "34.4.0"
@@ -59,7 +58,6 @@ plugin-licensee = { module = "app.cash.licensee:licensee-gradle-plugin", version
 androidApplication = { id = "com.android.application", version.ref = "gradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "gradlePlugin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 firebaseCrashlyticsPlugin = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
