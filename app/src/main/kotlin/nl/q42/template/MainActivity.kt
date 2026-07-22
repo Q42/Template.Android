@@ -15,13 +15,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.scene.DialogSceneStrategy
+import androidx.navigation3.ui.NavDisplay
 import co.touchlab.kermit.Logger
-import nl.q42.template.core.utils.config.AppScheme
 import nl.q42.template.navigation.Destination
-import nl.q42.template.navigation.homeGraph
-import nl.q42.template.navigation.onboardingDestinations
+import nl.q42.template.navigation.deeplink.DeeplinkParser
+import nl.q42.template.navigation.homeEntry
+import nl.q42.template.navigation.onboardingEntry
+import nl.q42.template.navigation.viewmodel.Navigator
+import nl.q42.template.navigation.viewmodel.rememberNavigationState
+import nl.q42.template.navigation.viewmodel.toEntries
 import nl.q42.template.ui.compose.composables.widgets.AppSurface
 import nl.q42.template.ui.compose.composables.window.LocalSnackbarHostState
 import nl.q42.template.ui.compose.composables.window.toSnackBarVisuals
@@ -31,9 +37,9 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val appDeepLinkScheme: AppScheme by inject()
-
     private val snackbarPresenter: SnackbarPresenter by inject()
+
+    private val deeplinkParser: DeeplinkParser by inject()
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +48,25 @@ class MainActivity : ComponentActivity() {
 
         Logger.d { "onCreate received, ${intent.data}" }
 
+        val startDestination: Destination = deeplinkParser.parseIntent(intent) ?: Destination.Home
+        Logger.i { "Start destination: $startDestination" }
+
         setContent {
+
+            val navigationState = rememberNavigationState(
+                startRoute = startDestination,
+                topLevelRoutes = setOf<NavKey>(
+                    // the destinations that can be used to enter the app, typically the tabs in the bottom navigation bar.
+                    Destination.Home,
+                    Destination.Onboarding
+                )
+            )
+
+            val navigator = remember { Navigator(navigationState) }
+            val entryProvider: (NavKey) -> NavEntry<NavKey> = entryProvider {
+                homeEntry(navigator = navigator)
+                onboardingEntry(navigator = navigator)
+            }
 
             val snackbarHostState = remember { SnackbarHostState() }
             SnackbarChangedEffect(snackbarHostState)
@@ -52,22 +76,16 @@ class MainActivity : ComponentActivity() {
             ) {
                 AppTheme {
 
-                    val navController = rememberNavController()
-
                     AppSurface(
                         modifier = Modifier.fillMaxSize(),
                     ) {
 
-                        NavHost(
-                            navController = navController,
-                            startDestination = Destination.HomeGraph
-                        ) {
-                            homeGraph(
-                                navController = navController,
-                                appDeepLinkScheme = appDeepLinkScheme
-                            )
-                            onboardingDestinations(navController)
-                        }
+                        NavDisplay(
+                            entries = navigationState.toEntries(entryProvider),
+                            onBack = { navigator.goBack() },
+                            sceneStrategy = remember { DialogSceneStrategy() }
+                        )
+
                     }
                 }
             }

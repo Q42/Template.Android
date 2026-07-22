@@ -10,23 +10,26 @@ retrofit = "3.0.0"
 kotlinx-serialization = "1.9.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 networkResponseAdapter = "5.0.0"
-composeNavigation = "2.9.5"
 okhttp = "5.2.1"
 composePlatform = "2025.10.00"
 activityCompose = "1.11.0"
 composeLifecycle = "2.9.4"
+
+nav3Core = "1.0.0"
+
 # Test dependencies
 kotlinxCoroutinesTest = "1.10.2"
 junit = "4.13.2"
 mockkAndroid = "1.14.6"
 turbine = "1.2.1"
 composeStateEvents = "2.2.0"
-koin = "4.1.1"
+koin = "4.2.0-RC1"
 licensee = "1.14.1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
@@ -48,7 +51,11 @@ activityCompose = { module = "androidx.activity:activity-compose", version.ref =
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 composeStateEvents = { module = "com.github.leonard-palm:compose-state-events", version.ref = "composeStateEvents" }
-composeNavigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
+
+# Core Navigation 3 libraries
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }

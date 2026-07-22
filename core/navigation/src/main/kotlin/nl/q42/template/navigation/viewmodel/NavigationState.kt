@@ -1,39 +1,91 @@
 package nl.q42.template.navigation.viewmodel
 
-import nl.q42.template.navigation.Destination
-import java.util.UUID
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSerializable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.rememberDecoratedNavEntries
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.runtime.serialization.NavKeySerializer
+import androidx.savedstate.compose.serialization.serializers.MutableStateSerializer
 
-sealed class NavigationState {
-    data object Idle : NavigationState()
-    data class NavigateToRoute(
-        val destination: Destination,
-        val backstackBehavior: BackstackBehavior,
-        val id: String = UUID.randomUUID().toString()
-    ) : NavigationState()
+/**
+ * Create a navigation state that persists config changes and process death.
+ */
+@Composable
+fun rememberNavigationState(
+    startRoute: NavKey,
+    topLevelRoutes: Set<NavKey>
+): NavigationState {
 
-    data class PopToDestination(val destination: Destination, val id: String = UUID.randomUUID().toString()) : NavigationState()
+    val topLevelRoute = rememberSerializable(
+        startRoute, topLevelRoutes,
+        serializer = MutableStateSerializer(NavKeySerializer())
+    ) {
+        mutableStateOf(startRoute)
+    }
 
-    data class NavigateUp(val id: String = UUID.randomUUID().toString()) : NavigationState()
+    val backStacks = topLevelRoutes.associateWith { key -> rememberNavBackStack(key) }
+
+    return remember(startRoute, topLevelRoutes) {
+        NavigationState(
+            startRoute = startRoute,
+            topLevelRoute = topLevelRoute,
+            backStacks = backStacks
+        )
+    }
 }
 
-sealed class BackstackBehavior {
-    /**
-     * Adds the destination to the backstack as usual.
-     */
-    data object Default : BackstackBehavior()
+/**
+ * State holder for navigation state.
+ *
+ * @param startRoute - the start route. The user will exit the app through this route.
+ * @param topLevelRoute - the current top level route
+ * @param backStacks - the back stacks for each top level route
+ */
+class NavigationState(
+    val startRoute: NavKey,
+    topLevelRoute: MutableState<NavKey>,
+    val backStacks: Map<NavKey, NavBackStack<NavKey>>
+) {
+    var topLevelRoute: NavKey by topLevelRoute
+    val stacksInUse: List<NavKey>
+        get() = if (topLevelRoute == startRoute) {
+            listOf(startRoute)
+        } else {
+            listOf(startRoute, topLevelRoute)
+        }
+}
 
-    /**
-     * Removes the current destination from the backstack before navigating.
-     *
-     * When navigating A -> B -> C. If B -> C is set to RemoveCurrent,
-     * the backstack will be A -> C.
-     */
-    data object RemoveCurrent : BackstackBehavior()
+/**
+ * Convert NavigationState into NavEntries.
+ */
+@Composable
+fun NavigationState.toEntries(
+    entryProvider: (NavKey) -> NavEntry<NavKey>
+): SnapshotStateList<NavEntry<NavKey>> {
 
-    /**
-     * Clears the backstack and sets the target destination as the backstack's root.
-     *
-     * When navigating A -> B -> C. If B -> C is set to Clear, the backstack will be C.
-     */
-    data object Clear : BackstackBehavior()
+    val decoratedEntries = backStacks.mapValues { (_, stack) ->
+        val decorators = listOf(
+            rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+        )
+        rememberDecoratedNavEntries(
+            backStack = stack,
+            entryDecorators = decorators,
+            entryProvider = entryProvider
+        )
+    }
+
+    return stacksInUse
+        .flatMap { decoratedEntries[it] ?: emptyList() }
+        .toMutableStateList()
 }

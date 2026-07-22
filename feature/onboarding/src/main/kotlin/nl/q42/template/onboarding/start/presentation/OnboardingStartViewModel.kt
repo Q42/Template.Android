@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import nl.q42.template.navigation.Destination
+import nl.q42.template.navigation.viewmodel.BackstackBehavior
 import nl.q42.template.navigation.viewmodel.RouteNavigator
 
 class OnboardingStartViewModel(
@@ -14,6 +16,6 @@ class OnboardingStartViewModel(
     val uiState: StateFlow<OnboardingStartViewState> = _uiState.asStateFlow()
 
     fun onBackClicked() {
-        navigateUp()
+        navigateTo(Destination.Home, backstackBehavior = BackstackBehavior.Clear)
     }
 }
