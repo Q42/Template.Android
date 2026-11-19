@@ -1,3 +1,6 @@
+# :warning: Archived: use the Compose Multiplatform template instead :warning: 
+# https://github.com/Q42/Template.ComposeMultiplatform
+
 # Kickstarter.Android
 
 A kickstarter for creating Android projects at Q42. It gives our projects a flying start and ensures everything we’ve learned from earlier work can be easily reused in new projects.
